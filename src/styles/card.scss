@@ -1,0 +1,19 @@
+.card {
+  margin-bottom: 16px;
+  border-radius: 20px;
+  background: var(--background-color);
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-color);
+  display: block;
+  position: relative;
+  padding: 16px;
+
+  &__title {
+    font-family: Poppins, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 0 1rem 0.5rem;
+  }
+
+}

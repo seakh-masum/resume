@@ -1,0 +1,20 @@
+.contact {
+  &__wrapper {
+    padding: 1rem;
+  }
+
+  &__item {
+    aspect-ratio: 1/1;
+    line-height: inherit;
+    border-radius: 50%;
+  }
+
+  &__image {
+    width: 2rem;
+    padding: 0.25rem;
+
+    &.mobile {
+      width: 1.5rem;
+    }
+  }
+}

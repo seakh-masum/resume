@@ -1,0 +1,106 @@
+@mixin flex($dir) {
+  @extend .flex;
+  flex-direction: $dir;
+}
+
+@mixin grid-col($count) {
+  @extend .grid;
+  grid-template-columns: repeat($count, 1fr);
+}
+
+@mixin gap($value) {
+  gap: $value;
+}
+
+@mixin align($row, $column) {
+  @extend .flex;
+  justify-content: $row;
+  align-items: $column;
+}
+
+@mixin flex-basis($value) {
+  flex: 1 1 $value;
+}
+
+.flex {
+  display: flex;
+
+  &__row {
+    @include flex(row);
+  }
+
+  &__column {
+    @include flex(column);
+  }
+
+  &__wrap {
+    flex-wrap: wrap;
+  }
+
+  &__33 {
+    @include flex-basis(33.333%);
+  }
+
+  &__67 {
+    @include flex-basis(66.6666%);
+  }
+}
+
+.gap {
+  &-1 {
+    @include gap(0.25rem);
+  }
+
+  &-2 {
+    @include gap(0.5rem);
+  }
+
+  &-3 {
+    @include gap(1rem);
+  }
+
+  &-4 {
+    @include gap(1.5rem);
+  }
+
+  &-5 {
+    @include gap(2rem);
+  }
+
+  &-6 {
+    @include gap(2.5rem);
+  }
+}
+
+.align {
+  &__center-center {
+    @include align(center, center);
+  }
+
+  &__start-center {
+    @include align(start, center);
+  }
+}
+
+.grid {
+  display: grid;
+
+  &__col-1 {
+    @include grid-col(1);
+  }
+
+  &__col-3 {
+    @include grid-col(3);
+  }
+
+  &__col-4 {
+    @include grid-col(4);
+  }
+}
+
+.position__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,27 @@
+.projects {
+  padding-inline-start: 20px;
+
+  &__box {
+    background-color: var(--surface-color);
+    list-style: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 0;
+
+    a {
+      color: var(--text-color);
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    p {
+      color: var(--desc-color);
+      font-size: 11px;
+    }
+  }
+
+  &__mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
