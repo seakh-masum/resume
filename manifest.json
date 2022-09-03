@@ -1,0 +1,28 @@
+{
+	"short_name": "Masum Resume",
+	"name": "Resume of Sk Masum",
+	"icons": [
+		{
+			"src": "https://res.cloudinary.com/ruhi-birthday/image/upload/v1655623019/masum-cv/icons/android-icon-72x72_pecbtv.png",
+			"sizes": "64x64 32x32 24x24 16x16",
+			"type": "image/x-icon",
+			"purpose": "maskable any"
+		},
+		{
+			"src": "https://res.cloudinary.com/ruhi-birthday/image/upload/v1655623017/masum-cv/icons/icon-192x192_mh7yxe.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "maskable any"
+		},
+		{
+			"src": "https://res.cloudinary.com/ruhi-birthday/image/upload/v1655623018/masum-cv/icons/icon-512x512_zk9nyy.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable any"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#fafafa"
+}
