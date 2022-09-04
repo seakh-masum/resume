@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { onSnapshot } from 'firebase/firestore';
 import { Stepper } from './Stepper';
+import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
 
 export const Experience = (props) => {
 	const [experience, setExperience] = useState([]);
@@ -10,49 +10,44 @@ export const Experience = (props) => {
 	useEffect(() => {
 		setLoading(true);
 		if (loading) {
-			const q = query(collection(db, 'experience'), orderBy('order', 'asc'));
+			const q = firebaseQuery('experience');
 			onSnapshot(q, (querySnapshot) => {
 				setExperience(
-					querySnapshot.docs
-						.map((doc) => ({
-							id: doc.id,
-							...doc.data(),
-						}))
-						.map((item) => {
-							let obj = {};
-							const fromYear = new Date(item.from).getFullYear();
-							const fromMonth = new Date(item.from).getMonth();
-							const toYear =
-								item.to === 'Present'
-									? new Date().getFullYear()
-									: new Date(item.to).getFullYear();
+					firebaseDataMapping(querySnapshot).map((item) => {
+						let obj = {};
+						const fromYear = new Date(item.from).getFullYear();
+						const fromMonth = new Date(item.from).getMonth();
+						const toYear =
+							item.to === 'Present'
+								? new Date().getFullYear()
+								: new Date(item.to).getFullYear();
 
-							const toMonth =
-								item.to === 'Present'
-									? new Date().getMonth()
-									: new Date(item.to).getMonth();
+						const toMonth =
+							item.to === 'Present'
+								? new Date().getMonth()
+								: new Date(item.to).getMonth();
 
-							const monthDifference = toMonth - fromMonth;
-							const monthGap =
-								monthDifference > 0 ? monthDifference : 12 + monthDifference;
-							const yearGap =
-								monthDifference > 0 ? toYear - fromYear : toYear - fromYear - 1;
+						const monthDifference = toMonth - fromMonth;
+						const monthGap =
+							monthDifference > 0 ? monthDifference : 12 + monthDifference;
+						const yearGap =
+							monthDifference > 0 ? toYear - fromYear : toYear - fromYear - 1;
 
-							obj.tenure =
-								yearGap > 0
-									? `${yearGap} Year  ${monthGap} Months`
-									: `${monthGap} Months`;
-							obj.stepperIndex =
-								fromYear === toYear
-									? `${toYear}`
-									: `${fromYear}-${
-											item.to === 'Present'
-												? item.to
-												: new Date(item.to).getFullYear()
-									  }`;
+						obj.tenure =
+							yearGap > 0
+								? `${yearGap} Year  ${monthGap} Months`
+								: `${monthGap} Months`;
+						obj.stepperIndex =
+							fromYear === toYear
+								? `${toYear}`
+								: `${fromYear}-${
+										item.to === 'Present'
+											? item.to
+											: new Date(item.to).getFullYear()
+								  }`;
 
-							return { ...item, ...obj };
-						}),
+						return { ...item, ...obj };
+					}),
 				);
 			});
 		}

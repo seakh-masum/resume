@@ -5,8 +5,3 @@
   max-width: 1300px;
   margin: 0 auto;
 }
-
-.about-me-desc {
-  padding-inline-start: 24px;
-  color: var(--desc-color)
-}

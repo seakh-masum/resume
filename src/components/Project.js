@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/project.scss';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { onSnapshot } from 'firebase/firestore';
+import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
 
 export const ProjectList = (props) => {
 	const [projects, setProjects] = useState([]);
@@ -10,14 +10,9 @@ export const ProjectList = (props) => {
 	useEffect(() => {
 		setLoading(true);
 		if (loading) {
-			const q = query(collection(db, 'projects'), orderBy('order', 'asc'));
+			const q = firebaseQuery('projects');
 			onSnapshot(q, (querySnapshot) => {
-				setProjects(
-					querySnapshot.docs.map((doc) => ({
-						id: doc.id,
-						...doc.data(),
-					})),
-				);
+				setProjects(firebaseDataMapping(querySnapshot));
 			});
 		}
 	}, [loading]);

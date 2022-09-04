@@ -1,6 +1,15 @@
 import React from 'react';
-import { PROFILE_DATA } from '../data/ProfileData';
+import '../styles/about-me.scss';
 
-export const AboutMe = () => {
-	return <p className='about-me-desc'>{PROFILE_DATA.aboutMe}</p>;
+export const AboutMe = ({ introduction, description }) => {
+	return (
+		<div className='about-me'>
+			<p>{introduction}</p>
+			<ul>
+				{description?.map((item, index) => (
+					<li key={index}>{item}</li>
+				))}
+			</ul>
+		</div>
+	);
 };

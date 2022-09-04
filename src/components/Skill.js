@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
 import '../styles/skill.scss';
+import React, { useState, useEffect } from 'react';
+import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
+import { onSnapshot } from 'firebase/firestore';
 
 export const SkillList = () => {
 	const [skills, setSkills] = useState([]);
@@ -10,14 +10,9 @@ export const SkillList = () => {
 	useEffect(() => {
 		setLoading(true);
 		if (loading) {
-			const q = query(collection(db, 'skills'), orderBy('order', 'asc'));
+			const q = firebaseQuery('skills');
 			onSnapshot(q, (querySnapshot) => {
-				setSkills(
-					querySnapshot.docs.map((doc) => ({
-						id: doc.id,
-						...doc.data(),
-					})),
-				);
+				setSkills(firebaseDataMapping(querySnapshot));
 			});
 		}
 	}, [loading]);
@@ -46,7 +41,7 @@ export const SkillList = () => {
 		);
 	};
 	return (
-		<div className='flex__row flex__wrap'>
+		<div className='grid__col-3 gap-2'>
 			{skills?.map((item, index) => (
 				<div key={index} className='flex__33 align__center-center'>
 					<Skill

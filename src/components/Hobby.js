@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { onSnapshot } from 'firebase/firestore';
 import '../styles/hobby.scss';
+import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
 
 export const HobbyList = (props) => {
 	const [hobbies, setHobbies] = useState([]);
@@ -10,14 +10,9 @@ export const HobbyList = (props) => {
 	useEffect(() => {
 		setLoading(true);
 		if (loading) {
-			const q = query(collection(db, 'hobbies'), orderBy('order', 'asc'));
+			const q = firebaseQuery('hobbies');
 			onSnapshot(q, (querySnapshot) => {
-				setHobbies(
-					querySnapshot.docs.map((doc) => ({
-						id: doc.id,
-						...doc.data(),
-					})),
-				);
+				setHobbies(firebaseDataMapping(querySnapshot));
 			});
 		}
 	}, [loading]);

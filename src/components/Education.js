@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { onSnapshot } from 'firebase/firestore';
 import { Stepper } from './Stepper';
+import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
 
 export const Education = (props) => {
 	const [education, setEducation] = useState([]);
@@ -10,19 +10,14 @@ export const Education = (props) => {
 	useEffect(() => {
 		setLoading(true);
 		if (loading) {
-			const q = query(collection(db, 'education'), orderBy('order', 'asc'));
+			const q = firebaseQuery('education');
 			onSnapshot(q, (querySnapshot) => {
 				setEducation(
-					querySnapshot.docs
-						.map((doc) => ({
-							id: doc.id,
-							...doc.data(),
-						}))
-						.map((res) => ({
-							...res,
-							stepperIndex: `${res.from} - ${res.to}`,
-							marks: `${res.marks} %`,
-						})),
+					firebaseDataMapping(querySnapshot).map((res) => ({
+						...res,
+						stepperIndex: `${res.from} - ${res.to}`,
+						marks: `${res.marks} %`,
+					})),
 				);
 			});
 		}
