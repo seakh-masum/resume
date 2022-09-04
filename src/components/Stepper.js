@@ -18,7 +18,9 @@ export const Stepper = (props) => {
 				)}
 			</div>
 			<div className='stepper__text-container'>
-				<span>{props.heading}</span>
+				<a href={props.link} target='_blank' rel='noreferrer'>
+					{props.heading}
+				</a>
 				<p>{props.subHeading}</p>
 				<b>{props.desc}</b>
 			</div>

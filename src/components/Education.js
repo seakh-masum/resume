@@ -34,6 +34,7 @@ export const Education = (props) => {
 					heading={item.course}
 					subHeading={item.institute}
 					desc={item.marks}
+					link={item.link}
 				/>
 			))}
 		</div>

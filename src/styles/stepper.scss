@@ -24,8 +24,8 @@
       color: var(--desc-color);
     }
 
-    span {
-      @include font-style(1rem, 0.5rem, 1rem)
+    a {
+      @include font-style(1rem, 0.5rem, 1rem);
     }
   }
 

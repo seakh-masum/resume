@@ -19,7 +19,11 @@ export const SkillList = () => {
 
 	const Skill = (props) => {
 		return (
-			<div className='circle__container flex__column align__center-center'>
+			<a
+				href={props.link}
+				target='_blank'
+				rel='noreferrer'
+				className='circle__container flex__column align__center-center'>
 				<div className='percent'>
 					<svg height='100' width='100' className='skill'>
 						<circle cx='50' cy='50' r='40'></circle>
@@ -37,7 +41,7 @@ export const SkillList = () => {
 					</div>
 				</div>
 				<span>{props.label}</span>
-			</div>
+			</a>
 		);
 	};
 	return (
@@ -49,6 +53,7 @@ export const SkillList = () => {
 						image={item.icon}
 						label={item.name}
 						value={item.value}
+						link={item.link}
 					/>
 				</div>
 			))}

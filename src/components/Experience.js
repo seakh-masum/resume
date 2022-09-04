@@ -64,6 +64,7 @@ export const Experience = (props) => {
 					heading={item.company}
 					subHeading={item.role}
 					desc={item.tenure}
+					link={item.link}
 				/>
 			))}
 		</div>
