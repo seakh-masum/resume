@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/contact.scss';
 import { onSnapshot } from 'firebase/firestore';
-import { firebaseDataMapping, firebaseQuery } from '../services/GlobalService';
+import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
 
 export const ContactList = (props) => {
 	const [contacts, setContacts] = useState([]);
@@ -18,7 +18,10 @@ export const ContactList = (props) => {
 	}, [loading]);
 
 	return (
-		<div className='contact__wrapper grid__col-4 gap-5'>
+		<div
+			className={`contact__wrapper grid__col-4 ${
+				props.isMobile ? 'gap-3' : 'gap-5'
+			}`}>
 			{contacts.map((item, index) => (
 				<a
 					href={item.link}

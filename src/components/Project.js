@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/project.scss';
 import { onSnapshot } from 'firebase/firestore';
-import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
+import { firebaseQuery, firebaseDataMapping } from '../helper/GlobalService';
 
 export const ProjectList = (props) => {
 	const [projects, setProjects] = useState([]);

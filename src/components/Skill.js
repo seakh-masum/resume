@@ -1,6 +1,6 @@
 import '../styles/skill.scss';
 import React, { useState, useEffect } from 'react';
-import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
+import { firebaseQuery, firebaseDataMapping } from '../helper/GlobalService';
 import { onSnapshot } from 'firebase/firestore';
 
 export const SkillList = () => {

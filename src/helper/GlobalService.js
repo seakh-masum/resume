@@ -1,10 +1,6 @@
 import { collection, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 
-const checkDeviceTypeMobile = () => {
-	return window.innerWidth <= 700 && window.innerHeight <= 900 ? true : false;
-};
-
 const checkDarkMode = () => {
 	let isDarkMode = false;
 	if (
@@ -27,9 +23,4 @@ const firebaseDataMapping = (querySnapshot) => {
 	}));
 };
 
-export {
-	checkDeviceTypeMobile,
-	checkDarkMode,
-	firebaseQuery,
-	firebaseDataMapping,
-};
+export { checkDarkMode, firebaseQuery, firebaseDataMapping };

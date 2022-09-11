@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { onSnapshot } from 'firebase/firestore';
 import '../styles/hobby.scss';
-import { firebaseQuery, firebaseDataMapping } from '../services/GlobalService';
+import { firebaseQuery, firebaseDataMapping } from '../helper/GlobalService';
 
 export const HobbyList = (props) => {
 	const [hobbies, setHobbies] = useState([]);

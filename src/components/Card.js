@@ -5,7 +5,7 @@ export const Card = (props) => {
 	return (
 		<div className='card'>
 			{props.header && <h1 className='card__title'>{props.header}</h1>}
-			{props.childComponent}
+			{props.children}
 		</div>
 	);
 };
