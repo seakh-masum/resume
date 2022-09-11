@@ -13,6 +13,7 @@ import { onSnapshot } from 'firebase/firestore';
 import { firebaseDataMapping, firebaseQuery } from './helper/GlobalService';
 import { ResponsiveContext } from './helper/ResponsiveContext';
 import { DownloadBtn } from './components/DownloadBtn';
+import { Loader } from './components/Loader';
 
 function App() {
 	const [profile, setProfile] = useState({});
@@ -34,44 +35,53 @@ function App() {
 	return (
 		<ResponsiveContext.Consumer>
 			{(isMobile) => (
-				<div className='background'>
-					<div className={'gap-3 ' + (isMobile ? 'flex__column' : 'flex__row')}>
-						<div className='flex__column flex__33'>
-							<Profile
-								name={profile.name}
-								role={profile.role}
-								image={profile.image}
-							/>
-							<Card header='Contacts'>
-								<ContactList isMobile={isMobile} />
-							</Card>
-							<Card header='Hobbies'>
-								<HobbyList isMobile={isMobile} />
-							</Card>
-							<Card header='Skills'>
-								<SkillList />
-							</Card>
+				<>
+					{loading1 ? (
+						<div className='background'>
+							<div
+								className={
+									'gap-3 ' + (isMobile ? 'flex__column' : 'flex__row')
+								}>
+								<div className='flex__column flex__33'>
+									<Profile
+										name={profile.name}
+										role={profile.role}
+										image={profile.image}
+									/>
+									<Card header='Contacts'>
+										<ContactList isMobile={isMobile} />
+									</Card>
+									<Card header='Hobbies'>
+										<HobbyList isMobile={isMobile} />
+									</Card>
+									<Card header='Skills'>
+										<SkillList />
+									</Card>
+								</div>
+								<div className='flex__column flex__67'>
+									<Card header='About Me'>
+										<AboutMe
+											introduction={profile.introduction}
+											description={profile.description}
+										/>
+									</Card>
+									<Card header='Experience'>
+										<Experience isMobile={isMobile} />
+									</Card>
+									<Card header='Education'>
+										<Education isMobile={isMobile} />
+									</Card>
+									<Card header='Projects'>
+										<ProjectList isMobile={isMobile} />
+									</Card>
+								</div>
+							</div>
+							<DownloadBtn />
 						</div>
-						<div className='flex__column flex__67'>
-							<Card header='About Me'>
-								<AboutMe
-									introduction={profile.introduction}
-									description={profile.description}
-								/>
-							</Card>
-							<Card header='Experience'>
-								<Experience isMobile={isMobile} />
-							</Card>
-							<Card header='Education'>
-								<Education isMobile={isMobile} />
-							</Card>
-							<Card header='Projects'>
-								<ProjectList isMobile={isMobile} />
-							</Card>
-						</div>
-					</div>
-					<DownloadBtn />
-				</div>
+					) : (
+						<Loader />
+					)}
+				</>
 			)}
 		</ResponsiveContext.Consumer>
 	);
