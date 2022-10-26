@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/project.scss';
 import { onSnapshot } from 'firebase/firestore';
-import { firebaseQuery, firebaseDataMapping } from '../helper/GlobalService';
+import React, { useEffect, useState } from 'react';
+import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
+import '../styles/project.scss';
 
-export const ProjectList = (props) => {
+export const ProjectList = ({ isMobile }) => {
 	const [projects, setProjects] = useState([]);
-	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		setLoading(true);
-		if (loading) {
-			const q = firebaseQuery('projects');
-			onSnapshot(q, (querySnapshot) => {
-				setProjects(firebaseDataMapping(querySnapshot));
-			});
-		}
-	}, [loading]);
+		getProjects();
+	}, []);
+
+	const getProjects = () => {
+		const q = firebaseQuery('projects');
+		onSnapshot(q, (querySnapshot) => {
+			setProjects(firebaseDataMapping(querySnapshot));
+		});
+	};
 
 	return (
 		<ul
 			className={
-				'projects gap-3 ' + (props.isMobile ? 'grid__col-1' : 'grid__col-3')
+				'projects gap-3 ' + (isMobile ? 'grid__col-1' : 'grid__col-3')
 			}>
 			{projects.map((item, index) => (
 				<li key={index} className='projects__box'>

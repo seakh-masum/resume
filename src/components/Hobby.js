@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
 import { onSnapshot } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
 import '../styles/hobby.scss';
-import { firebaseQuery, firebaseDataMapping } from '../helper/GlobalService';
 
-export const HobbyList = (props) => {
+export const HobbyList = ({ isMobile }) => {
 	const [hobbies, setHobbies] = useState([]);
-	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		setLoading(true);
-		if (loading) {
-			const q = firebaseQuery('hobbies');
-			onSnapshot(q, (querySnapshot) => {
-				setHobbies(firebaseDataMapping(querySnapshot));
-			});
-		}
-	}, [loading]);
+		getHobbies();
+	}, []);
+
+	const getHobbies = () => {
+		const q = firebaseQuery('hobbies');
+		onSnapshot(q, (querySnapshot) => {
+			setHobbies(firebaseDataMapping(querySnapshot));
+		});
+	};
 
 	return (
 		<div className='chip__wrapper flex__row flex__wrap align__start-center'>
@@ -23,7 +23,7 @@ export const HobbyList = (props) => {
 				<div
 					key={index}
 					className={'chip color__' + item.color}
-					style={{ fontSize: props.isMobile && '0.8rem' }}>
+					style={{ fontSize: isMobile && '0.8rem' }}>
 					<img src={item.icon} alt=''></img>
 					{item.name}
 				</div>

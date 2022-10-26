@@ -1,22 +1,21 @@
 import '../styles/skill.scss';
-import React, { useState, useEffect } from 'react';
-import { firebaseQuery, firebaseDataMapping } from '../helper/GlobalService';
+import React, { useEffect, useState } from 'react';
+import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
 import { onSnapshot } from 'firebase/firestore';
 
 export const SkillList = () => {
 	const [skills, setSkills] = useState([]);
-	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		setLoading(true);
-		if (loading) {
-			const q = firebaseQuery('skills');
-			onSnapshot(q, (querySnapshot) => {
-				setSkills(firebaseDataMapping(querySnapshot));
-			});
-		}
-	}, [loading]);
+		getSkills();
+	}, []);
 
+	const getSkills = () => {
+		const q = firebaseQuery('skills');
+		onSnapshot(q, (querySnapshot) => {
+			setSkills(firebaseDataMapping(querySnapshot));
+		});
+	};
 	const Skill = (props) => {
 		return (
 			<a
