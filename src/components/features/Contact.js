@@ -14,7 +14,11 @@ export const ContactList = ({ isMobile }) => {
 	const getContacts = () => {
 		const query = firebaseQuery('contacts');
 		onSnapshot(query, (querySnapshot) => {
-			setContacts(firebaseDataMapping(querySnapshot));
+			setContacts(firebaseDataMapping(querySnapshot).map((res => {
+				res.icon = res.icon.replace('upload',
+					`upload/co_rgb:fff,e_colorize:100,f_png,h_96`);
+				return res;
+			})));
 		});
 		setLoading(false);
 	};
