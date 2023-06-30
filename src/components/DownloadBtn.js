@@ -17,7 +17,7 @@ export const DownloadBtn = () => {
 	const downloadLink =
 		'https://drive.google.com/uc?export=download&id=1wFlDhiZhSYjl1mwk5tFzDulh3DqP9f4F';
 	return (
-		<a href={downloadLink} target='_blank' rel='noreferrer' style={style}>
+		<a href={downloadLink} target='_blank' rel='noreferrer' className='grid place-content-center rounded-full fixed bottom-3 right-3 z-50 w-12 aspect-square bg-gradient-to-r from-sky-500 to-indigo-500 shadow-md'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				height='24px'

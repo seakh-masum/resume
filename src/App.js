@@ -37,44 +37,47 @@ function App() {
 	return (
 		<>
 			{loading ? (
-				<div className='background'>
-					<div className={'gap-3 ' + (isMobile ? 'flex__column' : 'flex__row')}>
-						<div className='flex__column flex__33'>
-							<Profile
-								name={profile.name}
-								image={profile.image}
-								role={profile.role}
-							/>
-							<Card header='Contacts'>
-								<ContactList isMobile={isMobile} />
-							</Card>
-							<Card header='Hobbies'>
-								<HobbyList isMobile={isMobile} />
-							</Card>
-							<Card header='Skills'>
-								<SkillList />
-							</Card>
-						</div>
-						<div className='flex__column flex__67'>
-							<Card header='About Me'>
-								<AboutMe
-									introduction={profile.introduction}
-									description={profile.description}
-								/>
-							</Card>
-							<Card header='Experience'>
-								<Experience isMobile={isMobile} />
-							</Card>
-							<Card header='Education'>
-								<Education isMobile={isMobile} />
-							</Card>
-							<Card header='Projects'>
-								<ProjectList isMobile={isMobile} />
-							</Card>
-						</div>
-					</div>
-					<DownloadBtn />
-				</div>
+				// <div className='w-full bg-neutral-100 dark:bg-neutral-950'>
+				// 	<div className='relative my-0 mx-auto p-3 max-w-7xl'>
+				// 		<div className='flex gap-3 sm:flex-row flex-col'>
+				// 			<div className='flex flex-col basis-1/3'>
+				// 				<Profile
+				// 					name={profile.name}
+				// 					image={profile.image}
+				// 					role={profile.role}
+				// 				/>
+				// 				<Card header='Contacts'>
+				// 					<ContactList isMobile={isMobile} />
+				// 				</Card>
+				// 				<Card header='Hobbies'>
+				// 					<HobbyList isMobile={isMobile} />
+				// 				</Card>
+				// 				<Card header='Skills'>
+				// 					<SkillList />
+				// 				</Card>
+				// 			</div>
+				// 			<div className='flex flex-col basis-2/3'>
+				// 				<Card header='About Me'>
+				// 					<AboutMe
+				// 						introduction={profile.introduction}
+				// 						description={profile.description}
+				// 					/>
+				// 				</Card>
+				// 				<Card header='Experience'>
+				// 					<Experience isMobile={isMobile} />
+				// 				</Card>
+				// 				<Card header='Education'>
+				// 					<Education isMobile={isMobile} />
+				// 				</Card>
+				// 				<Card header='Projects'>
+				// 					<ProjectList isMobile={isMobile} />
+				// 				</Card>
+				// 			</div>
+				// 		</div>
+				// 		<DownloadBtn />
+				// 	</div>
+				// </div>
+				<></>
 			) : (
 				<Loader />
 			)}

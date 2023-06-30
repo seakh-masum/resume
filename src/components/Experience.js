@@ -41,11 +41,10 @@ export const Experience = ({ isMobile }) => {
 					obj.stepperIndex =
 						fromYear === toYear
 							? `${toYear}`
-							: `${fromYear}-${
-									item.to === 'Present'
-										? item.to
-										: new Date(item.to).getFullYear()
-							  }`;
+							: `${fromYear}-${item.to === 'Present'
+								? item.to
+								: new Date(item.to).getFullYear()
+							}`;
 
 					return { ...item, ...obj };
 				}),
@@ -54,7 +53,7 @@ export const Experience = ({ isMobile }) => {
 	};
 
 	return (
-		<div className='stepper__container flex__column'>
+		<div className='mt-4 mr-0 mb-0 ml-6'>
 			{experience.map((item, index) => (
 				<Stepper
 					key={index}

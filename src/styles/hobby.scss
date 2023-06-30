@@ -3,56 +3,56 @@
   color: $color;
 }
 
-.chip {
-  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  padding: 7px 12px;
-  border-radius: 16px;
-  align-items: center;
-  cursor: default;
-  min-height: 32px;
-  height: 1px;
-  line-height: 13px;
-  position: relative;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  transform: translateZ(0);
-  border: none;
-  -webkit-appearance: none;
+// .chip {
+//   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+//   display: inline-flex;
+//   padding: 7px 12px;
+//   border-radius: 16px;
+//   align-items: center;
+//   cursor: default;
+//   min-height: 32px;
+//   height: 1px;
+//   line-height: 13px;
+//   position: relative;
+//   box-sizing: border-box;
+//   -webkit-tap-highlight-color: transparent;
+//   transform: translateZ(0);
+//   border: none;
+//   -webkit-appearance: none;
 
-  &.mobile {
-    font-size: 0.8rem;
-  }
+//   &.mobile {
+//     font-size: 0.8rem;
+//   }
 
-  &::after {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    border-radius: inherit;
-    opacity: 0;
-    content: "";
-    pointer-events: none;
-    transition: opacity 200ms cubic-bezier(0.35, 0, 0.25, 1);
-  }
+//   &::after {
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     position: absolute;
+//     border-radius: inherit;
+//     opacity: 0;
+//     content: "";
+//     pointer-events: none;
+//     transition: opacity 200ms cubic-bezier(0.35, 0, 0.25, 1);
+//   }
 
-  &__wrapper {
-    gap: 0.5rem;
-    padding-inline-start: 8px;
-  }
+//   &__wrapper {
+//     gap: 0.5rem;
+//     padding-inline-start: 8px;
+//   }
 
-  img {
-    width: 20px;
-    height: 20px;
-    line-height: 15px;
-    margin-right: 5px;
-  }
+//   img {
+//     width: 20px;
+//     height: 20px;
+//     line-height: 15px;
+//     margin-right: 5px;
+//   }
 
-  &-list-wrapper {
-    margin: 0 !important;
-  }
-}
+//   &-list-wrapper {
+//     margin: 0 !important;
+//   }
+// }
 
 .color {
   &__purple {

@@ -2,14 +2,13 @@ import { collection, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const checkDarkMode = () => {
-	let isDarkMode = false;
 	if (
 		window.matchMedia &&
 		window.matchMedia('(prefers-color-scheme: dark)').matches
 	) {
-		isDarkMode = true;
+		return true;
 	}
-	return isDarkMode;
+	return false;
 };
 
 const firebaseQuery = (url) => {

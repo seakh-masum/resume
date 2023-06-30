@@ -24,7 +24,8 @@ export const Education = ({ isMobile }) => {
 	};
 
 	return (
-		<div className='stepper__container flex__column'>
+		// stepper__container flex__column
+		<div className='mt-4 mr-0 mb-0 ml-6'>
 			{education.map((item, index) => (
 				<Stepper
 					key={index}

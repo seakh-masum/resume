@@ -1,7 +1,7 @@
 import { onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
-import '../styles/hobby.scss';
+// import '../styles/hobby.scss';
 
 export const HobbyList = ({ isMobile }) => {
 	const [hobbies, setHobbies] = useState([]);
@@ -18,13 +18,12 @@ export const HobbyList = ({ isMobile }) => {
 	};
 
 	return (
-		<div className='chip__wrapper flex__row flex__wrap align__start-center'>
+		<div className='flex flex-row flex-wrap justify-start items-center gap-2 pl-2'>
 			{hobbies.map((item, index) => (
 				<div
 					key={index}
-					className={'chip color__' + item.color}
-					style={{ fontSize: isMobile && '0.8rem' }}>
-					<img src={item.icon} alt=''></img>
+					className={`bg-${item.color}-100 text-${item.color}-500 sm:text-base text-sm inline-flex py-1 px-3 rounded-2xl items-center relative gap-1 h-8 dark:bg-${item.color}-100 dark:text-${item.color}`}>
+					<img src={item.icon} alt='' className='w-4'></img>
 					{item.name}
 				</div>
 			))}
