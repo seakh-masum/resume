@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CloseIcon from "../icons/CloseIcon";
+import CloseIcon from '../icons/CloseIcon';
 
 const Dialog = (props) => {
   const { title, closeModal } = props;

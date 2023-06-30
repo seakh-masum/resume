@@ -1,7 +1,7 @@
 import React from 'react';
-import OpenTabIcon from '../icons/OpenTabIcon';
-import SubHeading from './ui/SubHeading';
-import ChipList from './ui/ChipList';
+import OpenTabIcon from '../../icons/OpenTabIcon';
+import SubHeading from '../ui/SubHeading';
+import ChipList from '../ui/ChipList';
 
 const SkillDetails = ({ data }) => {
   return (

@@ -1,5 +1,5 @@
 import { collection, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../services/firebase';
 
 const checkDarkMode = () => {
 	if (

@@ -1,4 +1,4 @@
-import DialogContainer from "../components/DialogContainer";
+import DialogContainer from "../components/ui/DialogContainer";
 import { createContext, useState, useContext, useCallback } from "react";
 
 const defaultValue = { isDialogOpen: true, dialog: <></>, dialogTitle: 'New Heading', dialogSize: '500px' }

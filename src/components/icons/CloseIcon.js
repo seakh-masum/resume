@@ -1,5 +1,5 @@
 import React from "react";
-import { checkDarkMode } from "../helper/GlobalService";
+import { checkDarkMode } from "../../helper/GlobalService";
 
 function CloseIcon({ size = 28 }) {
   return (

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import useDeviceType from "../hooks/useDeviceType";
+import useDeviceType from "../../hooks/useDeviceType";
 
 const DialogContainer = (props) => {
-  const { title, closeModal, width, children } = props;
+  const { closeModal, children } = props;
   const [domLoaded, setDomLoaded] = useState(false);
   const { isMobile } = useDeviceType();
 

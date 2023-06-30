@@ -1,12 +1,14 @@
 import { onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
-// import '../styles/hobby.scss';
+import { firebaseDataMapping, firebaseQuery } from '../../helper/GlobalService';
 
-export const HobbyList = ({ isMobile }) => {
+export const HobbyList = () => {
 	const [hobbies, setHobbies] = useState([]);
+	const [isLoading, setLoading] = useState(true);
 
 	useEffect(() => {
+		const data = Array(6).fill(0);
+		setHobbies(data);
 		getHobbies();
 	}, []);
 
@@ -15,6 +17,7 @@ export const HobbyList = ({ isMobile }) => {
 		onSnapshot(q, (querySnapshot) => {
 			setHobbies(firebaseDataMapping(querySnapshot));
 		});
+		setLoading(false);
 	};
 
 	return (
@@ -22,7 +25,7 @@ export const HobbyList = ({ isMobile }) => {
 			{hobbies.map((item, index) => (
 				<div
 					key={index}
-					className={`bg-${item.color}-100 text-${item.color}-500 sm:text-base text-sm inline-flex py-1 px-3 rounded-2xl items-center relative gap-1 h-8 dark:bg-${item.color}-100 dark:text-${item.color}`}>
+					className={`${isLoading && 'animate-pulse'} bg-neutral-200 dark:bg-neutral-800 text-${item.color}-500 sm:text-base text-sm inline-flex py-1 px-3 rounded-2xl items-center relative gap-1 h-8 dark:bg-${item.color}-100 dark:text-${item.color} min-w-[100px]`}>
 					<img src={item.icon} alt='' className='w-4'></img>
 					{item.name}
 				</div>

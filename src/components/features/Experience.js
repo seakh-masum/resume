@@ -1,9 +1,11 @@
 import { onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { firebaseDataMapping, firebaseQuery } from '../helper/GlobalService';
-import { Stepper } from './Stepper';
+import { firebaseDataMapping, firebaseQuery } from '../../helper/GlobalService';
+import { Stepper } from '../ui/Stepper';
+import SkeletonList from '../loader/SkeletonList';
 
 export const Experience = ({ isMobile }) => {
+	const [isLoading, setLoading] = useState(true);
 	const [experience, setExperience] = useState([]);
 
 	useEffect(() => {
@@ -50,22 +52,30 @@ export const Experience = ({ isMobile }) => {
 				}),
 			);
 		});
+
+		setLoading(false);
 	};
 
 	return (
 		<div className='mt-4 mr-0 mb-0 ml-6'>
-			{experience.map((item, index) => (
-				<Stepper
-					key={index}
-					isMobile={isMobile}
-					hasLine={experience.length !== index + 1}
-					stepperIndex={isMobile ? index + 1 : item.stepperIndex}
-					heading={item.company}
-					subHeading={item.role}
-					desc={item.tenure}
-					link={item.link}
-				/>
-			))}
+			{isLoading ?
+				<SkeletonList /> :
+				<>
+					{experience.map((item, index) => (
+						<Stepper
+							key={index}
+							isMobile={isMobile}
+							hasLine={experience.length !== index + 1}
+							stepperIndex={isMobile ? index + 1 : item.stepperIndex}
+							heading={item.company}
+							subHeading={item.role}
+							desc={item.tenure}
+							link={item.link}
+						/>
+					))}
+				</>
+			}
+
 		</div>
 	);
 };
