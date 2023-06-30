@@ -21,7 +21,7 @@ export const ContactList = ({ isMobile }) => {
 
 	return (
 		<div
-			className='p-4 grid grid-cols-4 sm:gap-4 gap-6'>
+			className='p-4 grid grid-cols-4 sm:gap-5 gap-6'>
 			{contacts.map((item, index) => (
 				<a
 					href={item?.link}
@@ -30,7 +30,7 @@ export const ContactList = ({ isMobile }) => {
 					style={{
 						background: isLoading ? '#404040' : item?.color,
 					}}>
-					<img
+					<img width='72px' height='72px'
 						className='w-6 sm:w-8'
 						src={item?.icon}
 						alt='' />

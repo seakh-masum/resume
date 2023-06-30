@@ -26,7 +26,7 @@ export const HobbyList = () => {
 				<div
 					key={index}
 					className={`${isLoading && 'animate-pulse'} bg-neutral-200 dark:bg-neutral-800 text-${item.color}-500 sm:text-base text-sm inline-flex py-1 px-3 rounded-2xl items-center relative gap-1 h-8 dark:bg-${item.color}-100 dark:text-${item.color} min-w-[100px]`}>
-					<img src={item.icon} alt='' className='w-4'></img>
+					<img src={item.icon} alt='' width='16px' height='16px' className='w-4'></img>
 					{item.name}
 				</div>
 			))}
