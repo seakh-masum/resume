@@ -1,5 +1,5 @@
 import React from 'react';
-import OpenTabIcon from '../../icons/OpenTabIcon';
+import OpenTabIcon from '../icons/OpenTabIcon';
 import SubHeading from '../ui/SubHeading';
 import ChipList from '../ui/ChipList';
 
