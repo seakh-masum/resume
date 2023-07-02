@@ -42,7 +42,7 @@ export const SkillList = () => {
 						{!isLoading ? <img width='45px' height='45px' src={data?.icon} alt='' loading='lazy' /> : <div className='w-11 h-11'></div>}
 					</div>
 				</div>
-				{!isLoading && <span>{data?.name}</span>}
+				{!isLoading && <span className='sm:text-base text-sm'>{data?.name}</span>}
 			</div>
 		);
 	};
