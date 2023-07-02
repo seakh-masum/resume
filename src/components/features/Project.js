@@ -1,16 +1,14 @@
 import { onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { firebaseDataMapping, firebaseQuery } from '../../helper/GlobalService';
-// import '../styles/project.scss';a
 import useModal from '../../hooks/useModal';
-import Dialog from '../ui/Dialog';
 import ProjectDetails from '../dialogs/ProjectDetails'
 import SkeletonList from '../loader/SkeletonList';
 
 export const ProjectList = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [projects, setProjects] = useState([]);
-	const { setDialog, closeDialog } = useModal();
+	const { setDialog } = useModal();
 
 
 	useEffect(() => {
@@ -27,11 +25,7 @@ export const ProjectList = () => {
 	};
 
 	const viewProjectDetails = (e, data) => {
-		setDialog(
-			<Dialog title='Project Details' width='300px' closeModal={closeDialog}>
-				<ProjectDetails data={data} />
-			</Dialog>
-		);
+		setDialog(<ProjectDetails data={data} />);
 	}
 
 	return (

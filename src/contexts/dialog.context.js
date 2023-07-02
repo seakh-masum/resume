@@ -1,4 +1,4 @@
-import DialogContainer from "../components/ui/DialogContainer";
+import Dialog from "../components/ui/Dialog";
 import { createContext, useState, useContext, useCallback } from "react";
 
 const defaultValue = { isDialogOpen: true, dialog: <></>, dialogTitle: 'New Heading', dialogSize: '500px' }
@@ -19,7 +19,7 @@ export const DialogProvider = props => {
   return (
     <DialogContext.Provider value={{ closeDialog, setDialog, ...dialogContext }} {...props} >
       {props.children}
-      {dialog && <DialogContainer closeModal={closeDialog}>{dialog}</DialogContainer>}
+      {dialog && <Dialog closeModal={closeDialog}>{dialog}</Dialog>}
     </DialogContext.Provider>
   )
 } 

@@ -2,6 +2,7 @@ import React from 'react';
 import OpenTabIcon from '../icons/OpenTabIcon';
 import SubHeading from '../ui/SubHeading';
 import ChipList from '../ui/ChipList';
+import List from '../ui/List';
 
 const SkillDetails = ({ data }) => {
   return (
@@ -33,15 +34,24 @@ const SkillDetails = ({ data }) => {
       {data?.features?.length > 0 &&
         <section>
           <SubHeading title='Features' subTitle='I Known' />
-          <ul className='flex flex-col gap-2 mt-2'>
-            {
-              data?.features?.map(((item, idx) =>
-                <li key={idx} className='text-black dark:text-white text-sm list-disc ml-2'>{item}</li>
-              ))
-            }
-          </ul>
+          <List data={data?.features} />
         </section>
       }
+
+      {data?.features?.length > 0 &&
+        <section>
+          <SubHeading title='Features' subTitle='I Known' />
+          <List data={data?.features} />
+        </section>
+      }
+
+      {data?.features?.length > 0 &&
+        <section>
+          <SubHeading title='Features' subTitle='I Known' />
+          <List data={data?.features} />
+        </section>
+      }
+
 
       {data?.projects?.length > 0 &&
         <section>

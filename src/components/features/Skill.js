@@ -4,12 +4,11 @@ import { firebaseDataMapping, firebaseQuery } from '../../helper/GlobalService';
 import { onSnapshot } from 'firebase/firestore';
 import useModal from '../../hooks/useModal';
 import SkillDetails from '../dialogs/SkillDetails';
-import Dialog from '../ui/Dialog';
 
 export const SkillList = () => {
 	const [skills, setSkills] = useState([]);
 	const [isLoading, setLoading] = useState(true);
-	const { setDialog, closeDialog } = useModal();
+	const { setDialog } = useModal();
 
 
 	useEffect(() => {
@@ -27,11 +26,7 @@ export const SkillList = () => {
 	};
 
 	const onSkillDetails = (e, data) => {
-		setDialog(
-			<Dialog title='Skill Details' width='300px' closeModal={closeDialog}>
-				<SkillDetails data={data} />
-			</Dialog>
-		);
+		setDialog(<SkillDetails data={data} />);
 	}
 
 	const Skill = ({ data }) => {
@@ -62,9 +57,7 @@ export const SkillList = () => {
 		<div className='grid grid-cols-3 gap-2'>
 			{skills?.map((item, index) => (
 				<div key={index} className='basis-1/3 items-center justify-center'>
-					<Skill
-						data={item}
-					/>
+					<Skill data={item} />
 				</div>
 			))}
 		</div>

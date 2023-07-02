@@ -1,5 +1,6 @@
 import React from 'react';
 import SkeletonList from '../loader/SkeletonList';
+import List from '../ui/List';
 
 export const AboutMe = ({ introduction, description, isLoading }) => {
 
@@ -10,12 +11,8 @@ export const AboutMe = ({ introduction, description, isLoading }) => {
 				<SkeletonList /> :
 				<>
 					<div className='pl-6'>
-						<p className='text-neutral-500 text-sm dark:text-neutral-300'>{introduction}</p>
-						<ul className='mt-4 ml-6'>
-							{description?.map((item, index) => (
-								<li key={index} className='text-sm text-neutral-500 mt-2 pl-2 list-disc dark:text-neutral-300'>{item}</li>
-							))}
-						</ul>
+						<p className='text-neutral-700 dark:text-neutral-200 text-sm'>{introduction}</p>
+						<List data={description} />
 					</div>
 				</>
 			}
