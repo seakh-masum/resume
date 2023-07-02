@@ -38,7 +38,7 @@ export const ProjectList = () => {
 						'pl-5 grid gap-3 sm:grid-cols-3 grid-cols-1'
 					>
 						{projects.map((item, index) => (
-							<li key={index} className='projects__box bg-neutral-100 list-none py-3 px-4 rounded-lg mb-0 dark:bg-neutral-800' onClick={(e) => viewProjectDetails(e, item)}>
+							<li key={index} className='bg-neutral-100 list-none py-3 px-4 rounded-lg mb-0 dark:bg-neutral-800' onClick={(e) => viewProjectDetails(e, item)}>
 								<b className='text-neutral-800 text-base dark:text-neutral-100'>
 									{item.title}
 								</b>

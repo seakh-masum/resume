@@ -1,5 +1,6 @@
 import React from 'react';
 import SkeletonLine from '../loader/SkeletonLine';
+import Circle from '../ui/Circle';
 
 export const Profile = ({ name, role, image, isLoading }) => {
 	return (
@@ -8,8 +9,8 @@ export const Profile = ({ name, role, image, isLoading }) => {
 				<div className='flex flex-col items-center justify-center'>
 					<div className='relative mt-8'>
 						<svg height='250' width='250' className='relative'>
-							<circle cx='125' cy='125' r='110' strokeLinecap='round' strokeWidth={10} className='w-full h-full fill-none stroke-transparent'></circle>
-							<circle cx='125' cy='125' r='110' strokeLinecap='round' strokeWidth={10} strokeDasharray='625px' strokeDashoffset={`calc(625px - (685px * 50) / 100)`} className='stroke-cyan-500 w-full h-full fill-none dark:stroke-cyan-300' ></circle>
+							<Circle size='lg' className='w-full h-full fill-none stroke-transparent' />
+							<Circle size='lg' hasStroke className='stroke-cyan-500 w-full h-full fill-none dark:stroke-cyan-300' strokeDashoffset={`calc(625px - (685px * 50) / 100)`} />
 						</svg>
 						<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
 							{isLoading ?
