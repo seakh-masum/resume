@@ -22,7 +22,7 @@ export const Profile = ({ name, role, image, isLoading }) => {
 						</div>
 					</div>
 				</div>
-				<div className='bg-neutral-100 -mt-24 rounded-2xl border-2 border-violet-600 dark:bg-neutral-950 dark:border-violet-800'>
+				<div className='profile bg-neutral-100 -mt-24 rounded-2xl  border-violet-600 dark:bg-neutral-950 dark:border-violet-800'>
 					<div className='flex flex-col items-center justify-center pt-24 p-5 gap-3'>
 						{
 							isLoading ?
