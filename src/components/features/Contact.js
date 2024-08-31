@@ -7,7 +7,7 @@ export const ContactList = ({ isMobile }) => {
 	const [isLoading, setLoading] = useState(true);
 
 	useEffect(() => {
-		setContacts([1, 2, 3, 4, 5, 6, 7, 8])
+		setContacts(Array(4).fill(0))
 		getContacts();
 	}, []);
 
@@ -25,17 +25,18 @@ export const ContactList = ({ isMobile }) => {
 
 	return (
 		<div
-			className='p-4 grid grid-cols-4 sm:gap-5 gap-6'>
+			className='p-6 pt-2 grid grid-cols-4 sm:gap-5 gap-6'>
 			{contacts.map((item, index) => (
 				<a
 					href={item?.link}
 					key={index}
-					className={`${isLoading ? 'animate-pulse' : ''} bg-neutral-200 dark:bg-neutral-700 aspect-square rounded-full leading-8 grid place-content-center`}
+					className={`${isLoading ? 'animate-pulse' : ''} bg-neutral-200 dark:bg-neutral-700 aspect-square rounded-full leading-8 grid place-content-center shadow-[${item.color}] shadow-lg`}
 					style={{
 						background: isLoading ? '#404040' : item?.color,
+						boxShadow: `0 0 8px  ${item.color}`
 					}}>
-					<img width='72px' height='72px'
-						className='w-6 sm:w-8'
+					<img width='48px' height='48px'
+						className='w-6'
 						src={item?.icon}
 						alt='' />
 				</a>

@@ -1,6 +1,7 @@
 import React from 'react';
 import SkeletonLine from '../loader/SkeletonLine';
 import Circle from '../ui/Circle';
+import { ContactList } from './Contact';
 
 export const Profile = ({ name, role, image, isLoading }) => {
 	return (
@@ -35,6 +36,7 @@ export const Profile = ({ name, role, image, isLoading }) => {
 								</>
 						}
 					</div>
+					<ContactList />
 				</div>
 			</div>
 		</div>

@@ -45,9 +45,6 @@ function App() {
 								role={profile.role}
 								isLoading={isLoading}
 							/>
-							<Card header='Contacts'>
-								<ContactList isMobile={isMobile} />
-							</Card>
 							<Card header='Hobbies'>
 								<HobbyList />
 							</Card>
