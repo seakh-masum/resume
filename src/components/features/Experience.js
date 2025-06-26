@@ -41,11 +41,6 @@ export const Experience = ({ isMobile }) => {
 							? `${toYear}`
 							: `${fromYear}-${toYear}`;
 
-							// // ${item.to === 'Present'
-							// // 	? item.to
-							// // 	: new Date(item.to).getFullYear()
-							// }`;
-
 					return { ...item, ...obj };
 				}),
 			);
