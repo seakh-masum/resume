@@ -11,6 +11,7 @@ import { onSnapshot } from 'firebase/firestore';
 import { firebaseDataMapping, firebaseQuery } from './helper/GlobalService';
 import { ResponsiveContext } from './helper/ResponsiveContext';
 import { DownloadBtn } from './components/features/DownloadBtn';
+import { ToolList } from './components/features/Tool';
 
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
 							<Card header='Skills'>
 								<SkillList />
 							</Card>
+							{/* <Card header='Tools'>
+								<ToolList />
+							</Card> */}
 						</div>
 						<div className='flex flex-col basis-2/3'>
 							<Card header='About Me'>
