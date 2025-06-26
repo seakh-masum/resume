@@ -22,4 +22,14 @@ const firebaseDataMapping = (querySnapshot) => {
 	}));
 };
 
-export { checkDarkMode, firebaseQuery, firebaseDataMapping };
+const timestampToDate = (timestamp) => {
+ if (!timestamp) return '';
+ const date = timestamp.toDate();
+ return date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+ });
+};
+
+export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate };

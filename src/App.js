@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Card } from './components/ui/Card';
-import { ContactList } from './components/features/Contact';
 import { HobbyList } from './components/features/Hobby';
 import { ProjectList } from './components/features/Project';
 import { SkillList } from './components/features/Skill';
