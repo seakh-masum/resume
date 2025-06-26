@@ -40,9 +40,9 @@ function App() {
 					<div className='flex gap-3 sm:flex-row flex-col'>
 						<div className='flex flex-col basis-1/3'>
 							<Profile
-								name={profile.name}
-								image={profile.image}
-								role={profile.role}
+								name={profile?.name}
+								image={profile?.image}
+								role={profile?.role}
 								isLoading={isLoading}
 							/>
 							<Card header='Hobbies'>
