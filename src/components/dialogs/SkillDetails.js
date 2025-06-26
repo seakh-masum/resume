@@ -3,6 +3,7 @@ import SubHeading from '../ui/SubHeading';
 import ChipList from '../ui/ChipList';
 import List from '../ui/List';
 import DialogTitle from '../ui/DialogTitle';
+import { getLevelName } from '../../helper/GlobalService';
 
 const SkillDetails = ({ data }) => {
   return (
@@ -13,10 +14,10 @@ const SkillDetails = ({ data }) => {
       </section>
 
       <section className='flex flex-row items-start'>
-        {data?.level &&
+        {data?.value &&
           <div className='basis-1/2'>
             <SubHeading title='My Level' />
-            <ChipList data={[data?.level]} />
+            <ChipList data={[getLevelName(data?.value)]} />
           </div>
         }
 

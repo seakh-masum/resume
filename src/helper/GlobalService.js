@@ -32,4 +32,12 @@ const timestampToDate = (timestamp) => {
  });
 };
 
-export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate };
+const getLevelName = (value) => {
+ if (Number(value) >= 90) return 'Expert';
+ if (Number(value) >= 70) return 'Proficient';
+ if (Number(value) >= 50) return 'Intermediate';
+ if (Number(value) >= 30) return 'Beginner';
+ return 'Novice';
+};
+
+export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate, getLevelName };

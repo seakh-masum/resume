@@ -31,7 +31,7 @@ const ProjectDetails = ({ data }) => {
 
       {data?.tasks?.length > 0 &&
         < section >
-          <SubHeading title='Task(s)' subTitle='I developed' />
+          <SubHeading title='Key Feature(s)' />
           <List data={data?.tasks} />
         </section>
       }
