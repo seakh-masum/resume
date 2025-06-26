@@ -12,7 +12,8 @@ const checkDarkMode = () => {
 };
 
 const firebaseQuery = (url) => {
-	return query(collection(db, url), orderBy('order', 'asc'));
+	return query(collection(db, url));
+	// , orderBy('order', 'asc')
 };
 
 const firebaseDataMapping = (querySnapshot) => {
@@ -40,4 +41,50 @@ const getLevelName = (value) => {
  return 'Novice';
 };
 
-export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate, getLevelName };
+const getProjectSector = (value) => {
+	switch (value) {
+		case 0:
+			return 'Education';
+		case 1:
+			return 'Health';
+		case 2:
+			return 'Finance';
+		case 3:
+			return 'Technology';
+		case 4:
+			return 'Agriculture';
+		case 5:
+			return 'Telecom';
+		case 6:
+			return 'Transportation';
+		case 7:
+			return 'Government';
+		case 8:
+			return 'Retail';
+		case 9:
+			return 'Manufacturing';
+		case 10:
+			return 'Hospitality';
+		case 11:
+			return 'Entertainment';
+		case 12:
+			return 'Science';
+		case 13:
+			return 'Others';
+		default:
+			return 'Other';
+	}
+};
+
+const getProjectType = (value) => {
+ switch (value) {
+  case 0:
+   return 'Personal';
+  case 1:
+   return 'Professional';
+  default:
+   return 'Other';
+ }
+};
+
+export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate, getLevelName, getProjectSector, getProjectType };
