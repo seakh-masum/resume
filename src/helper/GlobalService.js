@@ -33,6 +33,18 @@ const timestampToDate = (timestamp) => {
  });
 };
 
+const getYear = (timestamp) => {
+ if (!timestamp) return '';
+ const date = timestamp.toDate();
+ return date.getFullYear();
+}
+
+const getMonth = (timestamp) => {
+ if (!timestamp) return '';
+ const date = timestamp.toDate();
+ return date.getMonth() + 1; // Months are zero-based in JavaScript
+}
+
 const getLevelName = (value) => {
  if (Number(value) >= 90) return 'Expert';
  if (Number(value) >= 70) return 'Proficient';
@@ -87,4 +99,4 @@ const getProjectType = (value) => {
  }
 };
 
-export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate, getLevelName, getProjectSector, getProjectType };
+export { checkDarkMode, firebaseQuery, firebaseDataMapping, timestampToDate, getLevelName, getProjectSector, getProjectType, getYear, getMonth };

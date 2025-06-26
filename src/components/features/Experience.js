@@ -1,6 +1,6 @@
 import { onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { firebaseDataMapping, firebaseQuery } from '../../helper/GlobalService';
+import { firebaseDataMapping, firebaseQuery, getMonth, getYear } from '../../helper/GlobalService';
 import { Stepper } from '../ui/Stepper';
 import SkeletonList from '../loader/SkeletonList';
 
@@ -18,17 +18,13 @@ export const Experience = ({ isMobile }) => {
 			setExperience(
 				firebaseDataMapping(querySnapshot).map((item) => {
 					let obj = {};
-					const fromYear = new Date(item.from).getFullYear();
-					const fromMonth = new Date(item.from).getMonth();
+					const fromYear = getYear(item.joiningDate);
+					const fromMonth = getMonth(item.joiningDate);
 					const toYear =
-						item.to === 'Present'
-							? new Date().getFullYear()
-							: new Date(item.to).getFullYear();
+						item.releaseDate ? getYear(item.releaseDate) : new Date().getFullYear();
 
 					const toMonth =
-						item.to === 'Present'
-							? new Date().getMonth()
-							: new Date(item.to).getMonth();
+						item.releaseDate ? getMonth(item.releaseDate) : new Date().getMonth() + 1;
 
 					const monthDifference = toMonth - fromMonth;
 					const monthGap =
@@ -43,10 +39,12 @@ export const Experience = ({ isMobile }) => {
 					obj.stepperIndex =
 						fromYear === toYear
 							? `${toYear}`
-							: `${fromYear}-${item.to === 'Present'
-								? item.to
-								: new Date(item.to).getFullYear()
-							}`;
+							: `${fromYear}-${toYear}`;
+
+							// // ${item.to === 'Present'
+							// // 	? item.to
+							// // 	: new Date(item.to).getFullYear()
+							// }`;
 
 					return { ...item, ...obj };
 				}),
