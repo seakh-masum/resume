@@ -61,7 +61,7 @@ export const Experience = ({ isMobile }) => {
 							hasLine={experience.length !== index + 1}
 							stepperIndex={isMobile ? index + 1 : item.stepperIndex}
 							heading={item.company}
-							subHeading={item.role}
+							subHeading={item.designation}
 							desc={item.tenure}
 							link={item.link}
 						/>
