@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const DownloadBtn = () => {
 	const downloadLink =
 		'https://drive.google.com/uc?export=download&id=1wFlDhiZhSYjl1mwk5tFzDulh3DqP9f4F';

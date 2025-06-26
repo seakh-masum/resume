@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { firebaseDataMapping, firebaseQuery } from '../../helper/GlobalService';
 import { Stepper } from '../ui/Stepper';
 import SkeletonList from '../loader/SkeletonList';
+import { getYear } from '../../helper/GlobalService';
 
 export const Education = ({ isMobile }) => {
 	const [isLoading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ export const Education = ({ isMobile }) => {
 			setEducation(
 				firebaseDataMapping(querySnapshot).map((res) => ({
 					...res,
-					stepperIndex: `${res.from} - ${res.to}`,
+					stepperIndex: `${getYear(res.fromDate)} - ${getYear(res.toDate)}`,
 					marks: `${res.marks} %`,
 				})),
 			);
@@ -37,7 +38,7 @@ export const Education = ({ isMobile }) => {
 							isMobile={isMobile}
 							hasLine={education.length !== index + 1}
 							stepperIndex={isMobile ? index + 1 : item.stepperIndex}
-							heading={item.course}
+							heading={`${item.course} - ${item.stream}`}
 							subHeading={item.institute}
 							desc={item.marks}
 							link={item.link}
