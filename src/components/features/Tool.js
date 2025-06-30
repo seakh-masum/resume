@@ -3,23 +3,23 @@ import { firebaseDataMapping, firebaseQuery } from "../../helper/GlobalService";
 import { onSnapshot } from "firebase/firestore";
 import useModal from "../../hooks/useModal";
 import SkillDetails from "../dialogs/SkillDetails";
-import Circle from "../ui/Circle";
+import { RoundedProgressbar } from "../ui/RoundedProgressbar";
 
 export const ToolList = () => {
-  const [skills, setSkills] = useState([]);
+  const [tools, setTools] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const { setDialog } = useModal();
 
   useEffect(() => {
     const data = Array(12).fill(0);
-    setSkills(data);
+    setTools(data);
     getTools();
   }, []);
 
   const getTools = () => {
     const q = firebaseQuery("tools");
     onSnapshot(q, (querySnapshot) => {
-      setSkills(firebaseDataMapping(querySnapshot));
+      setTools(firebaseDataMapping(querySnapshot));
     });
     setLoading(false);
   };
@@ -28,62 +28,15 @@ export const ToolList = () => {
     setDialog(<SkillDetails data={data} />);
   };
 
-  const Skill = ({ data }) => {
-    return (
-      <div
-        className="flex flex-col items-center justify-center mb-3"
-        onClick={(e) => onToolDetails(e, data)}
-      >
-        <div className="relative">
-          <svg
-            height="100"
-            width="100"
-            className={`relative -rotate-90 ${
-              isLoading ? "animate-pulse" : ""
-            }`}
-          >
-            <Circle
-              size="sm"
-              className={`stroke-neutral-200 dark:stroke-neutral-700 ${
-                isLoading ? "fill-neutral-700" : "fill-none"
-              }`}
-            />
-            <Circle
-              size="sm"
-              hasStroke
-              className={`${
-                isLoading ? "fill-neutral-700 stroke-neutral-700" : "fill-none"
-              }`}
-              stroke={data?.color}
-              strokeDashoffset={`calc(625px - (250px * ${data?.value}) / 100)`}
-            />
-          </svg>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            {!isLoading ? (
-              <img
-                width="45px"
-                height="45px"
-                src={data?.icon}
-                alt=""
-                loading="lazy"
-              />
-            ) : (
-              <div className="w-11 h-11"></div>
-            )}
-          </div>
-        </div>
-        {!isLoading && (
-          <span className="sm:text-base text-sm">{data?.name}</span>
-        )}
-      </div>
-    );
-  };
   return (
-    <div className="grid grid-cols-4 gap-2">
-      {skills?.map((item, index) => (
-        <div key={index} className="basis-1/3 items-center justify-center">
-          <Skill data={item} />
-        </div>
+    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+      {tools?.map((item, index) => (
+        <RoundedProgressbar
+          key={index}
+          data={item}
+          isLoading={isLoading}
+          onDetails={(e) => onToolDetails(e, item)}
+        />
       ))}
     </div>
   );

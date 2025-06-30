@@ -41,6 +41,7 @@ function App() {
             image={profile?.image}
             role={profile?.role}
             isLoading={isLoading}
+            isMobile={isMobile}
           />
           <div className="flex gap-4 sm:flex-row flex-col main-container">
             <div className="flex flex-col basis-[45%] left-side">

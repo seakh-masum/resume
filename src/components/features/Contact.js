@@ -28,7 +28,7 @@ export const ContactList = ({ isMobile }) => {
   };
 
   return (
-    <div className="p-6 pt-2 flex flex-row justify-evenly">
+    <div className="p-6 pt-2 flex flex-col sm:flex-row gap-3 justify-evenly">
       {contacts.map((item, index) => (
         <>
           <a
@@ -37,7 +37,7 @@ export const ContactList = ({ isMobile }) => {
             className="flex flex-row gap-3 align-center"
           >
             <div
-              className="bg-black rounded-full p-2
+              className="bg-black rounded-full p-3
 			"
             >
               <img
@@ -47,7 +47,7 @@ export const ContactList = ({ isMobile }) => {
                 alt="contact-icon"
               />
             </div>
-            <p className="leading-10 text-lg dark:text-neutral-300">
+            <p className="leading-[48px] text-lg dark:text-neutral-300">
               {item?.userId}
             </p>
           </a>

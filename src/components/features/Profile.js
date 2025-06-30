@@ -4,7 +4,7 @@ import Circle from "../ui/Circle";
 import { ContactList } from "./Contact";
 import { GradientText } from "../ui/GradientText";
 
-export const Profile = ({ name, role, image, isLoading }) => {
+export const Profile = ({ name, role, image, isLoading, isMobile }) => {
   return (
     <div
       className={`${
@@ -22,7 +22,7 @@ export const Profile = ({ name, role, image, isLoading }) => {
               <Circle
                 size="lg"
                 hasStroke
-                className="stroke-purple-500 w-full h-full fill-none dark:stroke-purple-300"
+                className="stroke-purple-400 w-full h-full fill-none dark:stroke-blue-400"
                 strokeDashoffset={`calc(625px - (685px * 50) / 100)`}
               />
             </svg>
@@ -41,7 +41,7 @@ export const Profile = ({ name, role, image, isLoading }) => {
           </div>
         </div>
         <div className="profile bg-neutral-100 -mt-24 mx-1 -mb-2 rounded-2xl dark:bg-neutral-950">
-          <div className="flex flex-col items-end justify-center pt-8 pr-20 mb-14 gap-3">
+          <div className="flex flex-col items-center sm:items-end justify-center pt-8 pr-0 sm:pr-20 mb-14 gap-1 sm:gap-3">
             {isLoading ? (
               <>
                 <SkeletonLine width={`4/5`} />
@@ -49,18 +49,15 @@ export const Profile = ({ name, role, image, isLoading }) => {
               </>
             ) : (
               <>
-                {/* <h1 className="profile-name font-dancing_script text-9xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:text-white rint:bg-none print:text-black print:text-opacity-100">
-                  {name}
-                </h1> */}
-
                 <GradientText
                   text={name}
                   fromColor={`oklch(54.6% 0.245 262.881)`}
                   toColor={`oklch(54.6% 0.245 262.881)`}
                   viaColor={`oklch(62.7% 0.265 303.9)`}
+                  isMobile={isMobile}
                 />
 
-                <i className="text-neutral-500 text-2xl">{role}</i>
+                <i className="text-neutral-500 text-lg sm:text-2xl ">{role}</i>
               </>
             )}
           </div>
