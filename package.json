@@ -1,6 +1,6 @@
 {
 	"name": "my-cv",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"homepage": "https://seakh-masum.github.io/resume",
 	"private": true,
 	"dependencies": {

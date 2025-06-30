@@ -28,39 +28,6 @@ a {
   display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .profile {
-    background: radial-gradient(
-          circle at 100% 100%,
-          #171717 0,
-          #171717 12px,
-          transparent 12px
-        )
-        0% 0%/16px 16px no-repeat,
-      radial-gradient(
-          circle at 0 100%,
-          #171717 0,
-          #171717 12px,
-          transparent 12px
-        )
-        100% 0%/16px 16px no-repeat,
-      radial-gradient(
-          circle at 100% 0,
-          #171717 0,
-          #171717 12px,
-          transparent 12px
-        )
-        0% 100%/16px 16px no-repeat,
-      radial-gradient(circle at 0 0, #171717 0, #171717 12px, transparent 12px)
-        100% 100%/16px 16px no-repeat,
-      linear-gradient(#171717, #171717) 50% 50% / calc(100% - 8px)
-        calc(100% - 32px) no-repeat,
-      linear-gradient(#171717, #171717) 50% 50% / calc(100% - 32px)
-        calc(100% - 8px) no-repeat,
-      linear-gradient(191deg, #a855f7 10%, #22d3ee 100%);
-  }
-}
-
 .only-print {
   display: none;
 }
@@ -94,15 +61,6 @@ a {
     flex-direction: row;
     width: 100%;
     page-break-inside: avoid;
-
-    .left-side {
-      flex: 45%;
-      /* margin-right: 20px; */
-    }
-    .right-side {
-      flex: 55%;
-      /* margin-left: 20px; */
-    }
   }
 
   /* Optional scaling */
@@ -119,5 +77,23 @@ a {
   .page-break {
     page-break-before: always; /* Old browser support */
     break-before: page; /* Modern browsers */
+  }
+
+  .stepper-item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1rem;
+    border-color: rgb(59 130 246);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-style: solid;
+    border-right-width: 16px;
+    border-top-width: 16px;
+    border-bottom-width: 16px;
+  }
+
+  .profile-name {
+    -webkit-font-smoothing: none;
   }
 }

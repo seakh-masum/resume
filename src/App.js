@@ -70,21 +70,19 @@ function App() {
             </Card>
           </div>
           <div className="flex gap-4 sm:flex-row flex-col main-container">
-            <div className="flex flex-col basis-1/3 left-side">
+            <div className="flex flex-col basis-[45%] left-side">
               <Card header="Education">
                 <Education isMobile={isMobile} />
               </Card>
             </div>
-            <div className="flex flex-col basis-2/3 right-side">
+            <div className="flex flex-col basis-[55%] right-side">
               <Card header="Projects">
                 <ProjectList />
               </Card>
             </div>
           </div>
           {/* <DownloadBtn /> */}
-          <button className="no-print" onClick={() => window.print()}>
-            Print
-          </button>
+          <DownloadBtn />
         </div>
       </div>
     </>
