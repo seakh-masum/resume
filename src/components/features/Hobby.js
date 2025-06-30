@@ -1,10 +1,6 @@
 import { onSnapshot } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import {
-  firebaseDataMapping,
-  firebaseQuery,
-  hexToRgba,
-} from "../../helper/GlobalService";
+import { useEffect, useState } from "react";
+import { firebaseDataMapping, firebaseQuery } from "../../helper/GlobalService";
 
 export const HobbyList = () => {
   const [hobbies, setHobbies] = useState([]);
