@@ -19,7 +19,7 @@ export const Experience = ({ isMobile }) => {
   }, []);
 
   const getExperience = () => {
-    const q = firebaseQuery("experience");
+    const q = firebaseQuery("experience", "joiningDate");
     onSnapshot(q, (querySnapshot) => {
       setExperience(
         firebaseDataMapping(querySnapshot).map((item) => {

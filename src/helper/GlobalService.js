@@ -11,9 +11,8 @@ const checkDarkMode = () => {
   return false;
 };
 
-const firebaseQuery = (url) => {
-  return query(collection(db, url));
-  // , orderBy('order', 'asc')
+const firebaseQuery = (url, orderParams = "isActive") => {
+  return query(collection(db, url), orderBy(orderParams, "desc"));
 };
 
 const firebaseDataMapping = (querySnapshot) => {

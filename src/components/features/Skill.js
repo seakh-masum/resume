@@ -17,7 +17,7 @@ export const SkillList = () => {
   }, []);
 
   const getSkills = () => {
-    const q = firebaseQuery("skills");
+    const q = firebaseQuery("skills", "value");
     onSnapshot(q, (querySnapshot) => {
       setSkills(firebaseDataMapping(querySnapshot));
     });

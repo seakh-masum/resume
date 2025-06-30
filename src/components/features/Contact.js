@@ -12,7 +12,7 @@ export const ContactList = ({ isMobile }) => {
   }, []);
 
   const getContacts = () => {
-    const query = firebaseQuery("contacts");
+    const query = firebaseQuery("contacts", "value");
     onSnapshot(query, (querySnapshot) => {
       setContacts(
         firebaseDataMapping(querySnapshot).map((res) => {
@@ -30,28 +30,26 @@ export const ContactList = ({ isMobile }) => {
   return (
     <div className="p-6 pt-2 flex flex-col sm:flex-row gap-3 justify-evenly">
       {contacts.map((item, index) => (
-        <>
-          <a
-            href={item?.link}
-            key={index}
-            className="flex flex-row gap-3 align-center"
-          >
-            <div
-              className="bg-black rounded-full p-3
+        <a
+          href={item?.link}
+          key={index}
+          className="flex flex-row gap-3 align-center"
+        >
+          <div
+            className="bg-black rounded-full p-3
 			"
-            >
-              <img
-                width="24px"
-                height="24px"
-                src={item?.icon}
-                alt="contact-icon"
-              />
-            </div>
-            <p className="leading-[48px] text-lg dark:text-neutral-300">
-              {item?.userId}
-            </p>
-          </a>
-        </>
+          >
+            <img
+              width="24px"
+              height="24px"
+              src={item?.icon}
+              alt="contact-icon"
+            />
+          </div>
+          <p className="leading-[48px] text-lg dark:text-neutral-300">
+            {item?.userId}
+          </p>
+        </a>
       ))}
     </div>
   );

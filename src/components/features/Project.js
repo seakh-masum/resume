@@ -15,7 +15,7 @@ export const ProjectList = () => {
   }, []);
 
   const getProjects = () => {
-    const q = firebaseQuery("projects");
+    const q = firebaseQuery("projects", "startDate");
     onSnapshot(q, (querySnapshot) => {
       setProjects(firebaseDataMapping(querySnapshot));
     });

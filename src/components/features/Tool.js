@@ -17,7 +17,7 @@ export const ToolList = () => {
   }, []);
 
   const getTools = () => {
-    const q = firebaseQuery("tools");
+    const q = firebaseQuery("tools", "value");
     onSnapshot(q, (querySnapshot) => {
       setTools(firebaseDataMapping(querySnapshot));
     });
