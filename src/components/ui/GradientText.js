@@ -21,7 +21,7 @@ export const GradientText = ({
         fill="url(#gradient)"
         fontFamily="sans-serif"
         fontWeight="bold"
-        className="profile-name font-dancing_script text-5xl sm:text-9xl text-transparent dark:fill-neutral-100"
+        className="profile-name font-heading text-5xl sm:text-9xl text-transparent dark:fill-neutral-100"
       >
         {text}
       </text>
