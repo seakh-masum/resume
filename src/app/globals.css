@@ -28,6 +28,9 @@ body {
   --font-sans: var(--font-montserrat);
   --font-mono: var(--font-poppins);
   --font-heading: var(--font-dancing);
+  --width-dialog: 37.5rem;
+  --max-height-dialog: 70vh;
+  --aspect-ratio-third_one: 3 / 1;
   /* --font-body: var(--font-montserrat); */
 }
 

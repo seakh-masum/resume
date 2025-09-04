@@ -4,19 +4,6 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   // darkMode: "class",
   content: ["./src/components/**/*.{js,ts,jsx,tsx}", "./src/App.js"],
-  theme: {
-    extend: {
-      width: {
-        dialog: "600px",
-      },
-      aspectRatio: {
-        third_one: "3 / 1",
-      },
-      maxHeight: {
-        dialog: "70vh",
-      },
-    },
-  },
   plugins: [
     plugin(function ({ addVariant }) {
       addVariant(
