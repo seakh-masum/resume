@@ -14,14 +14,14 @@ export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
   const { setDialog } = useModal() as any;
 
   useEffect(() => {
-    getSkills();
+    getData();
   }, []);
 
-  const getSkills = async () => {
+  const getData = async () => {
     const res = await fetch(`/api/${features}?orderBy=value`);
-    const { data } = await res.json();
+    const json = await res.json();
 
-    setSkills(data);
+    setSkills(json.data);
     setLoading(false);
   };
 
