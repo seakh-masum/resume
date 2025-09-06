@@ -1,6 +1,4 @@
-import { onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { firebaseDataMapping, firebaseQuery } from "../../helper/GlobalService";
 import useModal from "../../hooks/useModal";
 import ProjectDetails from "../dialogs/ProjectDetails";
 import SkeletonList from "../loader/SkeletonList";
@@ -14,12 +12,11 @@ export const ProjectList = () => {
     getProjects();
   }, []);
 
-  const getProjects = () => {
-    const q = firebaseQuery("projects", "startDate");
-    onSnapshot(q, (querySnapshot) => {
-      setProjects(firebaseDataMapping(querySnapshot));
-    });
+  const getProjects = async () => {
+    const res = await fetch("/api/projects?orderBy=startDate");
+    const { data } = await res.json();
 
+    setProjects(data);
     setLoading(false);
   };
 

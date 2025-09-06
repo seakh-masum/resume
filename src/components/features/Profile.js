@@ -2,7 +2,9 @@ import React from "react";
 import SkeletonLine from "../loader/SkeletonLine";
 import Circle from "../ui/Circle";
 import { ContactList } from "./Contact";
-import { GradientText } from "../ui/GradientText";
+// import { GradientText } from "@/ui/GradientText";
+import GradientText from "../ui/GradientText";
+import Image from "next/image";
 
 export const Profile = ({ name, role, image, isLoading, isMobile }) => {
   return (
@@ -30,11 +32,14 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
               {isLoading ? (
                 <div className="rounded-full w-52 h-52 bg-neutral-700"></div>
               ) : (
-                <img
+                <Image
                   src={image}
                   alt=""
                   className="rounded-full w-52 h-52"
                   style={{ maxWidth: 208 + "px" }}
+                  priority
+                  width={208}
+                  height={208}
                 />
               )}
             </div>
@@ -49,11 +54,19 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
               </>
             ) : (
               <>
-                <GradientText
+                {/* <GradientText
                   text={name}
                   fromColor={`oklch(54.6% 0.245 262.881)`}
                   toColor={`oklch(54.6% 0.245 262.881)`}
                   viaColor={`oklch(62.7% 0.265 303.9)`}
+                  isMobile={isMobile}
+                /> */}
+
+                <GradientText
+                  text="Sk Masum"
+                  fromColor="#ec4899"
+                  viaColor="#8b5cf6"
+                  toColor="#3b82f6"
                   isMobile={isMobile}
                 />
 

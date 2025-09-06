@@ -9,7 +9,7 @@ export const Stepper = (props) => {
               : ""
           }`}
         >
-          {props.stepperIndex}
+          {props.isMobile ? props.index + 1 : props.stepperIndex}
         </div>
         {props.hasLine && (
           <div className="w-[2px] bg-blue-500 h-full sm:w-1"></div>

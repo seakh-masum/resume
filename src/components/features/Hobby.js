@@ -1,22 +1,19 @@
-import { onSnapshot } from "firebase/firestore";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { firebaseDataMapping, firebaseQuery } from "../../helper/GlobalService";
 
 export const HobbyList = () => {
-  const [hobbies, setHobbies] = useState([]);
+  const [hobbies, setHobbies] = useState([Array(6).fill(0)]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    const data = Array(6).fill(0);
-    setHobbies(data);
     getHobbies();
   }, []);
 
-  const getHobbies = () => {
-    const q = firebaseQuery("hobbies");
-    onSnapshot(q, (querySnapshot) => {
-      setHobbies(firebaseDataMapping(querySnapshot));
-    });
+  const getHobbies = async () => {
+    const res = await fetch("/api/hobbies");
+    const { data } = await res.json();
+
+    setHobbies(data);
     setLoading(false);
   };
 
@@ -31,13 +28,15 @@ export const HobbyList = () => {
             item.color
           }-100 dark:text-${item.color} min-w-[100px]`}
         >
-          <img
-            src={item.icon}
-            alt=""
-            width="16px"
-            height="16px"
-            className="w-4"
-          ></img>
+          {item.icon && (
+            <Image
+              src={item.icon || null}
+              alt="hobby-icon"
+              className="w-4"
+              width={16}
+              height={16}
+            />
+          )}
           {item.name}
         </div>
       ))}

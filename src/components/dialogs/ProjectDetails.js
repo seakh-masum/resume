@@ -1,12 +1,10 @@
+"use client";
+
 import SubHeading from "../ui/SubHeading";
 import ChipList from "../ui/ChipList";
 import List from "../ui/List";
 import DialogTitle from "../ui/DialogTitle";
-import {
-  getProjectSector,
-  getProjectType,
-  timestampToDate,
-} from "../../helper/GlobalService";
+import { getProjectSector, getProjectType, timestampToDate } from "@/utils";
 
 const ProjectDetails = ({ data }) => {
   return (

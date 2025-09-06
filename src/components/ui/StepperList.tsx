@@ -1,0 +1,63 @@
+import React, { useEffect, useState } from "react";
+import { Stepper } from "../ui/Stepper";
+import SkeletonList from "../loader/SkeletonList";
+
+type StepperItem = {
+  id?: string;
+  stepperIndex?: string | number;
+  heading: string;
+  extraHeading?: string;
+  subHeading?: string;
+  desc?: string;
+  link?: string;
+  list?: string[];
+};
+
+type Props = {
+  isMobile: boolean;
+  features: string;
+};
+
+export const StepperList = ({ isMobile, features }: Props) => {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState<StepperItem[]>([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const res = await fetch(`/api/${features}`);
+    const json = await res.json();
+
+    setData(json.data);
+
+    setLoading(false);
+  };
+
+  return (
+    <div className="mt-4 mr-0 mb-0 ml-6">
+      {isLoading ? (
+        <SkeletonList />
+      ) : (
+        <>
+          {data.map((item, index) => (
+            <Stepper
+              key={item.id ?? index}
+              isMobile={isMobile}
+              hasLine={index < data.length - 1}
+              index={index}
+              stepperIndex={item.stepperIndex}
+              heading={item.heading}
+              extraHeading={item.extraHeading}
+              subHeading={item.subHeading}
+              desc={item.desc}
+              link={item.link}
+              list={item.list}
+            />
+          ))}
+        </>
+      )}
+    </div>
+  );
+};
