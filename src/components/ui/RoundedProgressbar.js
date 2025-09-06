@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Circle from "./Circle";
 
 export const RoundedProgressbar = ({ data, isLoading, onDetails }) => {
@@ -30,11 +31,11 @@ export const RoundedProgressbar = ({ data, isLoading, onDetails }) => {
         </svg>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {!isLoading ? (
-            <img
-              width="45px"
-              height="45px"
+            <Image
+              height={45}
+              width={45}
               src={data?.icon}
-              alt=""
+              alt="skill-icon"
               loading="lazy"
             />
           ) : (
