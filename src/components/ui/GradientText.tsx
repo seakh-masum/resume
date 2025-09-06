@@ -34,7 +34,7 @@ export default function GradientText({
   const textAnchor = isMobile ? "middle" : "start";
 
   return (
-    <div className="max-w-full mt-20 sm:mt-12">
+    <div className="max-w-full mt-20 sm:mt-8">
       <svg
         width="100%"
         viewBox={`0 0 1200 ${viewBoxHeight}`}
