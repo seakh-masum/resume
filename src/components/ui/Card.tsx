@@ -1,6 +1,9 @@
-import React from "react";
+interface CardProps {
+  header?: React.ReactNode;
+  children?: React.ReactNode;
+}
 
-export const Card = (props) => {
+export const Card = (props: CardProps) => {
   return (
     <div className="bg-neutral-50 rounded-2xl shadow-lg p-4 relative text-black/90 block mb-4 dark:bg-neutral-900 dark:text-white">
       {props.header && (

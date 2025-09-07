@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectDetails from "../dialogs/ProjectDetails";
 import SkeletonList from "../loader/SkeletonList";
 import { useDialog } from "@/hooks/useDialog";
 import Dialog from "../ui/Dialog";
+import { Project } from "@/types/Project";
 
 export const ProjectList = () => {
   const [isLoading, setLoading] = useState(true);
-  const [projects, setProjects] = useState([]);
-  const { isOpen, openDialog, closeDialog, dialogData } = useDialog();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const { isOpen, openDialog, closeDialog, dialogData } = useDialog<Project>();
 
   useEffect(() => {
     getProjects();
@@ -44,7 +45,7 @@ export const ProjectList = () => {
             ))}
           </ul>
           <Dialog isOpen={isOpen} onClose={closeDialog}>
-            <ProjectDetails data={dialogData} />
+            {dialogData && <ProjectDetails {...dialogData} />}
           </Dialog>
         </>
       )}

@@ -10,7 +10,6 @@ interface DialogProps {
 }
 
 const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
-  // const { closeModal, children } = props;
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {

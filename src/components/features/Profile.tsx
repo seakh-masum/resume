@@ -1,11 +1,17 @@
-import React from "react";
-import SkeletonLine from "../loader/SkeletonLine";
 import Circle from "../ui/Circle";
 import { ContactList } from "./Contact";
 import GradientText from "../ui/GradientText";
 import Image from "next/image";
 
-export const Profile = ({ name, role, image, isLoading, isMobile }) => {
+type Props = {
+  name: string;
+  role: string;
+  image: string;
+  isLoading: boolean;
+  isMobile: boolean;
+};
+
+export const Profile = ({ name, role, image, isLoading, isMobile }: Props) => {
   return (
     <div
       className={`${
@@ -46,21 +52,25 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
         </div>
         <div className="profile bg-slate-100 -mt-24 mx-1 -mb-2 rounded-2xl dark:bg-neutral-950">
           <div className="flex flex-col items-center sm:items-end justify-center pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3">
+            <GradientText
+              text={name}
+              fromColor="#ec4899"
+              viaColor="#8b5cf6"
+              toColor="#3b82f6"
+              isMobile={isMobile}
+              isLoading={isLoading}
+            />
             {isLoading ? (
               <>
-                <SkeletonLine width={`4/5`} />
-                <SkeletonLine width={`3/5`} />
+                {/* <SkeletonLine width={`4/5`} />
+                <SkeletonLine width={`3/5`} /> */}
+
+                <div
+                  className={`bg-neutral-200 dark:bg-neutral-800 h-4 rounded-xl animate-pulse w-[200px] mb-2`}
+                ></div>
               </>
             ) : (
               <>
-                <GradientText
-                  text={name}
-                  fromColor="#ec4899"
-                  viaColor="#8b5cf6"
-                  toColor="#3b82f6"
-                  isMobile={isMobile}
-                />
-
                 <i className="text-slate-600 dark:text-neutral-400 text-lg sm:text-2xl ">
                   {role}
                 </i>

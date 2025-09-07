@@ -2,9 +2,15 @@ import React from "react";
 import SkeletonList from "../loader/SkeletonList";
 import List from "../ui/List";
 
-export const AboutMe = ({ introduction, description, isLoading }) => {
+interface Props {
+  introduction: string;
+  description: string[];
+  isLoading: boolean;
+}
+
+export const AboutMe = ({ introduction, description, isLoading }: Props) => {
   return (
-    <>
+    <div className="min-h-about-me">
       {isLoading ? (
         <SkeletonList />
       ) : (
@@ -17,6 +23,6 @@ export const AboutMe = ({ introduction, description, isLoading }) => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };

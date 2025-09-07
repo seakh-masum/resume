@@ -12,6 +12,7 @@ type Props = {
   fontSizeMobile?: number;
   fontSizeDesktop?: number;
   className?: string;
+  isLoading?: boolean;
 };
 
 export default function GradientText({
@@ -20,6 +21,7 @@ export default function GradientText({
   viaColor = "#8b5cf6",
   toColor = "#3b82f6",
   isMobile = false,
+  isLoading,
 }: Props) {
   const id = useId();
   const gradId = `grad-${id}`;
@@ -35,52 +37,58 @@ export default function GradientText({
 
   return (
     <div className="max-w-full mt-20 sm:mt-8">
-      <svg
-        width="100%"
-        viewBox={`0 0 1200 ${viewBoxHeight}`}
-        preserveAspectRatio="xMidYMid meet"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label={text}
-      >
-        <defs>
-          <linearGradient
-            id={gradId}
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="0%"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stopColor={fromColor} />
-            <stop offset="30%" stopColor={viaColor} />
-            <stop offset="100%" stopColor={toColor} />
-          </linearGradient>
-
-          <mask id={maskId} maskUnits="userSpaceOnUse">
-            <rect width="100%" height="100%" fill="black" />
-            <text
-              x={x}
-              y={y}
-              textAnchor={textAnchor}
-              dominantBaseline="middle"
-              fontFamily="Dancing Script, cursive, system-ui, -apple-system, 'Segoe UI', Roboto, Arial"
-              fontWeight="700"
-              fontSize={fontSize}
-              fill="white"
-            >
-              {text}
-            </text>
-          </mask>
-        </defs>
-
-        <rect
+      {isLoading ? (
+        <div
+          className={`bg-neutral-200 dark:bg-neutral-800 rounded-xl animate-pulse w-[300px] h-[100px]`}
+        ></div>
+      ) : (
+        <svg
           width="100%"
-          height="100%"
-          fill={`url(#${gradId})`}
-          mask={`url(#${maskId})`}
-        />
-      </svg>
+          viewBox={`0 0 1200 ${viewBoxHeight}`}
+          preserveAspectRatio="xMidYMid meet"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label={text}
+        >
+          <defs>
+            <linearGradient
+              id={gradId}
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor={fromColor} />
+              <stop offset="30%" stopColor={viaColor} />
+              <stop offset="100%" stopColor={toColor} />
+            </linearGradient>
+
+            <mask id={maskId} maskUnits="userSpaceOnUse">
+              <rect width="100%" height="100%" fill="black" />
+              <text
+                x={x}
+                y={y}
+                textAnchor={textAnchor}
+                dominantBaseline="middle"
+                fontFamily="Dancing Script, cursive, system-ui, -apple-system, 'Segoe UI', Roboto, Arial"
+                fontWeight="700"
+                fontSize={fontSize}
+                fill="white"
+              >
+                {text}
+              </text>
+            </mask>
+          </defs>
+
+          <rect
+            width="100%"
+            height="100%"
+            fill={`url(#${gradId})`}
+            mask={`url(#${maskId})`}
+          />
+        </svg>
+      )}
     </div>
   );
 }

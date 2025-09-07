@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import SkillDetails from "../dialogs/SkillDetails";
-import { RoundedProgressbar } from "./RoundedProgressbar";
+import { CircleProgress } from "./CircleProgress";
 import { useDialog } from "@/hooks/useDialog";
 import Dialog from "./Dialog";
+import { Skill } from "@/types/Skill";
 
 interface CircleProgressGridProps {
   features?: string;
@@ -12,9 +13,7 @@ interface CircleProgressGridProps {
 export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
   const [skills, setSkills] = useState(Array(12).fill(0));
   const [isLoading, setLoading] = useState(true);
-  const { isOpen, openDialog, closeDialog, dialogData } = useDialog<{
-    message: string;
-  }>();
+  const { isOpen, openDialog, closeDialog, dialogData } = useDialog<Skill>();
 
   const getData = useCallback(async () => {
     const res = await fetch(`/api/${features}?orderBy=value`);
@@ -31,7 +30,7 @@ export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 pt-1">
       {skills?.map((item, index) => (
-        <RoundedProgressbar
+        <CircleProgress
           key={index}
           data={item}
           isLoading={isLoading}
@@ -39,7 +38,7 @@ export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
         />
       ))}
       <Dialog isOpen={isOpen} onClose={closeDialog}>
-        <SkillDetails data={dialogData} />
+        {dialogData && <SkillDetails data={dialogData} />}
       </Dialog>
     </div>
   );

@@ -42,9 +42,9 @@ function App() {
       <div className="w-full bg-white dark:bg-neutral-950">
         <div className="relative my-0 mx-auto px-1 py-3 sm:p-3  max-w-7xl print-container">
           <Profile
-            name={profile?.name}
-            image={profile?.image}
-            role={profile?.role}
+            name={profile?.name || ""}
+            image={profile?.image || ""}
+            role={profile?.role || ""}
             isLoading={isLoading}
             isMobile={isMobile}
           />
@@ -52,8 +52,12 @@ function App() {
             <div className="flex flex-col basis-[45%] left-side">
               <Card header="About Me">
                 <AboutMe
-                  introduction={profile.introduction}
-                  description={profile.description}
+                  introduction={profile.introduction || ""}
+                  description={
+                    Array.isArray(profile.description)
+                      ? profile.description
+                      : [profile.description || ""]
+                  }
                   isLoading={isLoading}
                 />
               </Card>
