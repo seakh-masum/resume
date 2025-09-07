@@ -13,7 +13,7 @@ const SkillDetails = ({ data }: SkillDetailsProps) => {
   return (
     <div className="flex flex-col gap-7">
       <section>
-        <DialogTitle title={data?.name} link={data?.link} />
+        <DialogTitle title={data?.name ?? ""} link={data?.link ?? ""} />
         <p className="text-neutral-500">{data?.description}</p>
       </section>
 
