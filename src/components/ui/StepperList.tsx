@@ -4,12 +4,12 @@ import SkeletonList from "../loader/SkeletonList";
 
 type StepperItem = {
   id?: string;
-  stepperIndex?: string | number;
+  stepperIndex: string;
   heading: string;
-  extraHeading?: string;
-  subHeading?: string;
-  desc?: string;
-  link?: string;
+  extraHeading: string;
+  subHeading: string;
+  desc: string;
+  link: string;
   list?: string[];
 };
 
@@ -52,7 +52,7 @@ export const StepperList = ({ isMobile, features }: Props) => {
               extraHeading={item.extraHeading}
               subHeading={item.subHeading}
               desc={item.desc}
-              link={item.link}
+              link={item?.link}
               list={item.list}
             />
           ))}
