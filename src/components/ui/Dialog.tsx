@@ -43,14 +43,14 @@ const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
   return (
     <div className="bg-black/50 inset-0 fixed z-[100] grid place-content-center dark:bg-black/50">
       <div
-        className={`mobile-only:fixed mobile-only:bottom-0 mobile-only:left-0 mobile-only:right-0 mobile-only:rounded-t-2xl z-50 overflow-hidden min-w-96`}
+        className={`max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:rounded-t-2xl z-50 overflow-hidden min-w-96`}
       >
         <div className="flex flex-row sm:justify-end justify-center py-3">
           <button onClick={onClose}>
             <CloseIcon />
           </button>
         </div>
-        <div className="bg-white backdrop-blur supports-backdrop-blur:bg-white/95 cursor-pointer h-auto shadow-xl p-5 dark:bg-neutral-800 sm:rounded-2xl rounded-t-2xl overflow-y-auto max-h-dialog transition duration-500 ease-in-out sm:w-dialog w-full">
+        <div className="bg-white backdrop-blur supports-backdrop-blur:bg-white/95 cursor-pointer h-auto shadow-xl p-5 dark:bg-neutral-800 sm:rounded-2xl rounded-t-2xl overflow-y-auto max-h-dialog transition duration-500 ease-in-out sm:w-dialog w-full max-sm:pb-10">
           {children}
         </div>
       </div>
