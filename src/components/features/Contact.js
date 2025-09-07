@@ -31,7 +31,7 @@ export const ContactList = () => {
         <a
           href={item?.link}
           key={index}
-          className="flex flex-row gap-3 align-center"
+          className="flex flex-row gap-1 align-center"
         >
           <div className="bg-black rounded-full p-3">
             {isLoading ? (

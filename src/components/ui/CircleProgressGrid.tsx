@@ -29,7 +29,7 @@ export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
   }, [getData]);
 
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 pt-1">
       {skills?.map((item, index) => (
         <RoundedProgressbar
           key={index}

@@ -18,7 +18,7 @@ export const HobbyList = () => {
   };
 
   return (
-    <div className="flex flex-row flex-wrap justify-start items-center gap-1 sm:gap-2 pl-2">
+    <div className="flex flex-row flex-wrap justify-start items-center gap-1 sm:gap-2">
       {hobbies.map((item, index) => (
         <div
           key={index}

@@ -3,16 +3,16 @@ export const Stepper = (props) => {
     <div className="flex mb-2">
       <div className="items-center pr-6 flex flex-col">
         <div
-          className={`stepper-item text-white flex w-full text-xs bg-blue-500 mb-1 h-8 aspect-square relative rounded-full items-center justify-center sm:aspect-third_one sm:rounded-none leading-8 ${
+          className={`stepper-item text-white flex w-full text-xs bg-blue-800 mb-1 h-8 aspect-square relative rounded-full items-center justify-center sm:aspect-third_one sm:rounded-none leading-8 ${
             !props.isMobile
-              ? `min-w-[140px] before:content-[''] before:absolute before:-left-4 before:top-0 before:border-solid before:border-y-transparent before:border-r-blue-500 before:border-y-[16px] before:border-r-[16px]`
+              ? `min-w-[140px] before:content-[''] before:absolute before:-left-4 before:top-0 before:border-solid before:border-y-transparent before:border-r-blue-800 before:border-y-[16px] before:border-r-[16px]`
               : ""
           }`}
         >
           {props.isMobile ? props.index + 1 : props.stepperIndex}
         </div>
         {props.hasLine && (
-          <div className="w-[2px] bg-blue-500 h-full sm:w-1"></div>
+          <div className="w-[2px] bg-blue-800 h-full sm:w-1"></div>
         )}
       </div>
       <div className="-mt-1 mx-0 mb-4">
