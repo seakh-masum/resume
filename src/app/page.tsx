@@ -40,7 +40,7 @@ function App() {
     <>
       {/* {loading ? ( */}
       <div className="w-full bg-white dark:bg-neutral-950">
-        <div className="relative my-0 mx-auto p-3 max-w-7xl print-container">
+        <div className="relative my-0 mx-auto px-1 py-3 sm:p-3  max-w-7xl print-container">
           <Profile
             name={profile?.name}
             image={profile?.image}

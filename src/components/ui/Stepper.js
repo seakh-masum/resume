@@ -30,7 +30,7 @@ export const Stepper = (props) => {
             </>
           )}
         </a>
-        <p className="text-sm mb-3 mt-2 leading-none text-neutral-500">
+        <p className="text-sm mb-3 mt-2 leading-none text-neutral-600 dark:text-neutral-400">
           {props.subHeading}
         </p>
         {props?.desc && (

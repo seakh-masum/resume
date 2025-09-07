@@ -7,6 +7,8 @@ export const DownloadBtn = () => {
       target="_blank"
       rel="noreferrer"
       className="no-print animate-bounce grid place-content-center rounded-full fixed bottom-3 right-3 z-50 w-12 aspect-square bg-gradient-to-r from-sky-500 to-indigo-500 shadow-md"
+      href="#"
+      aria-label="Download Resume"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

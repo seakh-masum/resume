@@ -44,7 +44,7 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
             </div>
           </div>
         </div>
-        <div className="profile bg-neutral-100 -mt-24 mx-1 -mb-2 rounded-2xl dark:bg-neutral-950">
+        <div className="profile bg-slate-100 -mt-24 mx-1 -mb-2 rounded-2xl dark:bg-neutral-950">
           <div className="flex flex-col items-center sm:items-end justify-center pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3">
             {isLoading ? (
               <>
@@ -61,7 +61,9 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
                   isMobile={isMobile}
                 />
 
-                <i className="text-neutral-500 text-lg sm:text-2xl ">{role}</i>
+                <i className="text-slate-600 dark:text-neutral-400 text-lg sm:text-2xl ">
+                  {role}
+                </i>
               </>
             )}
           </div>
