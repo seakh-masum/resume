@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { ReactNode, useEffect, useState } from "react";
 import CloseIcon from "../icons/CloseIcon";
 
-const Dialog = (props) => {
-  const { closeModal, children } = props;
+interface DialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
+}
+
+const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
+  // const { closeModal, children } = props;
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -10,7 +18,7 @@ const Dialog = (props) => {
   }, []);
 
   useEffect(() => {
-    const bind = (e) => {
+    const bind = (e: any) => {
       if (e.keyCode !== 27) {
         return;
       }
@@ -22,12 +30,15 @@ const Dialog = (props) => {
         return;
       }
 
-      closeModal();
+      onClose();
     };
 
     document.addEventListener("keyup", bind);
     return () => document.removeEventListener("keyup", bind);
-  }, [children, closeModal]);
+  }, [children, onClose]);
+
+  if (!domLoaded) return null;
+  if (!isOpen) return null;
 
   return (
     <div className="bg-black/50 inset-0 fixed z-[100] grid place-content-center dark:bg-black/50">
@@ -35,7 +46,7 @@ const Dialog = (props) => {
         className={`mobile-only:fixed mobile-only:bottom-0 mobile-only:left-0 mobile-only:right-0 mobile-only:rounded-t-2xl z-50 overflow-hidden min-w-96`}
       >
         <div className="flex flex-row sm:justify-end justify-center py-3">
-          <button onClick={closeModal}>
+          <button onClick={onClose}>
             <CloseIcon />
           </button>
         </div>

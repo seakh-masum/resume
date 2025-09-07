@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
 import { Dancing_Script, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
-import { DialogProvider } from "../contexts/dialog.context";
-import MyHead from "./head";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -122,11 +110,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MyHead />
       <body
         className={`${montserrat.variable} ${poppins.variable} ${dancing.variable} antialiased`}
       >
-        <DialogProvider title="check">{children}</DialogProvider>
+        {children}
       </body>
     </html>
   );
