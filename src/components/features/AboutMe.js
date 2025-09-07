@@ -9,7 +9,7 @@ export const AboutMe = ({ introduction, description, isLoading }) => {
         <SkeletonList />
       ) : (
         <>
-          <div className="pl-6">
+          <div className="pt-1">
             <p className="text-neutral-700 dark:text-neutral-200 text-sm">
               {introduction}
             </p>

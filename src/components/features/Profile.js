@@ -2,7 +2,6 @@ import React from "react";
 import SkeletonLine from "../loader/SkeletonLine";
 import Circle from "../ui/Circle";
 import { ContactList } from "./Contact";
-// import { GradientText } from "@/ui/GradientText";
 import GradientText from "../ui/GradientText";
 import Image from "next/image";
 
@@ -14,8 +13,8 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
       } p-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl mb-5 dark:from-sky-700 dark:to-indigo-700`}
     >
       <div className="pb-3">
-        <div className="background flex flex-col items-start justify-center pt-20">
-          <div className="relative mt-8 ml-20">
+        <div className="background flex flex-col items-center sm:items-start justify-center pt-20">
+          <div className="relative sm:mt-8 sm:ml-14">
             <svg height="250" width="250" className="relative">
               <Circle
                 size="lg"
@@ -46,7 +45,7 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
           </div>
         </div>
         <div className="profile bg-neutral-100 -mt-24 mx-1 -mb-2 rounded-2xl dark:bg-neutral-950">
-          <div className="flex flex-col items-center sm:items-end justify-center pt-8 pr-0 sm:pr-20 mb-14 gap-1 sm:gap-3">
+          <div className="flex flex-col items-center sm:items-end justify-center pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3">
             {isLoading ? (
               <>
                 <SkeletonLine width={`4/5`} />
@@ -54,14 +53,6 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
               </>
             ) : (
               <>
-                {/* <GradientText
-                  text={name}
-                  fromColor={`oklch(54.6% 0.245 262.881)`}
-                  toColor={`oklch(54.6% 0.245 262.881)`}
-                  viaColor={`oklch(62.7% 0.265 303.9)`}
-                  isMobile={isMobile}
-                /> */}
-
                 <GradientText
                   text={name}
                   fromColor="#ec4899"

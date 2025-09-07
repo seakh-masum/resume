@@ -36,7 +36,7 @@ export const StepperList = ({ isMobile, features }: Props) => {
   }, [getData]);
 
   return (
-    <div className="mt-4 mr-0 mb-0 ml-6">
+    <div className="mt-4 mr-0 mb-0 sm:ml-6 pt-1">
       {isLoading ? (
         <SkeletonList />
       ) : (
