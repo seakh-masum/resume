@@ -23,7 +23,7 @@ const dancing = Dancing_Script({
 export const metadata: Metadata = {
   title: "Masum Resume",
   description:
-    "This is a resume of Masum made with React | Firebase , designed with Figma & Neumorphism",
+    "This is a resume of Masum made with Next.js | Firebase , designed with Figma & Neumorphism",
 
   // Basic SEO
   keywords: ["Resume", "Masum", "React", "Firebase", "Figma", "Neumorphism"],
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
 
   // Theme Colors
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#303030" },
+    { media: "(prefers-color-scheme: light)", color: "#fff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
   ],
 
   // Open Graph
