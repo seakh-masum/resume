@@ -1,6 +1,4 @@
-// import { checkDarkMode } from "@/helper/common.helper";
-// import { checkDarkMode } from "../../helper/common.helper";
-import checkDarkMode from "../../helper/common.helper";
+import checkDarkMode from "@/helper/common.helper";
 
 function OpenTabIcon() {
   return (

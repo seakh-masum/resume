@@ -1,8 +1,14 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+type Hobby = {
+  name?: string;
+  icon?: string;
+  color?: string;
+};
+
 export const HobbyList = () => {
-  const [hobbies, setHobbies] = useState([Array(6).fill(0)]);
+  const [hobbies, setHobbies] = useState<Hobby[]>(Array(6).fill({}));
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +24,7 @@ export const HobbyList = () => {
   };
 
   return (
-    <div className="flex flex-row flex-wrap justify-start items-center gap-1 sm:gap-2">
+    <div className="flex flex-row flex-wrap justify-start items-center gap-1 sm:gap-2 min-h-hobby">
       {hobbies.map((item, index) => (
         <div
           key={index}
@@ -28,13 +34,14 @@ export const HobbyList = () => {
             item.color
           }-100 dark:text-${item.color} min-w-[100px]`}
         >
-          {item.icon && (
+          {typeof item.icon === "string" && (
             <Image
-              src={item.icon || null}
+              src={item.icon}
               alt="hobby-icon"
               className="w-4"
               width={16}
               height={16}
+              loading="lazy"
             />
           )}
           {item.name}

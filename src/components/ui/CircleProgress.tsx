@@ -1,7 +1,22 @@
 import Image from "next/image";
 import Circle from "./Circle";
 
-export const RoundedProgressbar = ({ data, isLoading, onDetails }) => {
+interface CircleProgressProps {
+  data: {
+    color?: string;
+    value?: number;
+    icon?: string;
+    name?: string;
+  };
+  isLoading: boolean;
+  onDetails: () => void;
+}
+
+export const CircleProgress = ({
+  data,
+  isLoading,
+  onDetails,
+}: CircleProgressProps) => {
   return (
     <div
       className="flex flex-col items-center justify-center mb-3"
@@ -34,7 +49,7 @@ export const RoundedProgressbar = ({ data, isLoading, onDetails }) => {
             <Image
               height={45}
               width={45}
-              src={data?.icon}
+              src={data?.icon ?? "/placeholder.png"}
               alt="skill-icon"
               loading="lazy"
             />

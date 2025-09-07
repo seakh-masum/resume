@@ -1,15 +1,19 @@
-import React from "react";
 import SubHeading from "../ui/SubHeading";
 import ChipList from "../ui/ChipList";
 import List from "../ui/List";
 import DialogTitle from "../ui/DialogTitle";
 import { getLevelName } from "@/utils/featureUtils";
+import { Skill } from "@/types/Skill";
 
-const SkillDetails = ({ data }) => {
+interface SkillDetailsProps {
+  data: Skill;
+}
+
+const SkillDetails = ({ data }: SkillDetailsProps) => {
   return (
     <div className="flex flex-col gap-7">
       <section>
-        <DialogTitle title={data?.name} link={data?.link} />
+        <DialogTitle title={data?.name ?? ""} link={data?.link ?? ""} />
         <p className="text-neutral-500">{data?.description}</p>
       </section>
 
@@ -31,14 +35,14 @@ const SkillDetails = ({ data }) => {
         )}
       </section>
 
-      {data?.features?.length > 0 && (
+      {data.features && data?.features?.length > 0 && (
         <section>
           <SubHeading title="Features" subTitle="I Known" />
           <List data={data?.features} />
         </section>
       )}
 
-      {data?.projects?.length > 0 && (
+      {data.projects && data?.projects?.length > 0 && (
         <section>
           <SubHeading title="Projects" subTitle="Using the Skill" />
           <ChipList data={data?.projects} />
