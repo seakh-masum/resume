@@ -4,13 +4,13 @@ import { getDocs } from "firebase/firestore";
 import { firebaseQuery } from "@/helper";
 import { getMonth, getOnlyMonthAndYear, getYear } from "@/utils";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const q = firebaseQuery("experience", "joiningDate");
     const snapshot = await getDocs(q);
 
     const data = snapshot.docs.map((doc) => {
-      let obj: any = {};
+      const obj: any = {};
       const data = doc.data();
       const fromYear: any = getYear(data.joiningDate);
       const fromMonth: any = getMonth(data.joiningDate);

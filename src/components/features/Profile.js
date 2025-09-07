@@ -63,7 +63,7 @@ export const Profile = ({ name, role, image, isLoading, isMobile }) => {
                 /> */}
 
                 <GradientText
-                  text="Sk Masum"
+                  text={name}
                   fromColor="#ec4899"
                   viaColor="#8b5cf6"
                   toColor="#3b82f6"

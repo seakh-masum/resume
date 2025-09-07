@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 const toDate = (timestamp: any): Date | null => {
   if (!timestamp) return null;
 
@@ -16,9 +18,11 @@ const toDate = (timestamp: any): Date | null => {
   return isNaN(date.getTime()) ? null : date;
 };
 
-const timestampToDate = (timestamp: any) => {
+const timestampToDate = (timestamp: Timestamp) => {
   if (!timestamp) return "";
-  const date = timestamp.toDate();
+  //   const date = timestamp.toDate();
+  const date = toDate(timestamp);
+  if (!date) return "";
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -26,17 +30,17 @@ const timestampToDate = (timestamp: any) => {
   });
 };
 
-const getYear = (timestamp: any) => {
+const getYear = (timestamp: Timestamp) => {
   const date = toDate(timestamp);
   return date ? date.getFullYear() : "";
 };
 
-const getMonth = (timestamp: any): number => {
+const getMonth = (timestamp: Timestamp): number => {
   const date = toDate(timestamp);
   return date ? date.getMonth() + 1 : 1; // Months are zero-based in JavaScript
 };
 
-const getOnlyMonthAndYear = (timestamp: any) => {
+const getOnlyMonthAndYear = (timestamp: Timestamp) => {
   if (!timestamp) return "";
   const date = timestamp.toDate();
   return date.toLocaleDateString("en-US", {

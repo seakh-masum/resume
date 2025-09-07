@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import useModal from "@/hooks/useModal";
+import { useCallback, useEffect, useState } from "react";
 import SkillDetails from "../dialogs/SkillDetails";
 import { RoundedProgressbar } from "./RoundedProgressbar";
+import { useDialog } from "@/hooks/useDialog";
+import Dialog from "./Dialog";
 
 interface CircleProgressGridProps {
   features?: string;
@@ -11,23 +12,21 @@ interface CircleProgressGridProps {
 export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
   const [skills, setSkills] = useState(Array(12).fill(0));
   const [isLoading, setLoading] = useState(true);
-  const { setDialog } = useModal() as any;
+  const { isOpen, openDialog, closeDialog, dialogData } = useDialog<{
+    message: string;
+  }>();
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
+  const getData = useCallback(async () => {
     const res = await fetch(`/api/${features}?orderBy=value`);
     const json = await res.json();
 
     setSkills(json.data);
     setLoading(false);
-  };
+  }, [features]);
 
-  const onSkillDetails = (data: any) => {
-    setDialog(<SkillDetails data={data} />);
-  };
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -36,9 +35,12 @@ export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
           key={index}
           data={item}
           isLoading={isLoading}
-          onDetails={() => onSkillDetails(item)}
+          onDetails={() => openDialog({ data: item })}
         />
       ))}
+      <Dialog isOpen={isOpen} onClose={closeDialog}>
+        <SkillDetails data={dialogData} />
+      </Dialog>
     </div>
   );
 };

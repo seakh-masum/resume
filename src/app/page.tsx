@@ -6,12 +6,9 @@ import { HobbyList } from "../components/features/Hobby";
 import { ProjectList } from "../components/features/Project";
 import { AboutMe } from "../components/features/AboutMe";
 import { Profile } from "../components/features/Profile";
-import { Experience } from "../components/features/Experience";
-import { Education } from "../components/features/Education";
 import { ResponsiveContext } from "@/contexts/responsive.context";
 import { DownloadBtn } from "../components/features/DownloadBtn";
 import { CircleProgressGrid } from "@/components/ui/CircleProgressGrid";
-import { Stepper } from "@/components/ui/Stepper";
 import { StepperList } from "@/components/ui/StepperList";
 
 type ProfileType = {

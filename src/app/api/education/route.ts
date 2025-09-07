@@ -4,7 +4,7 @@ import { getDocs } from "firebase/firestore";
 import { firebaseQuery } from "@/helper";
 import { getYear } from "@/utils";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const q = firebaseQuery("education", "fromDate");
     const snapshot = await getDocs(q);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Stepper } from "../ui/Stepper";
 import SkeletonList from "../loader/SkeletonList";
 
@@ -22,18 +22,18 @@ export const StepperList = ({ isMobile, features }: Props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<StepperItem[]>([]);
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
+  const getData = useCallback(async () => {
     const res = await fetch(`/api/${features}`);
     const json = await res.json();
 
     setData(json.data);
 
     setLoading(false);
-  };
+  }, [features]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return (
     <div className="mt-4 mr-0 mb-0 ml-6">
