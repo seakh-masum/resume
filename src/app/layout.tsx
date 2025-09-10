@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/globals.css";
+import "./globals.css";
 import { dancing, montserrat, poppins } from "@/styles/fonts";
 import { homeMetadata } from "@/styles/metadata";
 
