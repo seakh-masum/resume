@@ -1,13 +1,13 @@
 {
   "pages": {
     "/page": [
-      "static/chunks/[root-of-the-server]__45ba7116._.css",
+      "static/chunks/[root-of-the-server]__26882c2d._.css",
       "static/chunks/node_modules_next_dist_8db7fb1f._.js",
       "static/chunks/src_app_layout_tsx_0a548d63._.js",
-      "static/chunks/node_modules_next_dist_client_components_builtin_global-error_f32b9f54.js",
+      "static/chunks/node_modules_next_dist_client_components_builtin_global-error_e387d1b7.js",
       "static/chunks/src_fb53eae1._.js",
       "static/chunks/node_modules_next_ff5d7e3a._.js",
-      "static/chunks/src_app_page_tsx_f32b9f54._.js",
+      "static/chunks/src_app_page_tsx_e387d1b7._.js",
       "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_57d40746._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js",
       "static/chunks/node_modules_next_dist_compiled_next-devtools_index_a9cb0712.js",
