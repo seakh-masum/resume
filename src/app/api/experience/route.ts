@@ -43,11 +43,24 @@ export async function GET() {
       obj.subHeading = obj.dateRange;
       obj.link = data.link;
       obj.list = data.roles;
+      obj.yearGap = yearGap;
+      obj.monthGap = monthGap;
 
       return { ...data, ...obj, id: doc.id };
     });
 
-    return NextResponse.json({ data });
+    const totalMonths = data.reduce((acc: number, curr: any) => {
+      return acc + curr.yearGap * 12 + curr.monthGap;
+    }, 0);
+
+    const totalYears = Math.floor(totalMonths / 12);
+    const remainingMonths = totalMonths % 12;
+
+    const totalExperience = `${totalYears} Years ${
+      remainingMonths > 0 ? remainingMonths + " Months" : ""
+    }`;
+
+    return NextResponse.json({ data, totalExperience });
   } catch (err: any) {
     console.error("API error:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });

@@ -24,6 +24,22 @@ function App() {
   const [profile, setProfile] = useState<ProfileType>({});
   const [isLoading, setLoading] = useState(true);
   const isMobile = useContext(ResponsiveContext);
+  const [totalExperience, setTotalExperience] = useState(null);
+
+  const handleTotalExperienceData = (data: any) => {
+    setTotalExperience(data);
+  };
+
+  const ExperienceHeading = () => (
+    <span>
+      Experience (
+      <b className="text-blue-700 dark:text-blue-500">
+        {" "}
+        {totalExperience ? totalExperience : ""}
+      </b>{" "}
+      )
+    </span>
+  );
 
   useEffect(() => {
     getProfile();
@@ -75,9 +91,13 @@ function App() {
             </div>
           </div>
           <div className="no-break">
-            <Card header="Experience">
+            <Card header={<ExperienceHeading />}>
               {/* <Experience isMobile={isMobile} /> */}
-              <StepperList features="experience" isMobile={isMobile} />
+              <StepperList
+                features={`experience`}
+                isMobile={isMobile}
+                onDataLoad={handleTotalExperienceData}
+              />
             </Card>
           </div>
           <div className="flex gap-4 sm:flex-row flex-col main-container">
