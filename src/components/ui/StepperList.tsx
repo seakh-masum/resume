@@ -22,7 +22,6 @@ type Props = {
 export const StepperList = ({ isMobile, features, onDataLoad }: Props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<StepperItem[]>([]);
-  // const [totalExperience, setTotalExperience] = useState<number>(0);
 
   const getData = useCallback(async () => {
     const res = await fetch(`/api/${features}`);
@@ -45,11 +44,6 @@ export const StepperList = ({ isMobile, features, onDataLoad }: Props) => {
         <SkeletonList />
       ) : (
         <>
-          {/* {features == "experience" && (
-            <span className="float-right -mt-16">
-              Total Experience: <b>{totalExperience}</b>
-            </span>
-          )} */}
           {data.map((item, index) => (
             <Stepper
               key={item.id ?? index}

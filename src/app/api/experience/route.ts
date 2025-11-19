@@ -60,7 +60,7 @@ export async function GET() {
       remainingMonths > 0 ? remainingMonths + " Months" : ""
     }`;
 
-    return NextResponse.json({ data, totalExperience, totalMonths });
+    return NextResponse.json({ data, totalExperience });
   } catch (err: any) {
     console.error("API error:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });
