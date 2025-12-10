@@ -15,7 +15,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${poppins.variable} ${dancing.variable} antialiased`}
       >
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

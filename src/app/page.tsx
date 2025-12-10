@@ -33,7 +33,7 @@ function App() {
   const ExperienceHeading = () => (
     <span>
       Experience -
-      <b className="text-primary text-base sm:text-xl align-middle">
+      <b className="text-primary-dark text-base sm:text-xl align-middle">
         {" "}
         {totalExperience ? totalExperience : ""}
       </b>{" "}

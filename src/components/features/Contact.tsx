@@ -31,14 +31,14 @@ export const ContactList = () => {
         <a
           href={item?.link}
           key={index}
-          className="flex flex-row gap-2 align-center"
+          className="flex flex-row gap-2 items-center"
         >
           {isLoading ? (
             <>
-              <div className="rounded-full w-6 h-6 bg-neutral-700"></div>
+              <div className="rounded-full w-12 h-12 bg-surface"></div>
               {/* <SkeletonLine width="5" /> */}
               <div
-                className={`bg-neutral-200 dark:bg-neutral-800 h-4 rounded-xl animate-pulse w-32`}
+                className={`bg-surface h-10 rounded-xl animate-pulse w-full sm:w-32`}
               ></div>
             </>
           ) : (
