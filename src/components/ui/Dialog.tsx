@@ -49,7 +49,7 @@ const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
             <CloseIcon />
           </button>
         </div>
-        <div className="bg-white backdrop-blur supports-backdrop-blur:bg-white/95 cursor-pointer h-auto shadow-xl p-5 dark:bg-neutral-800 sm:rounded-2xl rounded-t-2xl overflow-y-auto max-h-dialog transition duration-500 ease-in-out sm:w-dialog w-full max-sm:pb-10">
+        <div className="bg-white backdrop-blur supports-backdrop-blur:bg-white/95 cursor-pointer h-auto shadow-xl p-5 dark:bg-neutral-800 sm:rounded-theme rounded-t-2xl overflow-y-auto max-h-dialog transition duration-500 ease-in-out sm:w-dialog w-full max-sm:pb-10">
           {children}
         </div>
       </div>

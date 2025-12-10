@@ -11,12 +11,15 @@ type Props = {
   isMobile: boolean;
 };
 
+const PrimaryColor = "";
+
 export const Profile = ({ name, role, image, isLoading, isMobile }: Props) => {
   return (
+    // dark:from-sky-700 dark:to-indigo-700
     <div
       className={`${
         isLoading && "animate-pulse"
-      } p-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl mb-5 dark:from-sky-700 dark:to-indigo-700`}
+      } p-0 bg-gradient-to-r from-primary to-secondary rounded-xl mb-5`}
     >
       <div className="pb-3">
         <div className="background flex flex-col items-center sm:items-start justify-center pt-20">
@@ -29,9 +32,10 @@ export const Profile = ({ name, role, image, isLoading, isMobile }: Props) => {
               <Circle
                 size="lg"
                 hasStroke
-                className="stroke-purple-400 w-full h-full fill-none dark:stroke-blue-400"
+                className="stroke-secondary w-full h-full fill-none"
                 strokeDashoffset={`calc(625px - (685px * 50) / 100)`}
               />
+              {/* dark:stroke-blue-400 */}
             </svg>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               {isLoading ? (
@@ -45,35 +49,40 @@ export const Profile = ({ name, role, image, isLoading, isMobile }: Props) => {
                   priority
                   width={208}
                   height={208}
+                  fetchPriority="high"
                 />
               )}
             </div>
           </div>
         </div>
-        <div className="profile bg-slate-100 -mt-24 mx-1 -mb-2 rounded-2xl dark:bg-neutral-950">
-          <div className="flex flex-col items-center sm:items-end justify-center pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3">
-            <GradientText
+        <div className="profile bg-accent -mt-24 mx-1 -mb-2 rounded-[10px]">
+          <div className="flex flex-col items-center sm:items-end justify-center pt-28 sm:pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3">
+            {/* <GradientText
               text={name}
               fromColor="#ec4899"
-              viaColor="#8b5cf6"
               toColor="#3b82f6"
               isMobile={isMobile}
               isLoading={isLoading}
-            />
+            /> */}
             {isLoading ? (
+              // {/* <SkeletonLine width={`4/5`} />
+              // <SkeletonLine width={`3/5`} /> */}
+              // {/* bg-neutral-200 dark:bg-neutral-800 */}
               <>
-                {/* <SkeletonLine width={`4/5`} />
-                <SkeletonLine width={`3/5`} /> */}
-
                 <div
-                  className={`bg-neutral-200 dark:bg-neutral-800 h-4 rounded-xl animate-pulse w-[200px] mb-2`}
+                  className={`bg-surface rounded-xl animate-pulse w-[300px] h-20`}
+                ></div>
+                <div
+                  className={`bg-surface rounded-xl animate-pulse w-[200px] h-8 mb-2`}
                 ></div>
               </>
             ) : (
+              // {/* text-slate-600 dark:text-neutral-400 */}
               <>
-                <i className="text-slate-600 dark:text-neutral-400 text-lg sm:text-2xl ">
-                  {role}
-                </i>
+                <p className="font-heading text-6xl md:text-7xl text-text text-right">
+                  {name}
+                </p>
+                <i className="text-text-light text-lg sm:text-2xl ">{role}</i>
               </>
             )}
           </div>

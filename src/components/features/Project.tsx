@@ -32,7 +32,7 @@ export const ProjectList = () => {
             {projects.map((item, index) => (
               <li
                 key={index}
-                className="bg-slate-100 list-none py-3 px-4 rounded-lg mb-0 dark:bg-neutral-800"
+                className="bg-surface list-none py-3 px-4 rounded-lg mb-0"
                 onClick={() => openDialog({ data: item })}
               >
                 <b className="text-neutral-800 text-base dark:text-neutral-100">
