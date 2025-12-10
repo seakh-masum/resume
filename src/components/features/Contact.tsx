@@ -43,7 +43,7 @@ export const ContactList = () => {
             </>
           ) : (
             <>
-              <div className="bg-black rounded-full p-3">
+              <div className="bg-secondary rounded-full p-3">
                 <Image
                   width={24}
                   height={24}

@@ -30,7 +30,7 @@ export const CircleProgress = ({
         >
           <Circle
             size="sm"
-            className={`stroke-neutral-200 dark:stroke-neutral-700 ${
+            className={`stroke-surface dark:stroke-neutral-700 ${
               isLoading ? "fill-neutral-700" : "fill-none"
             }`}
           />
@@ -58,7 +58,9 @@ export const CircleProgress = ({
           )}
         </div>
       </div>
-      {!isLoading && <span className="sm:text-base text-sm">{data?.name}</span>}
+      {!isLoading && (
+        <span className="sm:text-base text-sm text-text">{data?.name}</span>
+      )}
     </div>
   );
 };

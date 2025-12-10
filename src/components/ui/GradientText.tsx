@@ -59,9 +59,11 @@ export default function GradientText({
               y2="0%"
               gradientUnits="userSpaceOnUse"
             >
-              <stop offset="0%" stopColor={fromColor} />
-              <stop offset="30%" stopColor={viaColor} />
-              <stop offset="100%" stopColor={toColor} />
+              <stop offset="0%" className="stop-primary" />
+              {/* stopColor={fromColor} */}
+              {/* <stop offset="30%" stopColor={viaColor} /> */}
+              <stop offset="100%" className="stop-secondary" />
+              {/* stopColor={toColor} /> */}
             </linearGradient>
 
             <mask id={maskId} maskUnits="userSpaceOnUse">

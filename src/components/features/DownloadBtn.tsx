@@ -6,7 +6,7 @@ export const DownloadBtn = () => {
       onClick={() => window.print()}
       target="_blank"
       rel="noreferrer"
-      className="no-print animate-bounce grid place-content-center rounded-full fixed bottom-3 right-3 z-50 w-12 aspect-square bg-gradient-to-r from-sky-500 to-indigo-500 shadow-md"
+      className="no-print animate-bounce grid place-content-center rounded-full fixed bottom-3 right-3 z-50 w-12 aspect-square bg-gradient-to-r from-primary to-secondary shadow-md"
       href="#"
       aria-label="Download Resume"
     >

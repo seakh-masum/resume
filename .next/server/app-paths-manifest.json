@@ -1,6 +1,6 @@
 {
+  "/api/experience/route": "app/api/experience/route.js",
   "/api/[category]/route": "app/api/[category]/route.js",
   "/api/education/route": "app/api/education/route.js",
-  "/api/experience/route": "app/api/experience/route.js",
   "/page": "app/page.js"
 }

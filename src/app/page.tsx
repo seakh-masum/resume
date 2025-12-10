@@ -32,12 +32,11 @@ function App() {
 
   const ExperienceHeading = () => (
     <span>
-      Experience (
-      <b className="text-blue-700 dark:text-blue-500">
+      Experience -
+      <b className="text-primary text-base sm:text-xl align-middle">
         {" "}
         {totalExperience ? totalExperience : ""}
       </b>{" "}
-      )
     </span>
   );
 
@@ -55,7 +54,8 @@ function App() {
   return (
     <>
       {/* {loading ? ( */}
-      <div className="w-full bg-white dark:bg-neutral-950">
+      {/* dark:bg-neutral-950 */}
+      <div className="w-full bg-surface">
         <div className="relative my-0 mx-auto px-1 py-3 sm:p-3  max-w-7xl print-container">
           <Profile
             name={profile?.name || ""}

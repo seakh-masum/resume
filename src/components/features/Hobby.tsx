@@ -26,13 +26,14 @@ export const HobbyList = () => {
   return (
     <div className="flex flex-row flex-wrap justify-start items-center gap-1 sm:gap-2 min-h-hobby">
       {hobbies.map((item, index) => (
+        // dark:bg-neutral-800
         <div
           key={index}
           className={`${
             isLoading && "animate-pulse"
-          } dark:bg-neutral-800 bg-neutral-200 sm:text-base text-xs inline-flex py-1 px-3 rounded-2xl items-center relative gap-1 h-8 dark:bg-${
+          } bg-surface sm:text-base text-xs inline-flex py-1 px-3 rounded-xl items-center relative gap-1 h-8 dark:bg-${
             item.color
-          }-100 dark:text-${item.color} min-w-[100px]`}
+          }-100 dark:text-white min-w-[100px]`}
         >
           {typeof item.icon === "string" && (
             <Image
