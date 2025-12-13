@@ -26,7 +26,6 @@ export const HobbyList = () => {
   return (
     <div className="flex flex-row flex-wrap justify-start items-center gap-1 sm:gap-2 min-h-hobby">
       {hobbies.map((item, index) => (
-        // dark:bg-neutral-800
         <div
           key={index}
           className={`${

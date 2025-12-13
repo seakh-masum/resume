@@ -4,11 +4,13 @@
   --font-montserrat: "Montserrat", sans-serif;
   --font-poppins: "Poppins", sans-serif;
   --font-dancing: "Dancing Script", cursive;
-  --surface-color: #f9f5eb;
-  --accent-color: #e4dccf;
-  --primary-color: #f57a7a;
-  --primary-color-dark: #b92424;
-  --secondary-color: #6eb2ff;
+  /* --surface-color: #f9f5eb; */
+  /* --accent-color: #e4dccf; */
+  --surface-color: #f1f5f9;
+  --accent-color: #ffffff;
+  --primary-color: hsl(0, 86%, 72%);
+  --secondary-color-dark: hsl(212, 40%, 50%);
+  --secondary-color: hsl(212, 100%, 72%);
   --text-color: hsl(0, 0%, 11%);
   --text-light-color: hsl(0, 0%, 22%);
   --border-color: #f7efe2;
@@ -19,8 +21,6 @@
   :root {
     --surface-color: #181c14;
     --accent-color: #3c3d37;
-    --primary-color: #697565;
-    --secondary-color: #ecdfcc;
     --text-color: hsl(30, 3%, 86%);
     --text-light-color: hsl(40, 2%, 68%);
     --border-color: #3d3d3d;
@@ -30,7 +30,7 @@
 @theme inline {
   --color-surface: var(--surface-color);
   --color-primary: var(--primary-color);
-  --color-primary-dark: var(--primary-color-dark);
+  --color-secondary-dark: var(--secondary-color-dark);
   --color-secondary: var(--secondary-color);
   --color-accent: var(--accent-color);
   --color-text: var(--text-color);
@@ -45,6 +45,8 @@
   --max-height-dialog: 70vh;
   --min-height-about-me: 612px;
   --min-height-hobby: 112px;
+  --shadow-theme: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 body {
@@ -122,26 +124,13 @@ h3 {
   .no-break {
     page-break-inside: avoid;
     break-inside: avoid;
+    padding-top: 32px;
   }
 
   .page-break {
     page-break-before: always; /* Old browser support */
     break-before: page; /* Modern browsers */
   }
-
-  /* .stepper-item:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -1rem;
-    border-color: rgb(59 130 246);
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-style: solid;
-    border-right-width: 16px;
-    border-top-width: 16px;
-    border-bottom-width: 16px;
-  } */
 
   .profile-name {
     -webkit-font-smoothing: none;
