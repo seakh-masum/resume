@@ -36,7 +36,6 @@ export const ContactList = () => {
           {isLoading ? (
             <>
               <div className="rounded-full w-12 h-12 bg-surface"></div>
-              {/* <SkeletonLine width="5" /> */}
               <div
                 className={`bg-surface h-10 rounded-xl animate-pulse w-full sm:w-32`}
               ></div>

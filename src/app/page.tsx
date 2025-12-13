@@ -10,6 +10,7 @@ import { ResponsiveContext } from "@/contexts/responsive.context";
 import { DownloadBtn } from "../components/features/DownloadBtn";
 import { CircleProgressGrid } from "@/components/ui/CircleProgressGrid";
 import { StepperList } from "@/components/ui/StepperList";
+import { ExperienceHeading } from "@/components/ui/ExperienceHeading";
 
 type ProfileType = {
   name?: string;
@@ -24,21 +25,11 @@ function App() {
   const [profile, setProfile] = useState<ProfileType>({});
   const [isLoading, setLoading] = useState(true);
   const isMobile = useContext(ResponsiveContext);
-  const [totalExperience, setTotalExperience] = useState(null);
+  const [totalExperience, setTotalExperience] = useState<string | null>(null);
 
   const handleTotalExperienceData = (data: any) => {
     setTotalExperience(data);
   };
-
-  const ExperienceHeading = () => (
-    <span>
-      Experience -
-      <b className="text-primary-dark text-base sm:text-xl align-middle">
-        {" "}
-        {totalExperience ? totalExperience : ""}
-      </b>{" "}
-    </span>
-  );
 
   useEffect(() => {
     getProfile();
@@ -53,16 +44,13 @@ function App() {
 
   return (
     <>
-      {/* {loading ? ( */}
-      {/* dark:bg-neutral-950 */}
       <div className="w-full bg-surface">
-        <div className="relative my-0 mx-auto px-1 py-3 sm:p-3  max-w-7xl print-container">
+        <div className="relative my-0 mx-auto px-1 py-3 sm:p-3 max-w-7xl print-container">
           <Profile
             name={profile?.name || ""}
             image={profile?.image || ""}
             role={profile?.role || ""}
             isLoading={isLoading}
-            isMobile={isMobile}
           />
           <div className="flex gap-4 sm:flex-row flex-col main-container">
             <div className="flex flex-col basis-[45%] left-side">
@@ -91,8 +79,9 @@ function App() {
             </div>
           </div>
           <div className="no-break">
-            <Card header={<ExperienceHeading />}>
-              {/* <Experience isMobile={isMobile} /> */}
+            <Card
+              header={<ExperienceHeading totalExperience={totalExperience} />}
+            >
               <StepperList
                 features={`experience`}
                 isMobile={isMobile}
@@ -103,7 +92,6 @@ function App() {
           <div className="flex gap-4 sm:flex-row flex-col main-container">
             <div className="flex flex-col basis-[45%] left-side">
               <Card header="Education">
-                {/* <Education isMobile={isMobile} /> */}
                 <StepperList features="education" isMobile={isMobile} />
               </Card>
             </div>
@@ -113,7 +101,6 @@ function App() {
               </Card>
             </div>
           </div>
-          {/* <DownloadBtn /> */}
           <DownloadBtn />
         </div>
       </div>
