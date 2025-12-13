@@ -26,7 +26,6 @@ export const StepperList = ({ isMobile, features, onDataLoad }: Props) => {
   const getData = useCallback(async () => {
     const res = await fetch(`/api/${features}`);
     const json = await res.json();
-    console.log(json);
 
     setData(json.data);
     if (onDataLoad) onDataLoad(json.totalExperience ?? "");
