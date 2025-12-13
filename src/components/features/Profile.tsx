@@ -32,7 +32,7 @@ export const Profile = ({ name, role, image, isLoading }: Props) => {
               />
             </svg>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              {isLoading ? (
+              {/* {isLoading ? (
                 <div className="rounded-full w-52 h-52 bg-neutral-700"></div>
               ) : (
                 <Image
@@ -45,6 +45,21 @@ export const Profile = ({ name, role, image, isLoading }: Props) => {
                   height={208}
                   fetchPriority="high"
                 />
+              )} */}
+              <img
+                src={image || "/images/user_placeholder.svg"}
+                alt={name}
+                style={{ maxWidth: 208 + "px" }}
+                width={208}
+                height={208}
+                fetchPriority="high"
+                decoding="async"
+                className="rounded-full w-52 h-52"
+              />
+
+              {/* Skeleton OVERLAY (not conditional render) */}
+              {isLoading && (
+                <div className="absolute inset-0 rounded-full bg-neutral-700 animate-pulse" />
               )}
             </div>
           </div>
