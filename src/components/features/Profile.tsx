@@ -58,9 +58,9 @@ export const Profile = ({ name, role, image, isLoading }: Props) => {
               />
 
               {/* Skeleton OVERLAY (not conditional render) */}
-              {isLoading && (
+              {/* {isLoading && (
                 <div className="absolute inset-0 rounded-full bg-neutral-700 animate-pulse" />
-              )}
+              )} */}
             </div>
           </div>
         </div>
