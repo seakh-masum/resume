@@ -45,7 +45,10 @@ function App() {
   return (
     <>
       <div className="w-full bg-surface">
-        <div className="relative my-0 mx-auto px-1 py-3 sm:p-3 max-w-7xl print-container">
+        <div
+          className="relative my-0 mx-auto px-1 py-3 sm:p-3 max-w-7xl print-container print:w-[210mm] print:min-h-[297mm]
+         print:p-[5mm]"
+        >
           <Profile
             name={profile?.name || ""}
             image={profile?.image || ""}

@@ -40,7 +40,7 @@ export const Stepper = ({
           href={link}
           target="_blank"
           rel="noreferrer"
-          className="mb-5 leading-4 text-lg font-medium text-neutral-900 dark:text-white"
+          className="mb-5 leading-4 text-base md:text-lg font-medium text-neutral-900 dark:text-white"
         >
           {heading}{" "}
           {extraHeading && (
