@@ -27,7 +27,7 @@ export const Stepper = ({
     <div className="flex mb-2">
       <div className="items-center pr-6 flex flex-col">
         <div
-          className={`stepper stepper-item text-text flex w-full text-xs bg-primary mb-1 h-8 aspect-square relative rounded-full items-center justify-center sm:aspect-third_one sm:rounded-none leading-8 ${
+          className={`stepper stepper-item text-text flex w-full text-xs bg-primary mb-1 h-9 aspect-square relative rounded-full items-center justify-center sm:aspect-third_one sm:rounded-none leading-8 ${
             !isMobile ? `min-w-[140px] ` : ""
           }`}
         >

@@ -33,7 +33,7 @@ function App() {
   const ExperienceHeading = () => (
     <span>
       Experience -
-      <b className="text-primary-dark text-base sm:text-xl align-middle">
+      <b className="text-primary-dark text-lg sm:text-xl align-middle">
         {" "}
         {totalExperience ? totalExperience : ""}
       </b>{" "}
@@ -53,8 +53,6 @@ function App() {
 
   return (
     <>
-      {/* {loading ? ( */}
-      {/* dark:bg-neutral-950 */}
       <div className="w-full bg-surface">
         <div className="relative my-0 mx-auto px-1 py-3 sm:p-3  max-w-7xl print-container">
           <Profile
@@ -92,7 +90,6 @@ function App() {
           </div>
           <div className="no-break">
             <Card header={<ExperienceHeading />}>
-              {/* <Experience isMobile={isMobile} /> */}
               <StepperList
                 features={`experience`}
                 isMobile={isMobile}
@@ -103,7 +100,6 @@ function App() {
           <div className="flex gap-4 sm:flex-row flex-col main-container">
             <div className="flex flex-col basis-[45%] left-side">
               <Card header="Education">
-                {/* <Education isMobile={isMobile} /> */}
                 <StepperList features="education" isMobile={isMobile} />
               </Card>
             </div>
@@ -113,7 +109,6 @@ function App() {
               </Card>
             </div>
           </div>
-          {/* <DownloadBtn /> */}
           <DownloadBtn />
         </div>
       </div>
