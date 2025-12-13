@@ -14,7 +14,7 @@ export const Profile = ({ name, role, image, isLoading }: Props) => {
     <div
       className={`${
         isLoading && "animate-pulse"
-      } p-0 bg-gradient-to-r from-primary to-secondary rounded-xl mb-5`}
+      } [grid-area:profile] p-0 bg-gradient-to-r from-primary to-secondary rounded-xl mb-5 `}
     >
       <div className="pb-3">
         <div className="background flex flex-col items-center sm:items-start justify-center pt-20">

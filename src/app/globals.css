@@ -4,12 +4,10 @@
   --font-montserrat: "Montserrat", sans-serif;
   --font-poppins: "Poppins", sans-serif;
   --font-dancing: "Dancing Script", cursive;
-  /* --surface-color: #f9f5eb; */
-  /* --accent-color: #e4dccf; */
   --surface-color: #f1f5f9;
   --accent-color: #ffffff;
-  --primary-color: hsl(0, 86%, 72%);
-  --secondary-color-dark: hsl(212, 40%, 50%);
+  --primary-color: hsl(158, 76%, 64%);
+  --secondary-color-dark: hsl(212, 36%, 46%);
   --secondary-color: hsl(212, 100%, 72%);
   --text-color: hsl(0, 0%, 11%);
   --text-light-color: hsl(0, 0%, 22%);
@@ -76,10 +74,6 @@ h3 {
   display: none;
 }
 
-.only-print {
-  display: none;
-}
-
 @media print {
   body {
     margin: 0;
@@ -92,18 +86,9 @@ h3 {
     border: none !important;
   }
 
-  .no-print {
-    display: none; /* Hide elements like navbars or buttons */
-  }
-
-  .only-print {
-    display: block;
-  }
-
   .print-container {
     width: 100%;
     margin: 0;
-    /* padding: 20px; */
     box-sizing: border-box;
     page-break-inside: avoid;
   }
@@ -125,14 +110,5 @@ h3 {
     page-break-inside: avoid;
     break-inside: avoid;
     padding-top: 32px;
-  }
-
-  .page-break {
-    page-break-before: always; /* Old browser support */
-    break-before: page; /* Modern browsers */
-  }
-
-  .profile-name {
-    -webkit-font-smoothing: none;
   }
 }
