@@ -1,8 +1,5 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/experience/route": "app/api/experience/route.js",
-  "/api/[category]/route": "app/api/[category]/route.js",
   "/page": "app/page.js",
-  "/api/education/route": "app/api/education/route.js",
   "/studio/[[...tool]]/page": "app/studio/[[...tool]]/page.js"
 }

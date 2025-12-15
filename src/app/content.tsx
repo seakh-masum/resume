@@ -11,6 +11,9 @@ import { DownloadBtn } from "../components/features/DownloadBtn";
 import { CircleProgressGrid } from "@/components/ui/CircleProgressGrid";
 import { StepperList } from "@/components/ui/StepperList";
 import { ExperienceHeading } from "@/components/ui/ExperienceHeading";
+import { Experience } from "@/components/features/Experience";
+import { Education } from "@/components/features/Education";
+import { calculateTotalTenure } from "@/utils";
 
 type ProfileType = {
   name?: string;
@@ -20,28 +23,28 @@ type ProfileType = {
   description?: string;
   // add other properties as needed
 };
-const Content = ({ resume }: any) => {
-  const [profile, setProfile] = useState<ProfileType>({});
-  const [isLoading, setLoading] = useState(true);
+const Content = ({ resume, isLoading }: any) => {
+  // const [profile, setProfile] = useState<ProfileType>({});
+  // const [isLoading, setLoading] = useState(true);
   const isMobile = useContext(ResponsiveContext);
-  const [totalExperience, setTotalExperience] = useState<string | null>(null);
-
-  const handleTotalExperienceData = (data: any) => {
-    setTotalExperience(data);
-  };
 
   console.log(resume);
+  const tenures = resume.experience.map((exp: any) => ({
+    joiningDate: exp.joiningDate,
+    releaseDate: exp.releaseDate,
+  }));
+  const totalExperience = calculateTotalTenure(tenures);
 
-  useEffect(() => {
-    getProfile();
-  }, []);
+  // useEffect(() => {
+  //   getProfile();
+  // }, []);
 
-  const getProfile = async () => {
-    const res = await fetch("/api/profile");
-    const { data } = await res.json();
-    setProfile(data[0]);
-    setLoading(false);
-  };
+  // const getProfile = async () => {
+  //   const res = await fetch("/api/profile");
+  //   const { data } = await res.json();
+  //   setProfile(data[0]);
+  //   // setLoading(false);
+  // };
 
   return (
     <>
@@ -51,9 +54,7 @@ const Content = ({ resume }: any) => {
          print:p-[5mm]"
         >
           <Profile
-            name={resume?.profile?.name || ""}
-            image={resume?.profile?.image || ""}
-            role={profile?.role || ""}
+            data={resume?.profile}
             isLoading={isLoading}
             contacts={resume?.contacts || []}
           />
@@ -61,25 +62,29 @@ const Content = ({ resume }: any) => {
             <div className="flex flex-col basis-[45%] left-side">
               <Card header="About Me">
                 <AboutMe
-                  introduction={profile.introduction || ""}
-                  description={
-                    Array.isArray(profile.description)
-                      ? profile.description
-                      : [profile.description || ""]
-                  }
+                  introduction={resume?.profile.introduction || ""}
+                  summary={resume?.profile?.summary || []}
                   isLoading={isLoading}
                 />
               </Card>
               <Card header="Hobbies">
-                <HobbyList />
+                <HobbyList data={resume.hobbies} isLoading={isLoading} />
               </Card>
             </div>
             <div className="flex flex-col basis-[55%] right-side">
               <Card header="Skills">
-                <CircleProgressGrid features="skills" data={resume.skills} />
+                <CircleProgressGrid
+                  features="skills"
+                  data={resume.skills}
+                  isLoading={isLoading}
+                />
               </Card>
               <Card header="Tools">
-                <CircleProgressGrid features="tools" data={resume.tools} />
+                <CircleProgressGrid
+                  features="tools"
+                  data={resume.tools}
+                  isLoading={isLoading}
+                />
               </Card>
             </div>
           </div>
@@ -87,22 +92,26 @@ const Content = ({ resume }: any) => {
             <Card
               header={<ExperienceHeading totalExperience={totalExperience} />}
             >
-              <StepperList
-                features={`experience`}
+              <Experience
+                data={resume.experience}
                 isMobile={isMobile}
-                onDataLoad={handleTotalExperienceData}
+                isLoading={isLoading}
               />
             </Card>
           </div>
           <div className="flex gap-4 sm:flex-row flex-col main-container">
             <div className="flex flex-col basis-[45%] left-side">
               <Card header="Education">
-                <StepperList features="education" isMobile={isMobile} />
+                <Education
+                  data={resume.education}
+                  isMobile={isMobile}
+                  isLoading={isLoading}
+                />
               </Card>
             </div>
             <div className="flex flex-col basis-[55%] right-side">
               <Card header="Projects">
-                <ProjectList />
+                <ProjectList data={resume.projects} isLoading={isLoading} />
               </Card>
             </div>
           </div>

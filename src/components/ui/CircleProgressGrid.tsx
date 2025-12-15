@@ -8,28 +8,29 @@ import { Skill } from "@/types/Skill";
 interface CircleProgressGridProps {
   features?: string;
   data?: any[];
+  isLoading: boolean;
   // add other props as needed
 }
 
 export const CircleProgressGrid = ({
   features,
   data,
+  isLoading,
 }: CircleProgressGridProps) => {
-  const [skills, setSkills] = useState(Array(12).fill(0));
-  const [isLoading, setLoading] = useState(true);
+  // const [skills, setSkills] = useState(Array(12).fill(0));
   const { isOpen, openDialog, closeDialog, dialogData } = useDialog<Skill>();
 
-  const getData = useCallback(async () => {
-    const res = await fetch(`/api/${features}?orderBy=value`);
-    const json = await res.json();
+  // const getData = useCallback(async () => {
+  //   const res = await fetch(`/api/${features}?orderBy=value`);
+  //   const json = await res.json();
 
-    setSkills(json.data);
-    setLoading(false);
-  }, [features]);
+  //   setSkills(json.data);
+  //   setLoading(false);
+  // }, [features]);
 
-  useEffect(() => {
-    getData();
-  }, [getData]);
+  // useEffect(() => {
+  //   getData();
+  // }, [getData]);
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 pt-1">

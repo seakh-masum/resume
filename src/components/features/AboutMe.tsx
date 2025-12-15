@@ -4,11 +4,11 @@ import List from "../ui/List";
 
 interface Props {
   introduction: string;
-  description: string[];
+  summary: string[];
   isLoading: boolean;
 }
 
-export const AboutMe = ({ introduction, description, isLoading }: Props) => {
+export const AboutMe = ({ introduction, summary, isLoading }: Props) => {
   return (
     <div className="min-h-about-me">
       {isLoading ? (
@@ -19,7 +19,7 @@ export const AboutMe = ({ introduction, description, isLoading }: Props) => {
             <p className="text-neutral-700 dark:text-neutral-200 text-sm">
               {introduction}
             </p>
-            <List data={description} />
+            <List data={summary} />
           </div>
         </>
       )}

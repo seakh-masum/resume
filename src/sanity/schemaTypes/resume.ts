@@ -25,9 +25,14 @@ export default defineType({
           validation: (Rule) => Rule.required(),
         }),
         defineField({
-          name: "summary",
+          name: "introduction",
           type: "text",
           rows: 4,
+        }),
+        defineField({
+          name: "summary",
+          type: "array",
+          of: [{ type: "string" }],
         }),
         defineField({
           name: "image",
@@ -160,7 +165,7 @@ export default defineType({
             { name: "company", type: "string" },
             { name: "designation", type: "string" },
             {
-              name: "joinDate",
+              name: "joiningDate",
               type: "string",
               description: "YYYY-MM",
             },

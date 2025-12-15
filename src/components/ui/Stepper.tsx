@@ -27,7 +27,7 @@ export const Stepper = ({
     <div className="flex mb-2">
       <div className="items-center pr-6 flex flex-col">
         <div
-          className={`stepper stepper-item text-text flex w-full text-xs bg-primary mb-1 h-9 aspect-square relative rounded-full items-center justify-center sm:aspect-third_one sm:rounded-none leading-8 ${
+          className={`stepper stepper-item text-black flex w-full text-xs bg-primary mb-1 h-9 aspect-square relative rounded-full items-center justify-center sm:aspect-third_one sm:rounded-none leading-8 ${
             !isMobile ? `min-w-[140px] ` : ""
           }`}
         >
@@ -36,20 +36,23 @@ export const Stepper = ({
         {hasLine && <div className="w-[2px] bg-primary h-full sm:w-1"></div>}
       </div>
       <div className="-mt-1 mx-0 mb-4">
-        <a
-          href={link}
-          target="_blank"
-          rel="noreferrer"
-          className="mb-5 leading-4 text-base md:text-lg font-medium text-neutral-900 dark:text-white"
-        >
+        <p className="mb-5 leading-4 text-base md:text-lg font-medium text-text">
           {heading}{" "}
           {extraHeading && (
             <>
               {" "}
-              | <b>{extraHeading}</b>{" "}
+              |{" "}
+              <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:underline font-bold"
+              >
+                {extraHeading}
+              </a>{" "}
             </>
           )}
-        </a>
+        </p>
         <p className="text-sm mb-3 mt-2 leading-none text-text-light">
           {subHeading}
         </p>

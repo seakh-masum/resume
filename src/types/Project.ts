@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 
 export type Project = {
-  name: string;
+  title: string;
   link?: string;
   startDate: Timestamp;
   endDate?: Timestamp;

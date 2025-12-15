@@ -6,6 +6,7 @@ export const resumeQuery = `
     projects,
     education,
     contacts,
-    tools
+    tools,
+    hobbies
   }
 `;
