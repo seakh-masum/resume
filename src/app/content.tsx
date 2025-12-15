@@ -9,42 +9,19 @@ import { Profile } from "../components/features/Profile";
 import { ResponsiveContext } from "@/contexts/responsive.context";
 import { DownloadBtn } from "../components/features/DownloadBtn";
 import { CircleProgressGrid } from "@/components/ui/CircleProgressGrid";
-import { StepperList } from "@/components/ui/StepperList";
 import { ExperienceHeading } from "@/components/ui/ExperienceHeading";
 import { Experience } from "@/components/features/Experience";
 import { Education } from "@/components/features/Education";
 import { calculateTotalTenure } from "@/utils";
 
-type ProfileType = {
-  name?: string;
-  image?: string;
-  role?: string;
-  introduction?: string;
-  description?: string;
-  // add other properties as needed
-};
 const Content = ({ resume, isLoading }: any) => {
-  // const [profile, setProfile] = useState<ProfileType>({});
-  // const [isLoading, setLoading] = useState(true);
   const isMobile = useContext(ResponsiveContext);
 
-  console.log(resume);
   const tenures = resume.experience.map((exp: any) => ({
     joiningDate: exp.joiningDate,
     releaseDate: exp.releaseDate,
   }));
   const totalExperience = calculateTotalTenure(tenures);
-
-  // useEffect(() => {
-  //   getProfile();
-  // }, []);
-
-  // const getProfile = async () => {
-  //   const res = await fetch("/api/profile");
-  //   const { data } = await res.json();
-  //   setProfile(data[0]);
-  //   // setLoading(false);
-  // };
 
   return (
     <>
