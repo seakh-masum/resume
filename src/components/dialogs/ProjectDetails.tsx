@@ -22,7 +22,7 @@ import { Project } from "@/types/Project";
 // }
 
 const ProjectDetails = ({
-  name,
+  title,
   link,
   startDate,
   endDate,
@@ -37,7 +37,7 @@ const ProjectDetails = ({
   return (
     <div className="flex flex-col gap-7">
       <section>
-        <DialogTitle title={name} link={link ?? ""} />
+        <DialogTitle title={title} link={link ?? ""} />
         <p className="dark:text-neutral-400 text-neutral-600">
           {timestampToDate(startDate)} -{" "}
           <span>{endDate ? timestampToDate(endDate) : "Present"}</span>
