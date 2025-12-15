@@ -7,10 +7,14 @@ import { Skill } from "@/types/Skill";
 
 interface CircleProgressGridProps {
   features?: string;
+  data?: any[];
   // add other props as needed
 }
 
-export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
+export const CircleProgressGrid = ({
+  features,
+  data,
+}: CircleProgressGridProps) => {
   const [skills, setSkills] = useState(Array(12).fill(0));
   const [isLoading, setLoading] = useState(true);
   const { isOpen, openDialog, closeDialog, dialogData } = useDialog<Skill>();
@@ -29,7 +33,7 @@ export const CircleProgressGrid = ({ features }: CircleProgressGridProps) => {
 
   return (
     <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 pt-1">
-      {skills?.map((item, index) => (
+      {data?.map((item, index) => (
         <CircleProgress
           key={index}
           data={item}

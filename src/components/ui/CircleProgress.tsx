@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Circle from "./Circle";
+import { urlFor } from "@/sanity/lib/image";
 
 interface CircleProgressProps {
   data: {
     color?: string;
-    value?: number;
-    icon?: string;
+    level?: number;
+    icon: string;
     name?: string;
   };
   isLoading: boolean;
@@ -41,15 +42,15 @@ export const CircleProgress = ({
               isLoading ? "fill-neutral-700 stroke-neutral-700" : "fill-none"
             }`}
             stroke={data?.color}
-            strokeDashoffset={`calc(625px - (250px * ${data?.value}) / 100)`}
+            strokeDashoffset={`calc(625px - (250px * ${data?.level}) / 100)`}
           />
         </svg>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {!isLoading ? (
-            <Image
+            <img
               height={45}
               width={45}
-              src={data?.icon ?? "/placeholder.png"}
+              src={urlFor(data?.icon).width(45).height(45).url()}
               alt="skill-icon"
               loading="lazy"
             />

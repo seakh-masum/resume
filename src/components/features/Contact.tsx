@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import SkeletonLine from "../loader/SkeletonLine";
+import { urlFor } from "@/sanity/lib/image";
 
-export const ContactList = () => {
+export const ContactList = ({ data }: { data: any }) => {
   const [contacts, setContacts] = useState(Array(4).fill(0));
   const [isLoading, setLoading] = useState(true);
 
@@ -27,9 +28,9 @@ export const ContactList = () => {
 
   return (
     <div className="p-6 pt-2 flex flex-col sm:flex-row gap-3 justify-evenly">
-      {contacts.map((item, index) => (
+      {data.map((item: any, index: number) => (
         <a
-          href={item?.link}
+          href={item?.url}
           key={index}
           className="flex flex-row gap-2 items-center"
         >
@@ -49,12 +50,12 @@ export const ContactList = () => {
                   className="w-6 h-6"
                   style={{ width: 24 + "px", height: 24 + "px" }}
                   loading="lazy"
-                  src={item?.icon}
+                  src={urlFor(item?.image).width(24).height(24).url()}
                   alt="contact-icon"
                 />
               </div>
               <p className="leading-[48px] text-lg dark:text-neutral-300">
-                {item?.userId}
+                {item?.value}
               </p>
             </>
           )}

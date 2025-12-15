@@ -1,3 +1,4 @@
+import { urlFor } from "@/sanity/lib/image";
 import Circle from "../ui/Circle";
 import { ContactList } from "./Contact";
 import Image from "next/image";
@@ -7,9 +8,10 @@ type Props = {
   role: string;
   image: string;
   isLoading: boolean;
+  contacts: Array<any>;
 };
 
-export const Profile = ({ name, role, image, isLoading }: Props) => {
+export const Profile = ({ name, role, image, isLoading, contacts }: Props) => {
   return (
     <div
       className={`${
@@ -47,7 +49,8 @@ export const Profile = ({ name, role, image, isLoading }: Props) => {
                 />
               )} */}
               <img
-                src={image || "/images/user_placeholder.svg"}
+                // src={image || "/images/user_placeholder.svg"}
+                src={urlFor(image).width(208).height(208).url()}
                 alt={name}
                 style={{ maxWidth: 208 + "px" }}
                 width={208}
@@ -84,7 +87,7 @@ export const Profile = ({ name, role, image, isLoading }: Props) => {
               </>
             )}
           </div>
-          <ContactList />
+          <ContactList data={contacts} />
         </div>
       </div>
     </div>
