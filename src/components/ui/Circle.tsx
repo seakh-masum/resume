@@ -1,28 +1,24 @@
-import { SVGProps } from "react";
+import { motion, SVGMotionProps } from "framer-motion";
 
-interface CircleProps extends SVGProps<SVGCircleElement> {
-  className?: string;
+interface CircleProps extends SVGMotionProps<SVGCircleElement> {
   size?: "lg" | "sm";
   hasStroke?: boolean;
 }
 
-const Circle = (props: CircleProps) => {
-  const { className, size = "sm", hasStroke, ...otherProps } = props;
+const Circle = ({ size = "sm", hasStroke, ...props }: CircleProps) => {
   const offset = size === "lg" ? 125 : 50;
   const radius = size === "lg" ? 110 : 40;
+
   return (
-    <circle
+    <motion.circle
       cx={offset}
       cy={offset}
       r={radius}
       strokeLinecap="round"
       strokeWidth={10}
-      className={className}
-      width="100%"
-      height="100%"
-      {...otherProps}
-      strokeDasharray={hasStroke ? "625px" : undefined}
-    ></circle>
+      strokeDasharray={hasStroke ? 625 : undefined}
+      {...props}
+    />
   );
 };
 

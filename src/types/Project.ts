@@ -1,15 +1,17 @@
-import { Timestamp } from "firebase/firestore";
-
 export type Project = {
+  _key: string;
   title: string;
   link?: string;
-  startDate: Timestamp;
-  endDate?: Timestamp;
+  startDate: string;
+  endDate?: string;
   description: string;
-  usedSkills?: string[];
-  sector: number;
-  type: number;
+  techStacks?: string[];
+  sector: string;
+  type: string;
   role: string;
-  tasks?: string[];
+  responsibilities?: string[];
   members?: string[];
+  github?: string;
+  achievements?: string[];
+  tools?: string[];
 };

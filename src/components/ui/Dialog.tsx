@@ -40,7 +40,7 @@ const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="bg-black/50 inset-0 fixed z-[100] grid place-content-center dark:bg-black/50">
+    <div className="bg-surface/50 inset-0 fixed z-100 grid place-content-center">
       <div
         className={`max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:rounded-t-2xl z-50 overflow-hidden min-w-96`}
       >
@@ -49,7 +49,7 @@ const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
             <CloseIcon />
           </button>
         </div>
-        <div className="bg-white backdrop-blur supports-backdrop-blur:bg-white/95 cursor-pointer h-auto shadow-xl p-5 dark:bg-neutral-800 sm:rounded-theme rounded-t-2xl overflow-y-auto max-h-dialog transition duration-500 ease-in-out sm:w-dialog w-full max-sm:pb-10">
+        <div className="bg-surface backdrop-blur supports-backdrop-blur:bg-surface/95 cursor-pointer h-auto shadow-xl p-5 sm:rounded-theme rounded-t-2xl overflow-y-auto max-h-dialog transition duration-500 ease-in-out sm:w-dialog w-full max-sm:pb-10">
           {children}
         </div>
       </div>

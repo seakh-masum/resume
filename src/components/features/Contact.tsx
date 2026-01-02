@@ -37,9 +37,7 @@ export const ContactList = ({ data, isLoading }: Props) => {
                   alt="contact-icon"
                 />
               </div>
-              <p className="leading-[48px] text-lg dark:text-neutral-300">
-                {item?.value}
-              </p>
+              <p className="leading-12 text-lg dark:text-text">{item?.value}</p>
             </>
           )}
         </a>

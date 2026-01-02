@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Card } from "../components/ui/Card";
 import { HobbyList } from "../components/features/Hobby";
 import { ProjectList } from "../components/features/Project";
@@ -13,21 +13,30 @@ import { ExperienceHeading } from "@/components/ui/ExperienceHeading";
 import { Experience } from "@/components/features/Experience";
 import { Education } from "@/components/features/Education";
 import { calculateTotalTenure } from "@/utils";
+import { motion } from "framer-motion";
+import { pageVariant } from "@/styles/animations/motion";
 
 const Content = ({ resume, isLoading }: any) => {
   const isMobile = useContext(ResponsiveContext);
+
+  console.log("resume", resume);
 
   const tenures = resume.experience.map((exp: any) => ({
     joiningDate: exp.joiningDate,
     releaseDate: exp.releaseDate,
   }));
-  const totalExperience = calculateTotalTenure(tenures);
+  const { years, months } = calculateTotalTenure(tenures);
 
   return (
     <>
-      <div className="w-full bg-surface">
+      <motion.div
+        className="w-full bg-surface"
+        variants={pageVariant}
+        initial="hidden"
+        animate="visible"
+      >
         <div
-          className="relative my-0 mx-auto px-1 py-3 sm:p-3 max-w-7xl print-container print:w-[210mm] print:min-h-[297mm]
+          className="relative my-0 mx-auto px-2 py-3 sm:p-3 max-w-7xl print-container print:w-[210mm] print:min-h-[297mm]
          print:p-[5mm]"
         >
           <Profile
@@ -66,9 +75,7 @@ const Content = ({ resume, isLoading }: any) => {
             </div>
           </div>
           <div className="no-break">
-            <Card
-              header={<ExperienceHeading totalExperience={totalExperience} />}
-            >
+            <Card header={<ExperienceHeading years={years} months={months} />}>
               <Experience
                 data={resume.experience}
                 isMobile={isMobile}
@@ -94,7 +101,7 @@ const Content = ({ resume, isLoading }: any) => {
           </div>
           <DownloadBtn />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -107,27 +107,54 @@ type Tenure = {
   releaseDate?: string; // in 'YYYY-MM' format or undefined for ongoing
 };
 
-function calculateTotalTenure(tenures: Tenure[]): string {
+function calculateTotalTenure(tenures: Tenure[]): {
+  years: number;
+  months: number;
+} {
+  if (!Array.isArray(tenures) || tenures.length === 0) {
+    return { years: 0, months: 0 };
+  }
+
   const now = new Date();
   const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth() + 1; // 1-based
+  const currentMonth = now.getMonth() + 1;
 
   let totalMonths = 0;
 
   for (const t of tenures) {
-    const [startYear, startMonth] = t.joiningDate.split("-").map(Number);
+    if (!t?.joiningDate) continue;
 
-    const end =
-      t.releaseDate && t.releaseDate !== ""
-        ? t.releaseDate
-        : `${currentYear}-${currentMonth}`;
+    const [startYear, startMonth] = t.joiningDate
+      .split("-")
+      .map((n) => Number(n));
 
-    const [endYear, endMonth] = end.split("-").map(Number);
+    if (!startYear || !startMonth) continue;
 
-    totalMonths += (endYear - startYear) * 12 + (endMonth - startMonth) + 1; // inclusive
+    let endYear: number;
+    let endMonth: number;
+
+    if (t.releaseDate && t.releaseDate.trim() !== "") {
+      const endParts = t.releaseDate.split("-").map(Number);
+      endYear = endParts[0];
+      endMonth = endParts[1];
+    } else {
+      endYear = currentYear;
+      endMonth = currentMonth;
+    }
+
+    if (!endYear || !endMonth) continue;
+
+    const diff = (endYear - startYear) * 12 + (endMonth - startMonth);
+
+    if (diff >= 0) {
+      totalMonths += diff;
+    }
   }
 
-  return convertMonthsToYearsMonths(totalMonths);
+  return {
+    years: Math.floor(totalMonths / 12),
+    months: totalMonths % 12,
+  };
 }
 
 export {
