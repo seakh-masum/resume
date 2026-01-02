@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Stepper } from "../ui/Stepper";
 import SkeletonList from "../loader/SkeletonList";
 import { calculateTenure, formatDateRange } from "@/utils";
@@ -11,12 +14,27 @@ type StepperItem = {
   desc: string;
   link: string;
   list?: string[];
+  joiningDate?: string;
+  releaseDate?: string;
+  designation?: string;
+  company?: string;
+  roles?: string[];
 };
 
 type Props = {
   data: StepperItem[];
   isLoading?: boolean;
   isMobile: boolean;
+};
+
+// ---------------- Staggered Animations ----------------
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 export const Experience = ({
@@ -28,34 +46,36 @@ export const Experience = ({
     return data.map((item: any) => {
       const tenure = calculateTenure(item.joiningDate, item.releaseDate);
       const dateRange = formatDateRange(item.joiningDate, item.releaseDate);
-
       return { ...item, tenure, dateRange };
     });
   };
 
   return (
-    <div className="mt-4 mr-0 mb-0 sm:ml-6 pt-1">
+    <motion.div
+      className="mt-4 mr-0 mb-0 sm:ml-6 pt-1"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {isLoading ? (
         <SkeletonList />
       ) : (
-        <>
-          {mapStepperData(data).map((item: any, index: number) => (
-            <Stepper
-              key={item.id ?? index}
-              isMobile={isMobile}
-              hasLine={index < data.length - 1}
-              index={index}
-              stepperIndex={item.tenure}
-              heading={item.designation}
-              extraHeading={item.company}
-              subHeading={item.dateRange}
-              desc={item.desc}
-              link={item?.link}
-              list={item.roles}
-            />
-          ))}
-        </>
+        mapStepperData(data).map((item: any, index: number) => (
+          <Stepper
+            key={item.id ?? index}
+            isMobile={isMobile}
+            hasLine={index < data.length - 1}
+            index={index}
+            stepperIndex={item.tenure}
+            heading={item.designation}
+            extraHeading={item.company}
+            subHeading={item.dateRange}
+            desc={item.desc}
+            link={item?.link}
+            list={item.roles}
+          />
+        ))
       )}
-    </div>
+    </motion.div>
   );
 };

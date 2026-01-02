@@ -1,4 +1,4 @@
-import { resumeQuery } from "@/lib/query";
+import { resumeQuery } from "@/sanity/lib/query";
 import { client } from "@/sanity/lib/client";
 import Content from "./content";
 

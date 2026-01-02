@@ -5,16 +5,41 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/@modal/default": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/@modal/default.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/_not-found/page": [
+    "/@modal/(.)tools/[key]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/@modal/(.)tools/[key]/page.js"
+    ],
+    "/tools/[key]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/tools/[key]/page.js"
+    ],
+    "/@modal/(.)skills/[key]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/@modal/(.)skills/[key]/page.js"
+    ],
+    "/skills/[key]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/skills/[key]/page.js"
+    ],
+    "/@modal/(.)projects/[key]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/@modal/(.)projects/[key]/page.js"
     ]
   }
 }

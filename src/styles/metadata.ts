@@ -38,12 +38,6 @@ export const homeMetadata: Metadata = {
   // Manifest
   manifest: "/manifest.json",
 
-  // Theme Colors
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
-
   // Open Graph
   openGraph: {
     title: "Resume of Masum",

@@ -1,17 +1,16 @@
 export const ExperienceHeading = ({
-  totalExperience,
+  years,
+  months,
 }: {
-  totalExperience: string | null;
+  years: number;
+  months: number;
 }) => (
   <span>
-    Experience{" "}
-    {totalExperience && (
-      <span>
-        -
-        <b className="text-secondary-dark dark:text-secondary text-lg sm:text-xl align-middle fonr-sans">
-          {" "}
-          {totalExperience ? totalExperience : ""}
-        </b>{" "}
+    Experience
+    {years > 0 && (
+      <span className="ml-1 text-lg sm:text-xl align-middle font-sans">
+        -<b className="ml-2 text-secondary">{years}</b> years{"  "}
+        <b className="text-secondary">{months}</b> months
       </span>
     )}
   </span>

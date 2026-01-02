@@ -16,9 +16,7 @@ export const AboutMe = ({ introduction, summary, isLoading }: Props) => {
       ) : (
         <>
           <div className="pt-1">
-            <p className="text-neutral-700 dark:text-neutral-200 text-sm">
-              {introduction}
-            </p>
+            <p className="text-text text-sm">{introduction}</p>
             <List data={summary} />
           </div>
         </>
