@@ -18,9 +18,6 @@ import { pageVariant } from "@/styles/animations/motion";
 
 const Content = ({ resume, isLoading }: any) => {
   const isMobile = useContext(ResponsiveContext);
-
-  console.log("resume", resume);
-
   const tenures = resume.experience.map((exp: any) => ({
     joiningDate: exp.joiningDate,
     releaseDate: exp.releaseDate,

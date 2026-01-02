@@ -4,6 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 import Circle from "../ui/Circle";
 import { ContactList } from "./Contact";
+import Image from "next/image";
 
 type Props = {
   data: any;
@@ -105,18 +106,22 @@ export const Profile = ({ data, isLoading, contacts }: Props) => {
 
             {/* Profile Image */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <motion.img
-                src={urlFor(data.image).width(208).height(208).url()}
-                alt={data.name}
-                width={208}
-                height={208}
-                decoding="async"
-                fetchPriority="high"
-                className="rounded-full w-full min-w-52 h-52"
+              <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-              />
+                className="rounded-full w-52 h-52 overflow-hidden"
+              >
+                <Image
+                  src={urlFor(data.image).width(208).height(208).url()}
+                  alt={data.name}
+                  width={208}
+                  height={208}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="rounded-full w-full h-full object-cover"
+                />
+              </motion.div>
             </div>
           </motion.div>
         </div>

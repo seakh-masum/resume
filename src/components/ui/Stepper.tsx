@@ -128,7 +128,7 @@ export const Stepper = ({
               {" "}
               |{" "}
               <a
-                href={link}
+                href={link ?? "#"}
                 target="_blank"
                 rel="noreferrer"
                 className="hover:underline font-bold"
