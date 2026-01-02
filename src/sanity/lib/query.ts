@@ -1,12 +1,31 @@
 export const resumeQuery = `
   *[_type == "resume"][0]{
     profile,
-    skills,
+    skills[]{
+      _key,
+      name,
+      description,
+      color,
+      icon,
+      level
+    },
     experience,
-    projects,
+    projects[]{
+      _key,
+      title,
+      description
+    },
     education,
     contacts,
-    tools,
+    tools[]{
+      _key,
+      name,
+      description,
+      icon,
+      link,
+      color,
+      level
+    },
     hobbies
   }
 `;

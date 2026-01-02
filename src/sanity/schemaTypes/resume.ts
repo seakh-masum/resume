@@ -197,6 +197,7 @@ export default defineType({
               type: "array",
               of: [{ type: "string" }],
             },
+            { name: "link", type: "url" },
           ],
         },
       ],
