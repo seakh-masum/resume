@@ -9,14 +9,19 @@ import { experience } from "./objects/experience";
 import { project } from "./objects/project";
 import { education } from "./objects/education";
 
-export const schemaTypes = [
-  resume,
-  profile,
-  contact,
-  skill,
-  tool,
-  hobby,
-  experience,
-  project,
-  education,
-];
+import { type SchemaTypeDefinition } from "sanity";
+// import resume from "./resume";
+
+export const schema: { types: SchemaTypeDefinition[] } = {
+  types: [
+    resume,
+    profile,
+    contact,
+    skill,
+    tool,
+    hobby,
+    experience,
+    project,
+    education,
+  ],
+};
