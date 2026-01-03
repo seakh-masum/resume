@@ -5,8 +5,6 @@
 //   disable: process.env.NODE_ENV === "development", // disable in dev
 // });
 
-const { type } = require("os");
-
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {

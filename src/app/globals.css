@@ -11,7 +11,6 @@
   --secondary-color: oklch(48.8% 0.243 264.376);
   --text-color: oklch(20.8% 0.042 265.755);
   --text-light-color: oklch(37.2% 0.044 257.287);
-  --border-color: oklch(27.9% 0.041 260.031);
   --hover-color: oklch(86.9% 0.022 252.894);
   --border-radius: 12px;
 }
@@ -22,7 +21,6 @@
     --accent-color: oklch(20.8% 0.042 265.755);
     --text-color: oklch(96.8% 0.007 247.896);
     --text-light-color: oklch(86.9% 0.022 252.894);
-    --border-color: oklch(27.9% 0.041 260.031);
     --hover-color: oklch(44.6% 0.043 257.281);
   }
 }
@@ -35,9 +33,7 @@
   --color-accent: var(--accent-color);
   --color-text: var(--text-color);
   --color-text-light: var(--text-light-color);
-  --color-border: var(--border-color);
   --color-hover: var(--hover-color);
-  --border-rounded-theme: var(--border-radius);
   --font-sans: var(--font-montserrat);
   --font-mono: var(--font-poppins);
   --font-heading: var(--font-dancing);

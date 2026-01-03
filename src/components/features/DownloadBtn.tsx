@@ -31,7 +31,7 @@ export const DownloadBtn = () => {
       className="
         grid place-content-center rounded-full fixed bottom-3 right-3 z-50
         w-12 aspect-square
-        bg-gradient-to-r from-primary to-secondary
+        bg-linear-to-r from-primary to-secondary
         shadow-md print:hidden cursor-pointer
       "
     >

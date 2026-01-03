@@ -1,45 +1,113 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+    "/_not-found/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/app/_not-found/page-2cee59581f773f11.js"
     ],
     "/@modal/default": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/@modal/default.js"
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/app/@modal/default-17f2cd7ec9d9f75e.js"
     ],
     "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
-    ],
-    "/studio/[[...tool]]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/studio/[[...tool]]/page.js"
-    ],
-    "/@modal/(.)projects/[key]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/@modal/(.)projects/[key]/page.js"
-    ],
-    "/@modal/(.)skills/[key]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/@modal/(.)skills/[key]/page.js"
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/css/8990b414259e5287.css",
+      "static/chunks/app/layout-7ede3c10191f9b42.js"
     ],
     "/@modal/(.)tools/[key]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/@modal/(.)tools/[key]/page.js"
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/1314-a6eb2652bec505c7.js",
+      "static/chunks/app/@modal/(.)tools/[key]/page-b1e18943926c67b3.js"
     ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+    "/@modal/(.)skills/[key]/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/1314-a6eb2652bec505c7.js",
+      "static/chunks/app/@modal/(.)skills/[key]/page-5b6ed3586accaeb8.js"
+    ],
+    "/@modal/(.)projects/[key]/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/1314-a6eb2652bec505c7.js",
+      "static/chunks/app/@modal/(.)projects/[key]/page-f9fb607f6c1bfc61.js"
+    ],
+    "/projects/[key]/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/app/projects/[key]/page-ceaa9c81bae68ad4.js"
+    ],
+    "/tools/[key]/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/app/tools/[key]/page-75f92613b112c76b.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/6103-845dfad4fc2fd4a2.js",
+      "static/chunks/6648-b3c9de31a5db5549.js",
+      "static/chunks/app/page-bd0201ea9f1baf76.js"
+    ],
+    "/skills/[key]/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/524-1d21f506dbe15868.js",
+      "static/chunks/app/skills/[key]/page-275293ebe85f90db.js"
+    ],
+    "/studio/[[...tool]]/page": [
+      "static/chunks/webpack-bf784cdce0a8152c.js",
+      "static/chunks/fd9d1056-0db7efebc6dd71bf.js",
+      "static/chunks/7023-f8a528c9709a8a96.js",
+      "static/chunks/main-app-1cbdb48f54c8358e.js",
+      "static/chunks/c0e7568e-55c0f4dac2ac86c0.js",
+      "static/chunks/3204862b-5f3b839428b55c84.js",
+      "static/chunks/d8e9270f-0265357dae9dbe7e.js",
+      "static/chunks/c23fc295-a08a00efc9c979ec.js",
+      "static/chunks/c7286869-2a1ba6d3c0204b5e.js",
+      "static/chunks/ccd63cfe-2aed8bab19cd46d2.js",
+      "static/chunks/8b2568fe-3e2afa571cf4a1b6.js",
+      "static/chunks/7742-5b8b25a37ea00413.js",
+      "static/chunks/8116-2c6b0554362ad504.js",
+      "static/chunks/9271-da063ecc2488a269.js",
+      "static/chunks/6103-845dfad4fc2fd4a2.js",
+      "static/chunks/8061-3ce9abbded6a420c.js",
+      "static/chunks/app/studio/[[...tool]]/page-01fe85cac2cdf2c2.js"
     ]
   }
 }
