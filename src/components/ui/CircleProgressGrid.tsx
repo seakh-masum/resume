@@ -2,10 +2,9 @@
 
 import { motion, type Variants } from "framer-motion";
 import { CircleProgress } from "./CircleProgress";
-import { useRouter } from "next/navigation";
 
 interface CircleProgressGridProps {
-  features?: string;
+  features: "skills" | "tools";
   data?: any[];
   isLoading: boolean;
 }
@@ -43,8 +42,6 @@ export const CircleProgressGrid = ({
   data,
   isLoading,
 }: CircleProgressGridProps) => {
-  const router = useRouter();
-
   return (
     <motion.div
       variants={gridVariants}
@@ -58,7 +55,7 @@ export const CircleProgressGrid = ({
           <CircleProgress
             data={item}
             isLoading={isLoading}
-            onDetails={() => router.push(`/${features}/${item._key}`)}
+            features={features}
           />
         </motion.div>
       ))}

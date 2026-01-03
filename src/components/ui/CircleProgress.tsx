@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Circle from "./Circle";
 import { urlFor } from "@/sanity/lib/image";
+import { useRouter } from "next/navigation";
 
 interface CircleProgressProps {
   data: {
@@ -10,16 +11,19 @@ interface CircleProgressProps {
     level?: number;
     icon: string;
     name?: string;
+    _key: string;
   };
   isLoading: boolean;
-  onDetails: () => void;
+  features: "skills" | "tools";
 }
 
 export const CircleProgress = ({
   data,
   isLoading,
-  onDetails,
+  features,
 }: CircleProgressProps) => {
+  const router = useRouter();
+
   const CIRCUMFERENCE = 625; // your dasharray
   const MAX_PROGRESS = 250; // your existing math base
 
@@ -27,7 +31,7 @@ export const CircleProgress = ({
   return (
     <motion.div
       className="flex flex-col items-center justify-center mb-3 cursor-pointer"
-      onClick={onDetails}
+      onClick={() => router.push(`/${features}/${data._key}`)}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}

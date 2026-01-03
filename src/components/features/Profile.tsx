@@ -95,7 +95,7 @@ export const Profile = ({ data, isLoading, contacts }: Props) => {
                   className="stroke-secondary w-full h-full fill-none"
                   initial={{ strokeDashoffset: 625 }}
                   whileInView={{ strokeDashoffset: dashOffset }}
-                  viewport={{ once: false, amount: 0.6 }}
+                  viewport={{ once: true, amount: 0.6 }}
                   transition={{
                     duration: 1,
                     ease: "easeOut",
