@@ -4,7 +4,6 @@ import SubHeading from "../ui/SubHeading";
 import ChipList from "../ui/ChipList";
 import List from "../ui/List";
 import DialogTitle from "../ui/DialogTitle";
-import { getProjectSector, getProjectType, timestampToDate } from "@/utils";
 import { Project } from "@/types/Project";
 
 interface Props {

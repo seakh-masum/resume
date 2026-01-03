@@ -1,5 +1,11 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/@modal/(.)projects/[key]/page": "app/@modal/(.)projects/[key]/page.js",
+  "/@modal/(.)tools/[key]/page": "app/@modal/(.)tools/[key]/page.js",
+  "/@modal/(.)skills/[key]/page": "app/@modal/(.)skills/[key]/page.js",
+  "/projects/[key]/page": "app/projects/[key]/page.js",
   "/page": "app/page.js",
-  "/@modal/(.)skills/[key]/page": "app/@modal/(.)skills/[key]/page.js"
+  "/studio/[[...tool]]/page": "app/studio/[[...tool]]/page.js",
+  "/tools/[key]/page": "app/tools/[key]/page.js",
+  "/skills/[key]/page": "app/skills/[key]/page.js"
 }
