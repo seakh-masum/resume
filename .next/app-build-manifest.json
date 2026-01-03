@@ -16,25 +16,15 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/studio/[[...tool]]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/studio/[[...tool]]/page.js"
-    ],
-    "/@modal/(.)projects/[key]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/@modal/(.)projects/[key]/page.js"
-    ],
     "/@modal/(.)skills/[key]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/@modal/(.)skills/[key]/page.js"
     ],
-    "/@modal/(.)tools/[key]/page": [
+    "/@modal/(.)projects/[key]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/@modal/(.)tools/[key]/page.js"
+      "static/chunks/app/@modal/(.)projects/[key]/page.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",

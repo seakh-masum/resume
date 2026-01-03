@@ -1,6 +1,6 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/studio/[[...tool]]/page": "app/studio/[[...tool]]/page.js",
   "/page": "app/page.js",
+  "/@modal/(.)skills/[key]/page": "app/@modal/(.)skills/[key]/page.js",
   "/@modal/(.)projects/[key]/page": "app/@modal/(.)projects/[key]/page.js"
 }
