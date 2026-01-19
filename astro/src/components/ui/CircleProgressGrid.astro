@@ -1,0 +1,46 @@
+---
+import CircleProgress from "./CircleProgress.astro";
+
+interface Props {
+  features: "skills" | "tools";
+  data?: any[];
+  isLoading: boolean;
+}
+
+const { features, data, isLoading } = Astro.props;
+---
+
+<div class="circle-progress-grid">
+  {
+    data?.map((item, index) => (
+      <div class="grid-item" style={`animation-delay: ${0.1 + index * 0.08}s`}>
+        <CircleProgress data={item} isLoading={isLoading} features={features} />
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .circle-progress-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+  @media (min-width: 640px) {
+    .circle-progress-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .grid-item {
+    opacity: 0;
+    transform: scale(0.85) translateY(12px);
+    animation: grid-item-enter 0.35s ease-out forwards;
+  }
+  @keyframes grid-item-enter {
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>

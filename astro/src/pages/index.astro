@@ -1,8 +1,18 @@
+---
+// import Content from "@/components/react/Content";
 import { sanity } from "@/lib/sanity";
-import { RESUME_QUERY } from "@/lib/queries";
+import { resumeQuery } from "@/lib/queries";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Content from "@/components/ui/Content.astro";
 
-const resume = await sanity.fetch(RESUME_QUERY);
+// Build-time fetch (static)
+const resume = await sanity.fetch(resumeQuery);
+console.log(resume.projects);
+---
 
-<main class="container mx-auto p-6">
-  <h1 class="text-3xl font-bold">{resume.profile.name}</h1>
-</main>
+<BaseLayout>
+  <Content resume={resume} isLoading={false} client:load />
+
+  <!-- Optional modal -->
+  <div slot="modal"></div>
+</BaseLayout>

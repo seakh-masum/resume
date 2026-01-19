@@ -1,3 +1,35 @@
+// export const resumeQuery = `
+//   *[_type == "resume"][0]{
+//     profile,
+//     skills[]{
+//       _key,
+//       name,
+//       description,
+//       color,
+//       icon,
+//       level
+//     },
+//     experience,
+//     projects[]{
+//       _key,
+//       title,
+//       description
+//     },
+//     education,
+//     contacts,
+//     tools[]{
+//       _key,
+//       name,
+//       description,
+//       icon,
+//       link,
+//       color,
+//       level
+//     },
+//     hobbies
+//   }
+// `;
+
 export const resumeQuery = `
   *[_type == "resume"][0]{
     profile,
@@ -13,7 +45,14 @@ export const resumeQuery = `
     projects[]{
       _key,
       title,
-      description
+      description,
+      sector,
+      techStacks,
+      role,
+      type,
+      responsibilities,
+      achievements,
+      members
     },
     education,
     contacts,

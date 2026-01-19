@@ -1,0 +1,154 @@
+---
+import { urlFor } from "@/lib/image";
+import Circle from "../ui/Circle.astro";
+import ContactList from "./ContactList.astro";
+
+interface Hobby {
+  name: string;
+  icon: string;
+  color: string;
+}
+
+interface Props {
+  data: any;
+  isLoading: boolean;
+  contacts: Array<any>;
+}
+
+const { data, isLoading, contacts } = Astro.props as Props;
+
+const CIRCUMFERENCE = 625;
+const MAX_PROGRESS = 685;
+const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * 50) / 100;
+---
+
+<div
+  class={`[grid-area:profile] p-0 rounded-xl mb-5 
+    bg-linear-to-r from-primary to-secondary
+    ${isLoading ? "animate-pulse" : "profile-container"}`}
+>
+  <div class="pb-3">
+    <!-- Avatar Section -->
+    <div
+      class="background flex flex-col items-center sm:items-start justify-center pt-20"
+    >
+      <div class="relative sm:mt-8 sm:ml-14 avatar-wrapper">
+        <svg height="250" width="250" class="relative">
+          <Circle
+            size="lg"
+            stroke="red"
+            hasStroke
+            class="stroke-secondary w-full h-full fill-none circle-progress"
+            style={`stroke-dashoffset: ${dashOffset}px; stroke-dasharray: ${CIRCUMFERENCE}px`}
+          />
+        </svg>
+
+        <!-- Profile Image -->
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <div class="rounded-full w-52 h-52 overflow-hidden profile-image">
+            <img
+              src={urlFor(data.image).width(208).height(208).url()}
+              alt={data.name}
+              width={208}
+              height={208}
+              decoding="async"
+              class="rounded-full w-full h-full object-cover"
+            />
+            <!-- fetchPriority="high" -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Name + Title -->
+    <div class="profile bg-accent -mt-24 mx-1 -mb-2 rounded-[10px]">
+      <div
+        class="flex flex-col items-center sm:items-end justify-center pt-28 sm:pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3"
+      >
+        {
+          isLoading ? (
+            <>
+              <div class="bg-surface rounded-xl animate-pulse w-75 h-20" />
+              <div class="bg-surface rounded-xl animate-pulse w-50 h-8 mb-2" />
+            </>
+          ) : (
+            <>
+              <p class="font-heading text-6xl md:text-7xl text-text text-center sm:text-start fade-up">
+                {data.name}
+              </p>
+              <i class="text-text-light text-lg sm:text-2xl text-center sm:text-start fade-up">
+                {data.title}
+              </i>
+            </>
+          )
+        }
+      </div>
+
+      <!-- Contacts -->
+      <div class="fade-up">
+        <ContactList data={contacts} isLoading={isLoading} />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Fade-up animation */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.5s forwards ease-out;
+  }
+
+  /* Circle progress animation */
+  @keyframes drawCircle {
+    from {
+      stroke-dashoffset: 625;
+    }
+    to {
+      stroke-dashoffset: var(--dash-offset);
+    }
+  }
+
+  .circle-progress {
+    stroke-dasharray: 625;
+    stroke-dashoffset: 625;
+    animation: drawCircle 1s ease-out forwards;
+  }
+
+  /* Profile image pop-in */
+  .profile-image {
+    transform: scale(0.9);
+    opacity: 0;
+    animation: popIn 0.4s 0.2s forwards ease-out;
+  }
+
+  @keyframes popIn {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Hover effects (optional) */
+  .avatar-wrapper:hover .circle-progress {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-out;
+  }
+</style>

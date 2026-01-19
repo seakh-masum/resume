@@ -1,0 +1,25 @@
+---
+import SkeletonList from "../ui/SkeletonList.astro";
+import List from "../ui/List.astro";
+
+interface Props {
+  introduction: string;
+  summary: string[];
+  isLoading: boolean;
+}
+
+const { introduction, summary, isLoading } = Astro.props;
+---
+
+<div class="min-h-about-me">
+  {
+    isLoading ? (
+      <SkeletonList />
+    ) : (
+      <div class="pt-1">
+        {introduction && <p class="text-text text-sm">{introduction}</p>}
+        {summary && summary.length > 0 && <List data={summary} />}
+      </div>
+    )
+  }
+</div>

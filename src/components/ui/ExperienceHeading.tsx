@@ -8,7 +8,7 @@ export const ExperienceHeading = ({
   <span>
     Experience
     {years > 0 && (
-      <span className="ml-1 text-lg sm:text-xl align-middle font-sans">
+      <span className="ml-1 text-lg sm:text-xl align-middle font-mono">
         -<b className="ml-2 text-secondary">{years}</b> years{"  "}
         <b className="text-secondary">{months}</b> months
       </span>
