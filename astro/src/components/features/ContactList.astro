@@ -52,12 +52,17 @@ const { data, isLoading } = Astro.props;
               style={`animation-delay: ${index * 0.15 + 0.1}s;`}
             >
               <img
-                src={urlFor(item.image).width(24).height(24).url()}
+                src={urlFor(item.image)
+                  .width(24)
+                  .height(24)
+                  .auto("format")
+                  .url()}
                 width={24}
                 height={24}
                 alt="contact-icon"
                 class="w-6 h-6"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <p

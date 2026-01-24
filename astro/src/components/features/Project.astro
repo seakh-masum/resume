@@ -27,7 +27,7 @@ const { data, isLoading } = Astro.props as {
           active:scale-[0.97]
         "
         >
-          <a
+          <div
             class="block focus:outline-none focus:ring-2 focus:ring-primary rounded-md"
             style="view-transition-name: project-card-{project.slug}"
             onclick={`
@@ -54,7 +54,7 @@ const { data, isLoading } = Astro.props as {
             </Modal>
 
             <p class="text-text text-xs">{item.description}</p>
-          </a>
+          </div>
         </li>
       ))}
     </ul>

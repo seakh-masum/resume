@@ -25,7 +25,7 @@ const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * level) / 100;
 const href = `/${features}/${data._key}`;
 ---
 
-<a
+<section
   class={`
     flex flex-col items-center justify-center mb-3 cursor-pointer
     transition-transform duration-300 ease-out
@@ -82,4 +82,4 @@ const href = `/${features}/${data._key}`;
       <span class="sm:text-base text-sm text-text mt-1">{data?.name}</span>
     )
   }
-</a>
+</section>

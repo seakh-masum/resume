@@ -44,9 +44,7 @@ const {
         extraHeading && (
           <>
             {" | "}
-            <a href={link} target="_blank" rel="noreferrer">
-              {extraHeading}
-            </a>
+            <b>{extraHeading}</b>
           </>
         )
       }
@@ -82,7 +80,7 @@ const {
         }
       });
     },
-    { threshold: 0.25 }
+    { threshold: 0.25 },
   );
 
   rows.forEach((row) => observer.observe(row));
