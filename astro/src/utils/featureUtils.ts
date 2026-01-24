@@ -52,4 +52,6 @@ const getProjectType = (value: number) => {
   }
 };
 
+export const isMobile = () => window.innerWidth <= 768;
+
 export { getLevelName, getProjectSector, getProjectType };

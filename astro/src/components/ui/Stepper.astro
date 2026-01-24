@@ -13,7 +13,6 @@ interface Props {
 }
 
 const {
-  isMobile,
   index,
   stepperIndex,
   hasLine,
@@ -24,6 +23,10 @@ const {
   desc,
   list = [],
 } = Astro.props;
+// const isMobile = isMobile();
+// const isActualMobile = isMobile();
+const ua = Astro.request.headers.get("user-agent") || "";
+const isMobile = /Android|iPhone/i.test(ua);
 ---
 
 <div class="stepper-row" data-mobile={isMobile}>
