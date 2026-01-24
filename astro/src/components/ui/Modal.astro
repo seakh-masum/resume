@@ -3,41 +3,55 @@ import CloseIcon from "../icons/CloseIcon.astro";
 
 interface Props {
   id: string;
+  type?: string;
 }
-const { id } = Astro.props;
+
+const { id, type = "item" } = Astro.props;
+const modalId = `${type}-${id}`;
 ---
 
-<dialog
-  id={id}
-  class="modal fixed inset-0 z-50 m-0 h-screen w-screen max-h-none max-w-none"
-  onclose="document.body.classList.remove('overflow-hidden')"
-  oncancel="document.body.classList.remove('overflow-hidden')"
->
-  <!-- Backdrop -->
-  <form method="dialog" class="modal-backdrop absolute inset-0"></form>
-
-  <!-- Modal content -->
-  <div
-    class="modal-content bg-accent shadow-xl"
-    data-sheet
-    onclick="event.stopPropagation()"
+<>
+  <!-- Trigger Button -->
+  <button
+    class="text-left"
+    onclick={`document.getElementById('${modalId}').showModal()`}
   >
-    <!-- Sticky header -->
-    <div class="modal-header">
-      <!-- Drag handle (mobile) -->
-      <div class="sheet-handle"></div>
+    <slot name="trigger" />
+  </button>
 
-      <!-- Close -->
-      <form method="dialog">
-        <button class="modal-close" aria-label="Close">
-          <CloseIcon />
-        </button>
-      </form>
-    </div>
+  <!-- Modal Dialog -->
+  <dialog
+    id={modalId}
+    class="modal fixed inset-0 z-50 m-0 h-screen w-screen max-h-none max-w-none"
+    onclose="document.body.classList.remove('overflow-hidden')"
+    oncancel="document.body.classList.remove('overflow-hidden')"
+  >
+    <!-- Backdrop -->
+    <form method="dialog" class="modal-backdrop absolute inset-0"></form>
 
-    <!-- Scrollable body -->
-    <div class="modal-body">
-      <slot />
+    <!-- Modal content -->
+    <div
+      class="modal-content bg-accent shadow-xl"
+      data-sheet
+      onclick="event.stopPropagation()"
+    >
+      <!-- Sticky header -->
+      <div class="modal-header">
+        <!-- Drag handle (mobile) -->
+        <div class="sheet-handle"></div>
+
+        <!-- Close Button -->
+        <form method="dialog">
+          <button class="modal-close" aria-label="Close">
+            <CloseIcon />
+          </button>
+        </form>
+      </div>
+
+      <!-- Scrollable body -->
+      <div class="modal-body">
+        <slot name="content" />
+      </div>
     </div>
-  </div>
-</dialog>
+  </dialog>
+</>

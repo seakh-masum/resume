@@ -39,7 +39,11 @@ export const resumeQuery = `
       description,
       color,
       icon,
-      level
+      level,
+      link,
+      features,
+      experience,
+      projects
     },
     experience,
     projects[]{
@@ -63,7 +67,10 @@ export const resumeQuery = `
       icon,
       link,
       color,
-      level
+      level,
+      features,
+      experience,
+      projects
     },
     hobbies
   }
