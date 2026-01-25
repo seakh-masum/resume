@@ -15,23 +15,6 @@ interface Props {
 const { data, isLoading } = Astro.props;
 ---
 
-<style>
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fadeInUp {
-    animation: fadeInUp 0.4s ease-out forwards;
-  }
-</style>
-
 <div class="p-6 pt-2 flex flex-col sm:flex-row gap-3 justify-evenly">
   {
     data.map((item, index) => (

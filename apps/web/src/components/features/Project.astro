@@ -1,8 +1,9 @@
 ---
+import type { Project } from "@/types/project";
 import ProjectDetails from "../modals/ProjectDetails.astro";
 import Modal from "../ui/Modal.astro";
 import SkeletonList from "../ui/SkeletonList.astro";
-import type { Project } from "@/types/Project";
+// import type { Project } from "@/types/project.ts";
 
 const { data, isLoading } = Astro.props as {
   data: Project[];

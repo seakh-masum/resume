@@ -1,9 +1,0 @@
-{
-  "name": "@portfolio/sanity",
-  "private": true,
-  "type": "module",
-  "exports": {
-    "./schemas": "./schemas/index.ts",
-    "./queries": "./queries/index.ts"
-  }
-}

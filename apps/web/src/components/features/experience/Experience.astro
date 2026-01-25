@@ -1,0 +1,45 @@
+---
+import Stepper from "../../ui/Stepper.astro";
+import SkeletonList from "../../ui/SkeletonList.astro";
+import { calculateTenure, formatDateRange } from "@/utils";
+import "./experience.css";
+import type { StepperItem } from "./experience";
+
+interface Props {
+  data: StepperItem[];
+  isLoading?: boolean;
+  isMobile?: boolean;
+}
+
+const { data, isLoading = false, isMobile = false } = Astro.props as Props;
+
+// map data to include tenure and formatted date range
+const mappedData = data.map((item) => ({
+  ...item,
+  tenure: calculateTenure(item.joiningDate ?? "", item.releaseDate ?? ""),
+  dateRange: formatDateRange(item.joiningDate ?? "", item.releaseDate ?? ""),
+}));
+---
+
+<div class="mt-4 mr-0 mb-0 sm:ml-6 pt-1 grid gap-4">
+  {
+    isLoading ? (
+      <SkeletonList />
+    ) : (
+      mappedData.map((item, index) => (
+        <Stepper
+          isMobile={isMobile}
+          hasLine={index < mappedData.length - 1}
+          index={index}
+          stepperIndex={item.tenure}
+          heading={item.designation ?? ""}
+          extraHeading={item.company}
+          subHeading={item.dateRange}
+          desc={item.desc}
+          link={item.link}
+          list={item.roles}
+        />
+      ))
+    )
+  }
+</div>
