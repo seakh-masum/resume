@@ -1,0 +1,20 @@
+---
+interface Props {
+  years: number;
+  months: number;
+}
+
+const { years, months } = Astro.props;
+---
+
+<span>
+  Experience
+  {
+    years > 0 && (
+      <span class="ml-1 text-lg sm:text-xl align-middle font-sans">
+        -<b class="ml-2 text-secondary">{years}</b> years{" "}
+        <b class="text-secondary">{months}</b> months
+      </span>
+    )
+  }
+</span>

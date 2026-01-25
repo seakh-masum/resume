@@ -1,0 +1,85 @@
+---
+import Circle from "./Circle.astro";
+import { urlFor } from "@/lib/image";
+
+interface Props {
+  data: {
+    color?: string;
+    level?: number;
+    icon: string;
+    name?: string;
+    _key: string;
+  };
+  isLoading: boolean;
+  features: "skills" | "tools";
+}
+
+const { data, isLoading, features } = Astro.props as Props;
+
+const CIRCUMFERENCE = 625;
+const MAX_PROGRESS = 250;
+
+const level = data?.level ?? 0;
+const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * level) / 100;
+
+const href = `/${features}/${data._key}`;
+---
+
+<section
+  class={`
+    flex flex-col items-center justify-center mb-3 cursor-pointer
+    transition-transform duration-300 ease-out
+    ${!isLoading ? "hover:-translate-y-1 active:scale-95" : ""}
+  `}
+>
+  <div class="relative">
+    <svg
+      height="100"
+      width="100"
+      class={`relative -rotate-90 ${isLoading ? "animate-pulse" : ""}`}
+    >
+      <!-- background ring -->
+      <Circle
+        size="sm"
+        class="stroke-surface dark:stroke-neutral-700 fill-none"
+      />
+
+      <!-- progress ring -->
+      {
+        !isLoading && (
+          <Circle
+            size="sm"
+            hasStroke
+            stroke={data?.color}
+            class="fill-none transition-[stroke-dashoffset] duration-1000 ease-out"
+            style={`stroke-dashoffset:${dashOffset}`}
+          />
+        )
+      }
+    </svg>
+
+    <!-- center icon -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      {
+        !isLoading ? (
+          <img
+            src={urlFor(data.icon).width(45).height(45).url()}
+            alt="skill-icon"
+            width="45"
+            height="45"
+            loading="lazy"
+            class="scale-100 opacity-100 transition duration-300"
+          />
+        ) : (
+          <div class="w-11 h-11" />
+        )
+      }
+    </div>
+  </div>
+
+  {
+    !isLoading && (
+      <span class="sm:text-base text-sm text-text mt-1">{data?.name}</span>
+    )
+  }
+</section>

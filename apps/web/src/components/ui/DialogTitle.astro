@@ -1,0 +1,28 @@
+---
+import OpenTabIcon from "../icons/OpenTabIcon.astro";
+
+interface Props {
+  title: string;
+  link: string;
+}
+
+const { title, link } = Astro.props;
+---
+
+<span class="flex flex-row gap-2 items-center">
+  <h1 class="text-3xl text-text">{title}</h1>
+
+  {
+    link && (
+      <a
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Open in new tab"
+        class="inline-flex"
+      >
+        <OpenTabIcon />
+      </a>
+    )
+  }
+</span>

@@ -1,0 +1,13 @@
+---
+interface Props {
+  width: number;
+}
+
+const { width } = Astro.props;
+---
+
+<div
+  class="bg-surface h-4 rounded-xl animate-pulse"
+  style={`width: ${width}px`}
+>
+</div>

@@ -1,0 +1,75 @@
+/* ===========================
+   Card Base
+=========================== */
+.card {
+  background-color: var(--color-accent, #f0f0f0);
+  color: var(--color-text, #222);
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+  margin-bottom: 1rem;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  animation: card-enter 0.45s ease-out forwards;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card:active {
+  transform: scale(0.985);
+}
+
+/* ===========================
+   Header
+=========================== */
+.card-header {
+  font-size: 1.5rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding-bottom: 1rem;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: header-enter 0.3s ease-out 0.1s forwards;
+}
+
+/* ===========================
+   Content
+=========================== */
+.card-content {
+  opacity: 0;
+  animation: content-enter 0.3s ease-out 0.15s forwards;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes card-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes header-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes content-enter {
+  to {
+    opacity: 1;
+  }
+}

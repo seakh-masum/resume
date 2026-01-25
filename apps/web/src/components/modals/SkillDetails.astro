@@ -1,0 +1,66 @@
+---
+import DialogTitle from "../ui/DialogTitle.astro";
+import SubHeading from "../ui/SubHeading.astro";
+import ChipList from "../ui/ChipList.astro";
+import List from "../ui/List.astro";
+import { getLevelName } from "@/utils/featureUtils";
+import type { Skill } from "@/types/Skill";
+
+interface Props {
+  data: Skill;
+  feature: "tools" | "skills";
+}
+
+const { data, feature } = Astro.props;
+---
+
+<div class="flex flex-col gap-7 text-text">
+  <!-- Header -->
+  <section>
+    <DialogTitle title={data?.name ?? ""} link={data?.link ?? ""} />
+    {data?.description && <p class="text-text-light">{data.description}</p>}
+  </section>
+
+  <!-- Level & Experience -->
+  <section class="flex flex-row items-start gap-4">
+    {
+      data?.level && (
+        <div class="basis-1/2">
+          <SubHeading title="My Level" />
+          <ChipList data={[getLevelName(data.level)]} />
+        </div>
+      )
+    }
+
+    {
+      data?.experience && (
+        <div class="basis-1/2">
+          <SubHeading title="Hands on Experience" />
+          <p class="text-lg mt-2">
+            <b>{data.experience}</b> years
+          </p>
+        </div>
+      )
+    }
+  </section>
+
+  <!-- Features -->
+  {
+    data.features && data.features.length > 0 && (
+      <section>
+        <SubHeading title="Features" subTitle="I Known" />
+        <List data={data.features} />
+      </section>
+    )
+  }
+
+  <!-- Projects -->
+  {
+    data.projects && data.projects.length > 0 && (
+      <section>
+        <SubHeading title="Projects" subTitle={`Using the ${feature}`} />
+        <ChipList data={data.projects} />
+      </section>
+    )
+  }
+</div>
