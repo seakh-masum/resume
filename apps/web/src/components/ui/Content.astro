@@ -1,0 +1,88 @@
+---
+import Card from "./Card.astro";
+import CircleProgressGrid from "./CircleProgressGrid.astro";
+import AboutMe from "../features/AboutMe.astro";
+import HobbyList from "../features/Hobby.astro";
+import Project from "../features/Project.astro";
+import Education from "../features/Education.astro";
+import Experience from "../features/Experience.astro";
+import TotalExperience from "./TotalExperience.astro";
+import Profile from "../features/Profile.astro";
+
+const { resume, isLoading } = Astro.props;
+
+const tenures = resume.experience.map((exp: any) => ({
+  joiningDate: exp.joiningDate,
+  releaseDate: exp.releaseDate,
+}));
+
+// Use your existing calculateTotalTenure utility
+import { calculateTotalTenure } from "@/utils";
+
+const { years, months } = calculateTotalTenure(tenures);
+---
+
+<div class="w-full bg-surface">
+  <div
+    class="relative mx-auto px-2 py-3 sm:p-3 max-w-7xl print-container print:w-[210mm] print:min-h-[297mm] print:p-[5mm]"
+  >
+    <Profile
+      data={resume?.profile}
+      isLoading={isLoading}
+      contacts={resume?.contacts || []}
+    />
+
+    <div class="flex gap-4 sm:flex-row flex-col main-container">
+      <div class="flex flex-col basis-[45%] left-side">
+        <Card header="About Me">
+          <AboutMe
+            introduction={resume?.profile.introduction || ""}
+            summary={resume?.profile?.summary || []}
+            isLoading={isLoading}
+          />
+        </Card>
+        <Card header="Hobbies">
+          <HobbyList data={resume.hobbies} isLoading={isLoading} />
+        </Card>
+      </div>
+      <div class="flex flex-col basis-[55%] right-side">
+        <Card header="Skills">
+          <CircleProgressGrid
+            features="skills"
+            data={resume.skills}
+            isLoading={false}
+          />
+        </Card>
+        <Card header="Tools">
+          <CircleProgressGrid
+            features="tools"
+            data={resume.tools}
+            isLoading={isLoading}
+          />
+        </Card>
+      </div>
+    </div>
+
+    <div class="no-break">
+      <Card>
+        <div slot="header">
+          <TotalExperience years={years} months={months} />
+        </div>
+        <Experience data={resume.experience} isLoading={isLoading} />
+      </Card>
+    </div>
+
+    <div class="flex gap-4 sm:flex-row flex-col main-container">
+      <div class="flex flex-col basis-[45%] left-side">
+        <Card header="Education">
+          <Education data={resume.education} isLoading={isLoading} />
+        </Card>
+      </div>
+      <div class="flex flex-col basis-[55%] right-side">
+        <Card header="Projects">
+          <Project data={resume.projects} isLoading={isLoading} />
+        </Card>
+      </div>
+    </div>
+  </div>
+</div>

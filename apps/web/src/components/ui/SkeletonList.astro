@@ -1,0 +1,9 @@
+---
+import SkeletonLine from "./SkeletonLine.astro";
+
+const widths = [72, 56, 64, 72, 56];
+---
+
+<div class="flex flex-col justify-between h-full py-1 gap-5">
+  {widths.map((w) => <SkeletonLine width={w} />)}
+</div>
