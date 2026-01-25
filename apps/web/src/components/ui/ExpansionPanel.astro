@@ -1,0 +1,66 @@
+---
+// ExpansionPanel.astro
+interface Props {
+  defaultOpen?: boolean;
+}
+
+const { defaultOpen = false } = Astro.props;
+const id = `panel-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<details class="group" open={defaultOpen}>
+  <summary
+    class="flex items-center justify-between py-1 cursor-pointer list-none select-none transition-colors"
+  >
+    <div><slot name="header" /></div>
+    <svg
+      class="w-5 h-5 transition-transform duration-300 ease-in-out group-open:rotate-180"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </summary>
+
+  <div class="overflow-hidden">
+    <div class="pb-4 pt-1 animate-slideDown">
+      <slot name="content" />
+    </div>
+  </div>
+</details>
+
+<style>
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<!-- Usage Example:
+<ExpansionPanel title="What is Astro?">
+  <p>Astro is a modern web framework for building fast, content-focused websites.</p>
+</ExpansionPanel>
+
+<ExpansionPanel title="Why use Tailwind?" defaultOpen>
+  <p>Tailwind CSS provides utility classes for rapid UI development.</p>
+</ExpansionPanel>
+-->
