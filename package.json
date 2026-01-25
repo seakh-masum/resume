@@ -14,5 +14,10 @@
   },
   "devDependencies": {
     "turbo": "^1.10.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "^6.0.0"
+    }
   }
 }
