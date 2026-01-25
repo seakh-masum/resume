@@ -1,5 +1,6 @@
-import createImageUrlBuilder, {
+import {
   type SanityImageSource,
+  createImageUrlBuilder,
 } from "@sanity/image-url";
 
 export const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;

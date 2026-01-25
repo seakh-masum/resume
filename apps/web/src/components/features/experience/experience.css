@@ -1,0 +1,32 @@
+/* staggered fade-in + translate for each stepper item */
+:root {
+  --stagger-delay: 0.1s;
+}
+
+div > :is(.stepper-item, .flex) {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+div > :is(.stepper-item, .flex):nth-child(1) {
+  animation-delay: calc(var(--stagger-delay) * 0);
+}
+div > :is(.stepper-item, .flex):nth-child(2) {
+  animation-delay: calc(var(--stagger-delay) * 1);
+}
+div > :is(.stepper-item, .flex):nth-child(3) {
+  animation-delay: calc(var(--stagger-delay) * 2);
+}
+/* add more nth-child rules if needed */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

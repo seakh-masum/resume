@@ -1,20 +1,10 @@
 ---
-import Stepper from "../ui/Stepper.astro";
-import SkeletonList from "../ui/SkeletonList.astro";
-
-type StepperItem = {
-  id?: string;
-  startYear: string;
-  endYear: string;
-  degree: string;
-  stream?: string;
-  institute: string;
-  marks?: string;
-  link: string;
-};
+import Stepper from "../../ui/Stepper.astro";
+import SkeletonList from "../../ui/SkeletonList.astro";
+import type { Education } from "./education";
 
 type Props = {
-  data: StepperItem[];
+  data: Education[];
   isLoading?: boolean;
   isMobile?: boolean;
 };
