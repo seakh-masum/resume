@@ -5,7 +5,6 @@ interface Props {
 }
 
 const { defaultOpen = false } = Astro.props;
-const id = `panel-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <details class="group" open={defaultOpen}>
