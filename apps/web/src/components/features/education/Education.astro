@@ -5,33 +5,24 @@ import type { Education } from "./education";
 
 type Props = {
   data: Education[];
-  isLoading?: boolean;
-  isMobile?: boolean;
 };
 
-const { data, isLoading = false, isMobile = false } = Astro.props;
+const { data } = Astro.props;
 ---
 
 <div class="mt-4 sm:ml-6 pt-1 mr-0 mb-0">
   {
-    isLoading ? (
-      <SkeletonList />
-    ) : (
-      <>
-        {data.map((item, index) => (
-          <Stepper
-            isMobile={isMobile}
-            hasLine={index < data.length - 1}
-            index={index}
-            stepperIndex={`${item.startYear} - ${item.endYear}`}
-            heading={item.degree}
-            extraHeading={item.stream}
-            subHeading={item.institute}
-            desc={item.marks}
-            link={item.link}
-          />
-        ))}
-      </>
-    )
+    data.map((item, index) => (
+      <Stepper
+        hasLine={index < data.length - 1}
+        index={index}
+        stepperIndex={`${item.startYear} - ${item.endYear}`}
+        heading={item.degree}
+        extraHeading={item.stream}
+        subHeading={item.institute}
+        desc={item.marks}
+        link={item.link}
+      />
+    ))
   }
 </div>

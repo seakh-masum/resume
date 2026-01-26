@@ -1,3 +1,5 @@
+import { urlFor } from "@/lib/image";
+
 const getLevelName = (value: number) => {
   if (Number(value) >= 90) return "Expert";
   if (Number(value) >= 70) return "Proficient";
@@ -52,6 +54,7 @@ const getProjectType = (value: number) => {
   }
 };
 
-export const isMobile = () => window.innerWidth <= 768;
+const getImage = (imageUrl: string, width: number, height: number) =>
+  urlFor(imageUrl).width(width).height(height).auto("format").url();
 
-export { getLevelName, getProjectSector, getProjectType };
+export { getLevelName, getProjectSector, getProjectType, getImage };

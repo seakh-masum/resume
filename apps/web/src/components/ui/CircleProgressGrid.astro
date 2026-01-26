@@ -6,10 +6,9 @@ import Modal from "./Modal.astro";
 interface Props {
   features: "skills" | "tools";
   data?: any[];
-  isLoading: boolean;
 }
 
-const { features, data, isLoading } = Astro.props;
+const { features, data } = Astro.props;
 ---
 
 <div class="circle-progress-grid">
@@ -17,12 +16,7 @@ const { features, data, isLoading } = Astro.props;
     data?.map((item, index) => (
       <div class="grid-item" style={`animation-delay: ${0.1 + index * 0.08}s`}>
         <Modal id={item._key} type="project">
-          <CircleProgress
-            slot="trigger"
-            data={item}
-            isLoading={isLoading}
-            features={features}
-          />
+          <CircleProgress slot="trigger" data={item} />
           <SkillDetails slot="content" data={item} feature={features} />
         </Modal>
       </div>
