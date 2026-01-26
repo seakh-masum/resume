@@ -2,7 +2,6 @@
 import ExpansionPanel from "./ExpansionPanel.astro";
 
 interface Props {
-  isMobile: boolean;
   index: number;
   stepperIndex: string;
   hasLine?: boolean;
@@ -25,17 +24,12 @@ const {
   desc,
   list = [],
 } = Astro.props;
-// const isMobile = isMobile();
-// const isActualMobile = isMobile();
-const ua = Astro.request.headers.get("user-agent") || "";
-const isMobile = /Android|iPhone/i.test(ua);
 ---
 
-<div class="stepper-row" data-mobile={isMobile}>
+<div class="stepper-row">
   <!-- Left stepper -->
   <div class="stepper-left">
     <div class={`stepper-circle md:min-w-36 rounded-full md:rounded-none`}>
-      <!-- {isMobile ? index + 1 : stepperIndex} -->
       <span class="block md:hidden">{index + 1}</span>
       <span class="hidden md:block">{stepperIndex}</span>
     </div>

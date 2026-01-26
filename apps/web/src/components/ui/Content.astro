@@ -4,13 +4,12 @@ import CircleProgressGrid from "./CircleProgressGrid.astro";
 import AboutMe from "../features/AboutMe.astro";
 import HobbyList from "../features/Hobby.astro";
 import Project from "../features/Project.astro";
-// import Education from "@/features/education/Education.astro";
 import Experience from "../features/experience/Experience.astro";
 import TotalExperience from "./TotalExperience.astro";
 import Profile from "../features/Profile.astro";
 import Education from "../features/education/Education.astro";
 
-const { resume, isLoading } = Astro.props;
+const { resume } = Astro.props;
 
 const tenures = resume.experience.map((exp: any) => ({
   joiningDate: exp.joiningDate,
@@ -28,11 +27,7 @@ const { years, months } = calculateTotalTenure(tenures);
   <div
     class="relative mx-auto px-2 py-3 sm:p-3 max-w-7xl print-container print:w-[210mm] print:min-h-[297mm] print:p-[5mm]"
   >
-    <Profile
-      data={resume?.profile}
-      isLoading={isLoading}
-      contacts={resume?.contacts || []}
-    />
+    <Profile data={resume?.profile} contacts={resume?.contacts || []} />
 
     <div class="flex gap-4 sm:flex-row flex-col main-container">
       <div class="flex flex-col basis-[45%] left-side">
@@ -40,27 +35,18 @@ const { years, months } = calculateTotalTenure(tenures);
           <AboutMe
             introduction={resume?.profile.introduction || ""}
             summary={resume?.profile?.summary || []}
-            isLoading={isLoading}
           />
         </Card>
         <Card header="Hobbies">
-          <HobbyList data={resume.hobbies} isLoading={isLoading} />
+          <HobbyList data={resume.hobbies} />
         </Card>
       </div>
       <div class="flex flex-col basis-[55%] right-side">
         <Card header="Skills">
-          <CircleProgressGrid
-            features="skills"
-            data={resume.skills}
-            isLoading={false}
-          />
+          <CircleProgressGrid features="skills" data={resume.skills} />
         </Card>
         <Card header="Tools">
-          <CircleProgressGrid
-            features="tools"
-            data={resume.tools}
-            isLoading={isLoading}
-          />
+          <CircleProgressGrid features="tools" data={resume.tools} />
         </Card>
       </div>
     </div>
@@ -70,19 +56,19 @@ const { years, months } = calculateTotalTenure(tenures);
         <div slot="header">
           <TotalExperience years={years} months={months} />
         </div>
-        <Experience data={resume.experience} isLoading={isLoading} />
+        <Experience data={resume.experience} />
       </Card>
     </div>
 
     <div class="flex gap-4 sm:flex-row flex-col main-container">
       <div class="flex flex-col basis-[45%] left-side">
         <Card header="Education">
-          <Education data={resume.education} isLoading={isLoading} />
+          <Education data={resume.education} />
         </Card>
       </div>
       <div class="flex flex-col basis-[55%] right-side">
         <Card header="Projects">
-          <Project data={resume.projects} isLoading={isLoading} />
+          <Project data={resume.projects} />
         </Card>
       </div>
     </div>

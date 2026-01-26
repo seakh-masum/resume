@@ -1,2 +1,2 @@
-export * from "./dateUtils";
-export * from "./featureUtils";
+export * from "./date.util";
+export * from "./feature.util";

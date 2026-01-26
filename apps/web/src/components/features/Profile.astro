@@ -1,21 +1,14 @@
 ---
-import { urlFor } from "@/lib/image";
 import Circle from "../ui/Circle.astro";
 import ContactList from "./ContactList.astro";
-
-interface Hobby {
-  name: string;
-  icon: string;
-  color: string;
-}
+import { getImage } from "@/utils/feature.util";
 
 interface Props {
   data: any;
-  isLoading: boolean;
   contacts: Array<any>;
 }
 
-const { data, isLoading, contacts } = Astro.props as Props;
+const { data, contacts } = Astro.props as Props;
 
 const CIRCUMFERENCE = 625;
 const MAX_PROGRESS = 685;
@@ -23,9 +16,8 @@ const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * 50) / 100;
 ---
 
 <div
-  class={`[grid-area:profile] p-0 rounded-xl mb-5 
-    bg-linear-to-r from-primary to-secondary
-    ${isLoading ? "animate-pulse" : "profile-container"}`}
+  class="[grid-area:profile] p-0 rounded-xl mb-5
+    bg-linear-to-r from-primary to-secondary profile-container"
 >
   <div class="pb-3">
     <!-- Avatar Section -->
@@ -41,7 +33,6 @@ const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * 50) / 100;
             style={`stroke-dashoffset: ${dashOffset}px; stroke-dasharray: ${CIRCUMFERENCE}px`}
           />
         </svg>
-        <!-- stroke="blue" -->
 
         <!-- Profile Image -->
         <div
@@ -49,7 +40,7 @@ const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * 50) / 100;
         >
           <div class="rounded-full w-52 h-52 overflow-hidden profile-image">
             <img
-              src={urlFor(data.image).width(208).height(208).url()}
+              src={getImage(data.image, 208, 208)}
               alt={data.name}
               width={208}
               height={208}
@@ -67,28 +58,21 @@ const dashOffset = CIRCUMFERENCE - (MAX_PROGRESS * 50) / 100;
       <div
         class="flex flex-col items-center sm:items-end justify-center pt-28 sm:pt-8 pr-0 sm:pr-14 mb-8 sm:mb-14 gap-1 sm:gap-3"
       >
-        {
-          isLoading ? (
-            <>
-              <div class="bg-surface rounded-xl animate-pulse w-75 h-20" />
-              <div class="bg-surface rounded-xl animate-pulse w-50 h-8 mb-2" />
-            </>
-          ) : (
-            <>
-              <p class="font-heading text-6xl md:text-7xl text-text text-center sm:text-start fade-up">
-                {data.name}
-              </p>
-              <i class="text-text-light text-lg sm:text-2xl text-center sm:text-start fade-up">
-                {data.title}
-              </i>
-            </>
-          )
-        }
+        <p
+          class="font-heading text-6xl md:text-7xl text-text text-center sm:text-start fade-up"
+        >
+          {data.name}
+        </p>
+        <i
+          class="text-text-light text-lg sm:text-2xl text-center sm:text-start fade-up"
+        >
+          {data.title}
+        </i>
       </div>
 
       <!-- Contacts -->
       <div class="fade-up">
-        <ContactList data={contacts} isLoading={isLoading} />
+        <ContactList data={contacts} />
       </div>
     </div>
   </div>

@@ -1,13 +1,12 @@
 ---
-import { urlFor } from "@/lib/image";
 import type { Hobby } from "@/types/hobby";
+import { getImage } from "@/utils/feature.util";
 
 interface Props {
   data: Hobby[];
-  isLoading?: boolean;
 }
 
-const { data, isLoading = false } = Astro.props as Props;
+const { data } = Astro.props as Props;
 ---
 
 <div
@@ -16,14 +15,14 @@ const { data, isLoading = false } = Astro.props as Props;
   {
     data.map((item, index) => (
       <div
-        class={`relative inline-flex items-center gap-1 h-8 py-1 px-3 rounded-xl 
+        class="relative inline-flex items-center gap-1 h-8 py-1 px-3 rounded-xl 
         sm:text-sm text-xs min-w-25
         bg-surface dark:bg-${item.color}-100 dark:text-white
-        ${isLoading ? "animate-pulse" : "hobby-item"}`}
+        hobby-item"
         style={`animation-delay: ${index * 0.06 + 0.1}s`}
       >
         <img
-          src={urlFor(item.icon).width(20).height(20).url()}
+          src={getImage(item.icon, 20, 20)}
           alt="hobby-icon"
           class="w-4"
           width="20"

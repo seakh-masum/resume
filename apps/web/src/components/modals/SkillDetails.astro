@@ -3,7 +3,7 @@ import DialogTitle from "../ui/DialogTitle.astro";
 import SubHeading from "../ui/SubHeading.astro";
 import ChipList from "../ui/ChipList.astro";
 import List from "../ui/List.astro";
-import { getLevelName } from "@/utils/featureUtils";
+import { getLevelName } from "@/utils/feature.util";
 import type { Skill } from "@/types/skill";
 
 interface Props {
@@ -18,7 +18,11 @@ const { data, feature } = Astro.props;
   <!-- Header -->
   <section>
     <DialogTitle title={data?.name ?? ""} link={data?.link ?? ""} />
-    {data?.description && <p class="text-text-light">{data.description}</p>}
+    {
+      data?.description && (
+        <p class="text-text-light mt-2">{data.description}</p>
+      )
+    }
   </section>
 
   <!-- Level & Experience -->
