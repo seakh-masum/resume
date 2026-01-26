@@ -32,7 +32,7 @@ const { data, isLoading } = Astro.props as {
             class="block focus:outline-none focus:ring-2 focus:ring-primary rounded-md"
             style="view-transition-name: project-card-{project.slug}"
             onclick={`
-              document.body.classList.add('overflow-hidden');
+              document.body.classList.add('no-scroll');
               document.getElementById('project-${item._key}').showModal();
             `}
           >
