@@ -1,0 +1,24 @@
+:root {
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-sans: "Open Sans", sans-serif;
+  --font-dancing: "Dancing Script", cursive;
+  --surface-color: oklch(96.8% 0.007 247.896);
+  --accent-color: oklch(98.4% 0.003 247.858);
+  --primary-color: oklch(80.882% 0.14764 125.429);
+  --secondary-color-dark: oklch(70.7% 0.165 254.624);
+  --secondary-color: oklch(58.902% 0.22344 265.847);
+  --text-color: oklch(20.8% 0.042 265.755);
+  --text-light-color: oklch(37.2% 0.044 257.287);
+  --hover-color: oklch(86.9% 0.022 252.894);
+  --border-radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-color: oklch(12.9% 0.042 264.695);
+    --accent-color: oklch(20.8% 0.042 265.755);
+    --text-color: oklch(96.8% 0.007 247.896);
+    --text-light-color: oklch(86.9% 0.022 252.894);
+    --hover-color: oklch(44.6% 0.043 257.281);
+  }
+}

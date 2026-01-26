@@ -1,0 +1,22 @@
+@import "./variable.css";
+
+@theme inline {
+  --color-surface: var(--surface-color);
+  --color-primary: var(--primary-color);
+  --color-secondary-dark: var(--secondary-color-dark);
+  --color-secondary: var(--secondary-color);
+  --color-accent: var(--accent-color);
+  --color-text: var(--text-color);
+  --color-text-light: var(--text-light-color);
+  --color-hover: var(--hover-color);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-montserrat);
+  --font-heading: var(--font-dancing);
+  --width-dialog: 37.5rem;
+  --aspect-ratio-third_one: 3 / 1;
+  --max-height-dialog: 70vh;
+  --min-height-about-me: 612px;
+  --min-height-hobby: 112px;
+  --shadow-theme:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

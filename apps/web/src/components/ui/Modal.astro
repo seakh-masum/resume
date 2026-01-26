@@ -23,8 +23,8 @@ const modalId = `${type}-${id}`;
   <dialog
     id={modalId}
     class="modal fixed inset-0 z-50 m-0 h-screen w-screen max-h-none max-w-none"
-    onclose="document.body.classList.remove('overflow-hidden')"
-    oncancel="document.body.classList.remove('overflow-hidden')"
+    onclose="document.body.classList.remove('no-scroll')"
+    oncancel="document.body.classList.remove('no-scroll')"
   >
     <!-- Backdrop -->
     <form method="dialog" class="modal-backdrop absolute inset-0"></form>
