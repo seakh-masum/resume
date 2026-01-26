@@ -1,11 +1,10 @@
 ---
 import "@/styles/global.css";
 import { homeMetadata as meta } from "@/styles/metadata";
-import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="fade">
   <head>
     <meta charset="utf-8" />
 
@@ -82,14 +81,11 @@ import { ViewTransitions } from "astro:transitions";
     <!-- MS -->
     <meta name="msapplication-TileColor" content={meta.ms.tileColor} />
     <meta name="msapplication-config" content={meta.ms.config} />
-    <!-- <ViewTransitions /> -->
   </head>
 
-  <body class="antialiased">
+  <body class="antialiased bg-surface font-sans m-0">
     <main>
-      <ViewTransitions />
       <slot />
-      <slot name="modal" />
     </main>
   </body>
 </html>

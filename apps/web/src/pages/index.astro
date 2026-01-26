@@ -10,7 +10,7 @@ const resume = await sanity.fetch(resumeQuery);
 ---
 
 <BaseLayout>
-  <Content resume={resume} isLoading={false} client:load />
+  <Content resume={resume} isLoading={false} />
 
   <!-- Optional modal -->
   <div slot="modal"></div>
