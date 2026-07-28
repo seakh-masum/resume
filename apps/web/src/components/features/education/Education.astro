@@ -1,7 +1,7 @@
 ---
 import Stepper from "../../ui/Stepper.astro";
 import SkeletonList from "../../ui/SkeletonList.astro";
-import type { Education } from "./education";
+import type { Education } from "@/types/features";
 
 type Props = {
   data: Education[];
@@ -17,11 +17,11 @@ const { data } = Astro.props;
         hasLine={index < data.length - 1}
         index={index}
         stepperIndex={`${item.startYear} - ${item.endYear}`}
-        heading={item.degree}
+        heading={item.degree ?? ""}
         extraHeading={item.stream}
         subHeading={item.institute}
         desc={item.marks}
-        link={item.link}
+        link={item.link ?? ""}
       />
     ))
   }

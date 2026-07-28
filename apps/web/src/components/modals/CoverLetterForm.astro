@@ -1,0 +1,122 @@
+---
+interface Props {
+  roPlaceholder?: string;
+  rolePlaceholder?: string;
+  companyPlaceholder?: string;
+  locationPlaceholder?: string;
+  salutationPlaceholder?: string;
+  jobTitlePlaceholder?: string;
+}
+
+const {
+  roPlaceholder = "Hiring Manager",
+  rolePlaceholder = "Talent Acquisition Team",
+  companyPlaceholder = "Company Name",
+  locationPlaceholder = "State, Country, 12345",
+  salutationPlaceholder = "Dear Sir,",
+  jobTitlePlaceholder = "Software Engineer",
+} = Astro.props as Props;
+---
+
+<form
+  class="space-y-3"
+  onsubmit="event.preventDefault(); const form = event.currentTarget; const fd = new FormData(form); const params = new URLSearchParams(); const getValue = (name) => { const input = form.querySelector('[name=' + name + ']'); const typed = String(fd.get(name) || '').trim(); const hinted = String(input?.placeholder || '').trim(); return typed || hinted; }; const ro = getValue('ro'); const role = getValue('role'); const company = getValue('company'); const location = getValue('location'); const salutation = getValue('salutation'); const jobTitle = getValue('jobTitle'); if (ro) params.set('to', ro); if (role) params.set('role', role); if (company) params.set('company', company); if (location) params.set('location', location); if (salutation) params.set('greeting', salutation); if (jobTitle) params.set('jobTitle', jobTitle); window.location.href = '/cover-letter?' + params.toString();"
+>
+  <h3 class="m-0 text-lg font-semibold text-text">Cover Letter Details</h3>
+  <p class="m-0 text-sm text-text-light">
+    Fill out details to prefill your cover letter.
+  </p>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-ro"
+  >
+    RO
+    <input
+      id="cl-ro"
+      name="ro"
+      type="text"
+      placeholder={roPlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-role"
+  >
+    Role
+    <input
+      id="cl-role"
+      name="role"
+      type="text"
+      placeholder={rolePlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-company"
+  >
+    Company
+    <input
+      id="cl-company"
+      name="company"
+      type="text"
+      placeholder={companyPlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-location"
+  >
+    Location
+    <input
+      id="cl-location"
+      name="location"
+      type="text"
+      placeholder={locationPlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-job-title"
+  >
+    Job Title
+    <input
+      id="cl-job-title"
+      name="jobTitle"
+      type="text"
+      placeholder={jobTitlePlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-salutation"
+  >
+    Salutation
+    <input
+      id="cl-salutation"
+      name="salutation"
+      type="text"
+      placeholder={salutationPlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <div class="pt-2">
+    <button
+      type="submit"
+      class="w-full cursor-pointer rounded-lg border border-[#111111] bg-print-primary px-3.5 py-2 text-sm font-semibold text-[#111111]"
+    >
+      Open Cover Letter
+    </button>
+  </div>
+</form>

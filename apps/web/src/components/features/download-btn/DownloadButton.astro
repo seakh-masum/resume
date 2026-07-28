@@ -2,27 +2,28 @@
 import "./download-btn.css";
 ---
 
-<a
-  href="#"
-  aria-label="Download Resume"
-  class="download-btn
-    grid place-content-center
-    rounded-full fixed bottom-3 right-3 z-50
-    w-12 aspect-square
-    bg-linear-to-r from-primary to-secondary
-    shadow-md print:hidden cursor-pointer"
-  onclick="window.print()"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24px"
-    viewBox="0 0 24 24"
-    width="24px"
-    fill="#000"
+<div class="fixed bottom-3 right-3 z-50">
+  <a
+    href="/print-template"
+    aria-label="Download Resume"
+    class="download-btn
+      grid place-content-center
+      rounded-full
+      w-12 aspect-square
+      bg-linear-to-r from-primary to-secondary
+      shadow-md cursor-pointer"
   >
-    <path d="M0 0h24v24H0V0z" fill="none"></path>
-    <path
-      d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"
-    ></path>
-  </svg>
-</a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="#000"
+    >
+      <path d="M0 0h24v24H0V0z" fill="none"></path>
+      <path
+        d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"
+      ></path>
+    </svg>
+  </a>
+</div>

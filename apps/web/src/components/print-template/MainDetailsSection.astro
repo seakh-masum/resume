@@ -1,0 +1,36 @@
+---
+import SectionTitle from "@/components/print-template/SectionTitle.astro";
+import ExperienceTimelineItem from "@/components/print-template/ExperienceTimelineItem.astro";
+import EducationCard from "@/components/print-template/EducationCard.astro";
+import {
+  DIVIDER_PANEL_CLASS,
+  LEFT_COLUMN_CLASS,
+  TWO_COLUMN_SECTION_CLASS,
+} from "@/components/print-template/classNames";
+import type { EducationItem, ExperienceItem } from "@/types/features";
+
+interface Props {
+  education: EducationItem[];
+  experience: ExperienceItem[];
+}
+
+const { education, experience } = Astro.props as Props;
+---
+
+<section class={`mt-[10mm] ${TWO_COLUMN_SECTION_CLASS}`}>
+  <aside class={LEFT_COLUMN_CLASS}>
+    <SectionTitle text="Education" />
+
+    <div class="mt-0">
+      {education.map((item) => <EducationCard item={item} />)}
+    </div>
+  </aside>
+
+  <section class={DIVIDER_PANEL_CLASS}>
+    <SectionTitle text="Experience" />
+
+    <div class="mt-0">
+      {experience.map((item) => <ExperienceTimelineItem item={item} />)}
+    </div>
+  </section>
+</section>

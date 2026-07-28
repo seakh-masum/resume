@@ -10,6 +10,14 @@
   --text-color: oklch(20.8% 0.042 265.755);
   --text-light-color: oklch(37.2% 0.044 257.287);
   --hover-color: oklch(86.9% 0.022 252.894);
+  --print-bg: #ffffff;
+  --print-ink: #101010;
+  --print-strong: #191a1c;
+  --print-base: #232427;
+  --print-muted: #4a4d52;
+  --print-subtle: #6a6e75;
+  --print-border: #111111;
+  --print-primary: #b9da3f;
   --border-radius: 12px;
 }
 

@@ -8,29 +8,27 @@ import Experience from "../features/experience/Experience.astro";
 import TotalExperience from "./TotalExperience.astro";
 import Profile from "../features/Profile.astro";
 import Education from "../features/education/Education.astro";
+import type { ResumeData, ResumeExperience } from "@/types/models";
 
-const { resume } = Astro.props;
+interface Props {
+  resume: ResumeData;
+}
 
-const tenures = resume.experience.map((exp: any) => ({
-  joiningDate: exp.joiningDate,
-  releaseDate: exp.releaseDate,
-}));
+const { resume } = Astro.props as Props;
 
 // Use your existing calculateTotalTenure utility
 import { calculateTotalTenure } from "@/utils";
 import DownloadButton from "../features/download-btn/DownloadButton.astro";
 
-const { years, months } = calculateTotalTenure(tenures);
+const { years, months } = calculateTotalTenure(resume.experience);
 ---
 
 <div class="w-full bg-surface">
-  <div
-    class="relative mx-auto px-2 py-3 sm:p-3 max-w-7xl print-container print:w-[210mm] print:min-h-[297mm] print:p-[5mm]"
-  >
+  <div class="relative mx-auto max-w-7xl px-2 py-3 sm:p-3">
     <Profile data={resume?.profile} contacts={resume?.contacts || []} />
 
-    <div class="flex gap-4 sm:flex-row flex-col main-container">
-      <div class="flex flex-col basis-[45%] left-side">
+    <div class="flex flex-col gap-4 sm:flex-row">
+      <div class="flex flex-col basis-[45%]">
         <Card header="About Me">
           <AboutMe
             introduction={resume?.profile.introduction || ""}
@@ -41,7 +39,7 @@ const { years, months } = calculateTotalTenure(tenures);
           <HobbyList data={resume.hobbies} />
         </Card>
       </div>
-      <div class="flex flex-col basis-[55%] right-side">
+      <div class="flex flex-col basis-[55%]">
         <Card header="Skills">
           <CircleProgressGrid features="skills" data={resume.skills} />
         </Card>
@@ -51,7 +49,7 @@ const { years, months } = calculateTotalTenure(tenures);
       </div>
     </div>
 
-    <div class="no-break">
+    <div>
       <Card>
         <div slot="header">
           <TotalExperience years={years} months={months} />
@@ -60,13 +58,13 @@ const { years, months } = calculateTotalTenure(tenures);
       </Card>
     </div>
 
-    <div class="flex gap-4 sm:flex-row flex-col main-container">
-      <div class="flex flex-col basis-[45%] left-side">
+    <div class="flex flex-col gap-4 sm:flex-row">
+      <div class="flex flex-col basis-[45%]">
         <Card header="Education">
           <Education data={resume.education} />
         </Card>
       </div>
-      <div class="flex flex-col basis-[55%] right-side">
+      <div class="flex flex-col basis-[55%]">
         <Card header="Projects">
           <Project data={resume.projects} />
         </Card>

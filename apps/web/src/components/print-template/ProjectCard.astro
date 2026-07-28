@@ -1,0 +1,36 @@
+---
+import type { ProjectItem } from "@/types/features";
+
+interface Props {
+  item: ProjectItem;
+  index: number;
+}
+
+const { item, index } = Astro.props as Props;
+---
+
+<article class="mt-[4.2mm] first:mt-0 break-inside-avoid">
+  <div class="flex flex-wrap items-baseline gap-[2mm_3mm]">
+    <h3
+      class="m-0 text-[4.2mm] font-bold tracking-[0.04em] uppercase text-print-ink"
+    >
+      {item?.title || `Project ${index + 1}`}
+    </h3>
+  </div>
+
+  {
+    item?.shortDescription && (
+      <p class="m-[1.8mm_0_0] wrap-break-word text-[3.45mm] leading-[1.48] text-print-muted">
+        {item.shortDescription}
+      </p>
+    )
+  }
+
+  {
+    item?.techText && (
+      <p class="m-[1.4mm_0_0] wrap-break-word text-[3.1mm] font-semibold uppercase tracking-[0.08em] text-print-strong">
+        {item.techText}
+      </p>
+    )
+  }
+</article>

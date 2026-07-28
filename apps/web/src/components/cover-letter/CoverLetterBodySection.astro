@@ -1,0 +1,133 @@
+---
+interface Props {
+  recipientName: string;
+  recipientRole: string;
+  recipientCompany: string;
+  phoneValue: string;
+  recipientLocation: string;
+  fullName: string;
+  role: string;
+  salutation: string;
+  currentDate: string;
+  paragraphOne: string;
+  paragraphTwo: string;
+  paragraphThree: string;
+}
+
+const {
+  recipientName,
+  recipientRole,
+  recipientCompany,
+  phoneValue,
+  recipientLocation,
+  fullName,
+  role,
+  salutation,
+  currentDate,
+  paragraphOne,
+  paragraphTwo,
+  paragraphThree,
+} = Astro.props as Props;
+---
+
+<section class="flex-1">
+  <div
+    class="grid h-full grid-cols-[52mm_minmax(0,1fr)] border-x border-b border-print-border/40 max-[900px]:grid-cols-1 print:grid-cols-[52mm_minmax(0,1fr)]"
+  >
+    <aside
+      class="h-full border-r border-print-border/40 p-[5mm_4mm] max-[900px]:border-r-0 max-[900px]:border-b print:border-r print:border-b-0"
+    >
+      <h3
+        class="m-0 text-[7mm] font-bold uppercase tracking-[0.03em] text-print-ink"
+      >
+        To
+      </h3>
+      <p
+        id="cl-to"
+        class="m-[5.2mm_0_0] text-[3.9mm] font-bold uppercase text-print-strong"
+      >
+        {recipientName}
+      </p>
+      <p
+        id="cl-to-role"
+        class="m-[0.8mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted"
+      >
+        {recipientRole}
+      </p>
+      <p
+        id="cl-company"
+        class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted"
+      >
+        {recipientCompany}
+      </p>
+      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
+        {phoneValue}
+      </p>
+      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
+        {recipientLocation}
+      </p>
+
+      <h3
+        class="m-[12mm_0_0] text-[7mm] font-bold uppercase tracking-[0.03em] text-print-ink"
+      >
+        From
+      </h3>
+      <p
+        class="m-[5.2mm_0_0] text-[3.9mm] font-bold uppercase text-print-strong"
+      >
+        {fullName}
+      </p>
+      <p class="m-[0.8mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
+        {role}
+      </p>
+      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
+        {phoneValue}
+      </p>
+      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
+        {recipientLocation}
+      </p>
+    </aside>
+
+    <div class="p-[5mm_6mm_6mm]">
+      <div class="flex items-start justify-between gap-3">
+        <h3
+          class="m-0 text-[7mm] font-bold uppercase tracking-[0.03em] text-print-ink"
+        >
+          Cover Letter
+        </h3>
+        <p
+          class="m-0 rounded-full bg-print-strong px-[3.6mm] py-[0.8mm] text-[3.1mm] text-print-bg"
+        >
+          Date: {currentDate}
+        </p>
+      </div>
+
+      <p
+        id="cl-salutation"
+        class="m-[6mm_0_0] text-[3.95mm] font-semibold text-print-strong"
+      >
+        {salutation}
+      </p>
+
+      <div
+        class="mt-[4.5mm] space-y-[4.2mm] text-[3.45mm] leading-[1.7] text-print-base"
+      >
+        <p id="cl-paragraph-1" class="m-0 text-justify">{paragraphOne}</p>
+        <p id="cl-paragraph-2" class="m-0 text-justify">{paragraphTwo}</p>
+        <p id="cl-paragraph-3" class="m-0 text-justify">{paragraphThree}</p>
+      </div>
+
+      <footer class="mt-[12mm]">
+        <p class="m-0 text-[4.05mm] font-semibold text-print-strong">
+          Signature
+        </p>
+        <p class="m-[0.8mm_0_0] text-[3.4mm] text-print-muted">{fullName}</p>
+        <p
+          class="m-[3.2mm_0_0] inline-block border-b border-dashed border-print-subtle pb-[1.5mm] font-heading text-[9.5mm] leading-none text-print-subtle"
+        >
+          {fullName}
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
