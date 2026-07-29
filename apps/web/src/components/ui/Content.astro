@@ -8,6 +8,7 @@ import Experience from "../features/experience/Experience.astro";
 import TotalExperience from "./TotalExperience.astro";
 import Profile from "../features/Profile.astro";
 import Education from "../features/education/Education.astro";
+import Certification from "../features/certification/Certification.astro";
 import type { ResumeData, ResumeExperience } from "@/types/models";
 
 interface Props {
@@ -62,6 +63,9 @@ const { years, months } = calculateTotalTenure(resume.experience);
       <div class="flex flex-col basis-[45%]">
         <Card header="Education">
           <Education data={resume.education} />
+        </Card>
+        <Card header="Certifications">
+          <Certification data={resume.certifications || []} />
         </Card>
       </div>
       <div class="flex flex-col basis-[55%]">

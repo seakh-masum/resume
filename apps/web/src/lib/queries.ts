@@ -27,6 +27,7 @@ export const resumeQuery = `
       members
     },
     education,
+    certifications,
     contacts,
     tools[]{
       _key,

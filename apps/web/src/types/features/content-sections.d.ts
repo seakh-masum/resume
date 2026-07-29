@@ -4,6 +4,10 @@ export type Education = ResumeSectionItem<"education"> & {
   id?: string;
 };
 
+export type Certification = ResumeSectionItem<"certifications"> & {
+  id?: string;
+};
+
 export type StepperItem = ResumeSectionItem<"experience"> & {
   id?: string;
   link?: string;

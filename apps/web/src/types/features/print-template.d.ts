@@ -4,6 +4,12 @@ export type NameItem = Partial<Pick<ResumeSectionItem<"hobbies">, "name">>;
 
 export type SkillItem = Partial<Pick<ResumeSectionItem<"skills">, "name">>;
 
+export type CertificationPrintItem = Partial<
+  Pick<ResumeSectionItem<"certifications">, "name" | "issuer" | "credentialId">
+> & {
+  dateRange?: string;
+};
+
 export type ProjectItem = Partial<
   Pick<ResumeSectionItem<"projects">, "title">
 > & {

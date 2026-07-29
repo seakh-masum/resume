@@ -48,5 +48,11 @@ export default defineType({
       type: 'array',
       of: [{type: 'education'}],
     }),
+
+    defineField({
+      name: 'certifications',
+      type: 'array',
+      of: [{type: 'certification'}],
+    }),
   ],
 })
