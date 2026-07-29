@@ -236,6 +236,7 @@ const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
 
 <script>
   import { renderTemplate } from "@/utils/template.util";
+  import { applyPdfPrintTitle } from "@/utils/print.util";
 
   const DEFAULTS = {
     jobTitle: "Software Engineer",
@@ -331,16 +332,8 @@ const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
   applyCoverLetterParams();
   document.addEventListener("astro:page-load", applyCoverLetterParams);
 
-  const getPrintDate = () => {
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, "0");
-    const dd = String(now.getDate()).padStart(2, "0");
-    return `${yyyy}-${mm}-${dd}`;
-  };
-
   const applyCoverLetterPrintTitle = () => {
-    document.title = `cover-letter_sk-masum_${getPrintDate()}`;
+    applyPdfPrintTitle(document, "cover-letter");
   };
 
   const bindCoverLetterPrintButton = () => {
