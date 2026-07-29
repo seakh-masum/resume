@@ -171,9 +171,9 @@ const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
         Resume
       </a>
       <button
+        id="cover-letter-print-btn"
         class="cursor-pointer rounded-full border border-print-border bg-print-primary px-3.5 py-1.5 text-[0.85rem] font-semibold text-print-ink shadow-[0_4px_14px_rgba(17,24,39,0.18)]"
         type="button"
-        onclick="window.print()"
       >
         Print Cover Letter
       </button>
@@ -330,4 +330,33 @@ const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
 
   applyCoverLetterParams();
   document.addEventListener("astro:page-load", applyCoverLetterParams);
+
+  const getPrintDate = () => {
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const applyCoverLetterPrintTitle = () => {
+    document.title = `cover-letter_sk-masum_${getPrintDate()}`;
+  };
+
+  const bindCoverLetterPrintButton = () => {
+    const button = document.getElementById("cover-letter-print-btn");
+    if (!button || button.dataset.printBound === "true") {
+      return;
+    }
+
+    button.dataset.printBound = "true";
+    button.addEventListener("click", () => {
+      applyCoverLetterPrintTitle();
+      window.print();
+    });
+  };
+
+  window.addEventListener("beforeprint", applyCoverLetterPrintTitle);
+  bindCoverLetterPrintButton();
+  document.addEventListener("astro:page-load", bindCoverLetterPrintButton);
 </script>

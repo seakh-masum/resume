@@ -32,6 +32,14 @@ import "./download-btn.css";
 <script>
   const PRINT_FRAME_ID = "resume-print-frame";
 
+  const getPrintDate = () => {
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const cleanupPrintFrame = () => {
     const existingFrame = document.getElementById(PRINT_FRAME_ID);
     if (existingFrame) {
@@ -64,6 +72,7 @@ import "./download-btn.css";
       }
 
       // Open browser print dialog for the printable /resume page.
+      printWindow.document.title = `resume_sk-masum_${getPrintDate()}`;
       printWindow.focus();
       printWindow.print();
 
