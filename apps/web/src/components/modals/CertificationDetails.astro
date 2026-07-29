@@ -1,0 +1,44 @@
+---
+import DialogTitle from "../ui/DialogTitle.astro";
+import SubHeading from "../ui/SubHeading.astro";
+import ChipList from "../ui/ChipList.astro";
+import type { Certification } from "@/types/models";
+
+interface Props {
+  data: Certification;
+}
+
+const { data } = Astro.props as Props;
+
+const dateRange = [data?.issueDate, data?.expiryDate]
+  .filter(Boolean)
+  .join(" - ");
+---
+
+<div class="flex flex-col gap-7 text-text">
+  <section>
+    <DialogTitle
+      title={data?.name ?? "Certification"}
+      link={data?.link ?? ""}
+    />
+    {dateRange && <p class="text-text-light mt-2">{dateRange}</p>}
+  </section>
+
+  {
+    data?.issuer && (
+      <section>
+        <SubHeading title="Issuer" />
+        <ChipList data={[data.issuer]} />
+      </section>
+    )
+  }
+
+  {
+    data?.credentialId && (
+      <section>
+        <SubHeading title="Credential ID" />
+        <p class="text-sm mt-2 font-medium">{data.credentialId}</p>
+      </section>
+    )
+  }
+</div>

@@ -35,10 +35,21 @@ export interface Experience {
   desc?: string;
 }
 
+export interface Certification {
+  _key?: string;
+  name?: string;
+  issuer?: string;
+  issueDate?: string;
+  expiryDate?: string;
+  credentialId?: string;
+  link?: string;
+}
+
 export type ResumeProfile = Profile;
 export type ResumeContact = Contact;
 export type ResumeEducation = Education;
 export type ResumeExperience = Experience;
+export type ResumeCertification = Certification;
 
 export interface ResumeData {
   profile: Profile;
@@ -47,6 +58,7 @@ export interface ResumeData {
   tools: Skill[];
   experience: Experience[];
   education: Education[];
+  certifications: Certification[];
   projects: Project[];
   hobbies: Hobby[];
 }
@@ -61,5 +73,6 @@ export type ResumeSkills = ResumeData["skills"];
 export type ResumeTools = ResumeData["tools"];
 export type ResumeExperienceList = ResumeData["experience"];
 export type ResumeEducationList = ResumeData["education"];
+export type ResumeCertifications = ResumeData["certifications"];
 export type ResumeProjects = ResumeData["projects"];
 export type ResumeHobbies = ResumeData["hobbies"];

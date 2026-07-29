@@ -1,0 +1,59 @@
+---
+import Modal from "../../ui/Modal.astro";
+import CertificationDetails from "../../modals/CertificationDetails.astro";
+import type { Certification } from "@/types/models";
+
+type Props = {
+  data: Certification[];
+};
+
+const { data } = Astro.props as Props;
+---
+
+<ul class="grid gap-4 sm:grid-cols-2 grid-cols-1 pt-3">
+  {
+    data.map((item, index) => (
+      <li
+        class="
+          bg-surface list-none py-4 px-5 rounded-xl
+          relative overflow-hidden
+          transition-all duration-300 ease-out
+          hover:-translate-y-1.5 hover:scale-[1.03]
+          hover:shadow-[0_4px_15px_rgba(59,130,246,0.5),0_0_20px_rgba(59,130,246,0.3)]
+          hover:bg-hover
+          active:scale-[0.97]
+        "
+      >
+        <Modal id={item._key || `cert-${index}`} type="certification">
+          <span
+            slot="trigger"
+            class="block focus:outline-none focus:ring-2 focus:ring-primary rounded-md"
+          >
+            <b
+              class="
+                text-text text-base block mb-1 relative
+                bg-size-[0%_2px]
+                bg-no-repeat bg-bottom-left
+                transition-[background-size] duration-300 ease-out
+                hover:bg-size-[100%_2px]
+              "
+              style="background-image: linear-gradient(90deg, #3b82f6, #0ea5e9);"
+            >
+              {item.name}
+            </b>
+
+            {item.issuer && <p class="text-text text-xs">{item.issuer}</p>}
+
+            {(item.issueDate || item.expiryDate) && (
+              <p class="text-text-light text-xs mt-1">
+                {[item.issueDate, item.expiryDate].filter(Boolean).join(" - ")}
+              </p>
+            )}
+          </span>
+
+          <CertificationDetails slot="content" data={item} />
+        </Modal>
+      </li>
+    ))
+  }
+</ul>

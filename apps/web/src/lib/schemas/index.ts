@@ -8,6 +8,7 @@ import { hobby } from "./objects/hobby";
 import { experience } from "./objects/experience";
 import { project } from "./objects/project";
 import { education } from "./objects/education";
+import { certification } from "./objects/certification";
 
 import { type SchemaTypeDefinition } from "sanity";
 // import resume from "./resume";
@@ -23,5 +24,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     experience,
     project,
     education,
+    certification,
   ],
 };

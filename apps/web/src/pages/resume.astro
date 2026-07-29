@@ -14,6 +14,7 @@ import AdditionalDetailsSection from "@/components/print-template/AdditionalDeta
 import type {
   ResumeData,
   ResumeEducationList,
+  ResumeCertifications,
   ResumeExperience,
   ResumeExperienceList,
   ResumeHobbies,
@@ -21,7 +22,11 @@ import type {
   ResumeSkills,
   ResumeTools,
 } from "@/types/models";
-import type { ExperienceItem, ProjectItem } from "@/types/features";
+import type {
+  CertificationPrintItem,
+  ExperienceItem,
+  ProjectItem,
+} from "@/types/features";
 
 const resume = (await sanity.fetch(resumeQuery)) as ResumeData;
 
@@ -30,6 +35,7 @@ const contacts = (resume?.contacts ?? []).slice(0, 3);
 const skills: ResumeSkills = (resume?.skills ?? []).slice(0, 7);
 const experience: ResumeExperienceList = (resume?.experience ?? []).slice(0, 3);
 const education: ResumeEducationList = (resume?.education ?? []).slice(0, 3);
+const certifications: ResumeCertifications = resume?.certifications ?? [];
 const projects: ResumeProjects = resume?.projects ?? [];
 const tools: ResumeTools = resume?.tools ?? [];
 const hobbies: ResumeHobbies = resume?.hobbies ?? [];
@@ -89,6 +95,15 @@ const projectItems: ProjectItem[] = projects.slice(0, 6).map((item) => ({
       ? item.techStacks.slice(0, 6).join(", ")
       : "",
 }));
+
+const certificationItems: CertificationPrintItem[] = certifications
+  .slice(0, 12)
+  .map((item) => ({
+    name: item?.name || "Certification",
+    issuer: item?.issuer,
+    dateRange: [item?.issueDate, item?.expiryDate].filter(Boolean).join(" - "),
+    credentialId: item?.credentialId,
+  }));
 ---
 
 <BaseLayout>
@@ -126,7 +141,7 @@ const projectItems: ProjectItem[] = projects.slice(0, 6).map((item) => ({
     </div>
 
     <article
-      class="mx-auto box-border min-h-0 w-full max-w-[194mm] rounded-none border-0 bg-print-bg p-[5.2mm_4.6mm] text-[93%] text-print-base shadow-none max-[900px]:border max-[900px]:border-print-primary/60 print:border-0"
+      class="resume-print-page resume-print-page--first mx-auto box-border min-h-0 w-full max-w-[194mm] rounded-none border-0 bg-print-bg p-[5.2mm_4.6mm] text-[93%] text-print-base shadow-none max-[900px]:border max-[900px]:border-print-primary/60 print:border-0"
     >
       <TopSection
         firstName={firstName}
@@ -145,16 +160,17 @@ const projectItems: ProjectItem[] = projects.slice(0, 6).map((item) => ({
     </article>
 
     <article
-      class="relative mx-auto mt-0 box-border min-h-[calc(297mm-16mm)] w-full max-w-[194mm] break-before-auto rounded-none border-0 bg-print-bg p-[5.2mm_4.6mm] pb-[12mm] text-[93%] text-print-base shadow-none max-[900px]:border max-[900px]:border-print-primary/60 print:border-0 print:break-before-page"
+      class="resume-print-page resume-print-page--second relative mx-auto mt-0 box-border min-h-[calc(297mm-16mm)] w-full max-w-[194mm] break-before-auto rounded-none border-0 bg-print-bg p-[5.2mm_4.6mm] pb-[12mm] text-[93%] text-print-base shadow-none max-[900px]:border max-[900px]:border-print-primary/60 print:min-h-0 print:border-0 print:break-before-page"
     >
       <AdditionalDetailsSection
         projects={projectItems}
         tools={tools}
+        certifications={certificationItems}
         hobbies={hobbies}
         skills={skills}
       />
       <p
-        class="absolute bottom-[5.2mm] right-[4.6mm] m-0 text-right text-[3.2mm] tracking-[0.02em] text-print-muted"
+        class="resume-print-updated-at absolute bottom-[5.2mm] right-[4.6mm] m-0 text-right text-[3.2mm] tracking-[0.02em] text-print-muted print:static print:mt-[4mm]"
       >
         Last updated on: {currentDate}
       </p>

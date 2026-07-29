@@ -7,16 +7,23 @@ import {
   LEFT_COLUMN_CLASS,
   TWO_COLUMN_SECTION_CLASS,
 } from "@/components/print-template/classNames";
-import type { NameItem, ProjectItem, SkillItem } from "@/types/features";
+import type {
+  CertificationPrintItem,
+  NameItem,
+  ProjectItem,
+  SkillItem,
+} from "@/types/features";
 
 interface Props {
   projects: ProjectItem[];
   tools: NameItem[];
   hobbies: NameItem[];
   skills: SkillItem[];
+  certifications: CertificationPrintItem[];
 }
 
-const { projects, tools, hobbies, skills } = Astro.props as Props;
+const { projects, tools, hobbies, skills, certifications } =
+  Astro.props as Props;
 ---
 
 <section class="mt-[8mm]">
@@ -45,6 +52,29 @@ const { projects, tools, hobbies, skills } = Astro.props as Props;
         containerClassName="mt-[4.8mm]"
         limit={8}
       />
+      {
+        certifications.length > 0 && (
+          <section class="mt-[4.8mm] mb-[4.4mm]">
+            <SectionTitle text="Certifications" />
+            <ul class="m-0 list-outside list-disc pl-[4.5mm] marker:text-print-subtle">
+              {certifications.slice(0, 12).map((item) => (
+                <li class="mb-[1.8mm] pl-[0.6mm]">
+                  <p class="m-0 wrap-break-word text-[3.35mm] leading-[1.38] text-print-base">
+                    {item?.name || "Certification"}
+                  </p>
+                  {(item?.issuer || item?.dateRange) && (
+                    <p class="m-[0.4mm_0_0] wrap-break-word text-[3.05mm] leading-[1.35] text-print-muted">
+                      {[item?.issuer, item?.dateRange]
+                        .filter(Boolean)
+                        .join(" | ")}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
     </aside>
 
     <section class={DIVIDER_PANEL_CLASS}>
