@@ -1,0 +1,22 @@
+---
+interface Props {
+  value: string;
+  valueId?: string;
+  className?: string;
+  align?: "center" | "start";
+}
+
+const {
+  value,
+  valueId,
+  className = "m-0",
+  align = "center",
+} = Astro.props as Props;
+
+const alignmentClass = align === "start" ? "items-start" : "items-center";
+---
+
+<p class={`${className} flex ${alignmentClass} gap-[1.2mm] text-print-muted`}>
+  <slot name="icon" />
+  <span id={valueId}>{value}</span>
+</p>

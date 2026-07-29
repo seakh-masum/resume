@@ -6,6 +6,7 @@ export interface Profile {
   image?: any;
   introduction?: string;
   summary?: string[];
+  location?: string;
 }
 
 export interface Contact {

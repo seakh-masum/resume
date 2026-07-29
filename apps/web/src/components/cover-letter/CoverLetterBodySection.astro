@@ -1,10 +1,13 @@
 ---
+import CoverLetterMetaLine from "@/components/cover-letter/CoverLetterMetaLine.astro";
+
 interface Props {
   recipientName: string;
   recipientRole: string;
   recipientCompany: string;
   phoneValue: string;
   recipientLocation: string;
+  location: string;
   fullName: string;
   role: string;
   salutation: string;
@@ -20,6 +23,7 @@ const {
   recipientCompany,
   phoneValue,
   recipientLocation,
+  location,
   fullName,
   role,
   salutation,
@@ -32,7 +36,7 @@ const {
 
 <section class="flex-1">
   <div
-    class="grid h-full grid-cols-[52mm_minmax(0,1fr)] border-x border-b border-print-border/40 max-[900px]:grid-cols-1 print:grid-cols-[52mm_minmax(0,1fr)]"
+    class="grid h-full grid-cols-[52mm_minmax(0,1fr)] max-[900px]:grid-cols-1 print:grid-cols-[52mm_minmax(0,1fr)]"
   >
     <aside
       class="h-full border-r border-print-border/40 p-[5mm_4mm] max-[900px]:border-r-0 max-[900px]:border-b print:border-r print:border-b-0"
@@ -54,18 +58,17 @@ const {
       >
         {recipientRole}
       </p>
-      <p
+      <CoverLetterMetaLine
         id="cl-company"
-        class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted"
-      >
-        {recipientCompany}
-      </p>
-      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
-        {phoneValue}
-      </p>
-      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
-        {recipientLocation}
-      </p>
+        value={recipientCompany}
+        className="m-[0.7mm_0_0]"
+      />
+      <CoverLetterMetaLine value={phoneValue} className="m-[0.7mm_0_0]" />
+      <CoverLetterMetaLine
+        id="cl-recipient-location-to"
+        value={recipientLocation}
+        className="m-[0.7mm_0_0]"
+      />
 
       <h3
         class="m-[12mm_0_0] text-[7mm] font-bold uppercase tracking-[0.03em] text-print-ink"
@@ -77,15 +80,13 @@ const {
       >
         {fullName}
       </p>
-      <p class="m-[0.8mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
-        {role}
-      </p>
-      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
-        {phoneValue}
-      </p>
-      <p class="m-[0.7mm_0_0] text-[3.35mm] leading-[1.4] text-print-muted">
-        {recipientLocation}
-      </p>
+      <CoverLetterMetaLine value={role} className="m-[0.8mm_0_0]" />
+      <CoverLetterMetaLine value={phoneValue} className="m-[0.7mm_0_0]" />
+      <CoverLetterMetaLine
+        id="cl-location"
+        value={location}
+        className="m-[0.7mm_0_0]"
+      />
     </aside>
 
     <div class="p-[5mm_6mm_6mm]">
@@ -112,14 +113,18 @@ const {
       <div
         class="mt-[4.5mm] space-y-[4.2mm] text-[3.45mm] leading-[1.7] text-print-base"
       >
-        <p id="cl-paragraph-1" class="m-0 text-justify">{paragraphOne}</p>
-        <p id="cl-paragraph-2" class="m-0 text-justify">{paragraphTwo}</p>
+        <p id="cl-paragraph-1" class="m-0 mb-[3mm] text-justify">
+          {paragraphOne}
+        </p>
+        <p id="cl-paragraph-2" class="m-0 mb-[3mm] text-justify">
+          {paragraphTwo}
+        </p>
         <p id="cl-paragraph-3" class="m-0 text-justify">{paragraphThree}</p>
       </div>
 
       <footer class="mt-[12mm]">
         <p class="m-0 text-[4.05mm] font-semibold text-print-strong">
-          Signature
+          Sincerely,
         </p>
         <p class="m-[0.8mm_0_0] text-[3.4mm] text-print-muted">{fullName}</p>
         <p

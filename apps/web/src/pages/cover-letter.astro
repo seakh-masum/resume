@@ -3,26 +3,66 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { sanity } from "@/lib/sanity";
 import { resumeQuery } from "@/lib/queries";
 import { getImage } from "@/utils/feature.util";
+import { renderTemplate } from "@/utils/template.util";
 import CoverLetterTopSection from "@/components/cover-letter/CoverLetterTopSection.astro";
 import CoverLetterContactStrip from "@/components/cover-letter/CoverLetterContactStrip.astro";
 import CoverLetterBodySection from "@/components/cover-letter/CoverLetterBodySection.astro";
-import {
-  getEmailContact,
-  getPhoneContact,
-  getWebsiteContact,
-} from "@/utils/contact.util";
+import { getEmailContact, getPhoneContact } from "@/utils/contact.util";
 import type { ResumeData } from "@/types/models";
 import { currentDate } from "@/utils/date.util";
 
 const resume = (await sanity.fetch(resumeQuery)) as ResumeData;
 
-const profile = resume?.profile ?? {};
+const profile = (resume?.profile ?? {}) as ProfileWithLegacyLocation;
 const contacts = resume?.contacts ?? [];
-const experiences = resume?.experience ?? [];
+const experiences: ExperienceLike[] = resume?.experience ?? [];
 const skills = resume?.skills ?? [];
 
-const fullName = (profile?.name ?? "Your Name").trim();
-const role = profile?.title ?? "UI/UX Designer";
+const DEFAULTS = {
+  fullName: "Your Name",
+  role: "UI/UX Designer",
+  recipientName: "Hiring Manager",
+  recipientRole: "Talent Acquisition Team",
+  recipientCompany: "Company Name",
+  recipientLocation: "State, Country, 12345",
+  salutation: "Dear Sir,",
+  jobTitle: "Software Engineer",
+  primarySkill: "frontend development",
+  secondarySkill: "problem-solving",
+  latestAccomplishment:
+    "delivered measurable improvements across product experiences",
+  lastCompany: "your most recent company",
+  profileLocation: "City, State, Country, 12345",
+} as const;
+
+type ProfileWithLegacyLocation = {
+  name?: string;
+  title?: string;
+  introduction?: string;
+  summary?: string[];
+  image?: any;
+  location?: string;
+  lcaotion?: string;
+};
+
+type ExperienceLike = {
+  joiningDate?: string;
+  releaseDate?: string;
+  designation?: string;
+  company?: string;
+  roles?: string[];
+  desc?: string;
+};
+
+const PARAGRAPH_TEMPLATES = {
+  one: "I am writing to express my strong interest in the {{jobTitle}} position at {{recipientCompany}}. With a solid background in frontend technology and a proven track record of {{primarySkill}} and {{secondarySkill}}, I am confident in my ability to make an immediate and positive impact on your team.",
+  two: "In my most recent role as a {{currentJobTitle}} at {{lastCompany}}, I successfully {{latestAccomplishment}}. My experience has equipped me with a deep understanding of {{relevantTech}}, which aligns perfectly with the requirements of this role.",
+  three:
+    "I would welcome the opportunity to discuss how my background, skills, and certifications can contribute to the continued success of {{recipientCompany}}. Thank you for considering my application. I have attached my resume for your review and look forward to the possibility of an interview.",
+} as const;
+
+const fullName = (profile?.name ?? DEFAULTS.fullName).trim();
+const role = profile?.title ?? DEFAULTS.role;
 const initials =
   fullName
     .split(" ")
@@ -34,7 +74,6 @@ const initials =
 const heroImage = profile?.image ? getImage(profile.image, 560, 560) : "";
 const phoneContact = getPhoneContact(contacts);
 const emailContact = getEmailContact(contacts);
-const websiteContact = getWebsiteContact(contacts);
 
 const params = Astro.url.searchParams;
 
@@ -49,30 +88,38 @@ const toSortableTime = (value?: string) => {
   return Number.isNaN(parsed) ? 0 : parsed;
 };
 
-const latestExperience = [...experiences].sort((a, b) => {
-  const aTime = toSortableTime(a?.releaseDate || a?.joiningDate);
-  const bTime = toSortableTime(b?.releaseDate || b?.joiningDate);
-  return bTime - aTime;
-})[0];
+const getLatestExperience = (items: ExperienceLike[]) => {
+  return items.reduce<ExperienceLike | undefined>((latest, item) => {
+    if (!latest) return item;
+    const latestTime = toSortableTime(
+      latest?.releaseDate || latest?.joiningDate,
+    );
+    const itemTime = toSortableTime(item?.releaseDate || item?.joiningDate);
+    return itemTime > latestTime ? item : latest;
+  }, undefined);
+};
+
+const latestExperience = getLatestExperience(experiences);
 
 const currentJobTitle = latestExperience?.designation || role;
-const lastCompany = latestExperience?.company || "your most recent company";
-const primarySkill = skills[0]?.name || "frontend development";
-const secondarySkill = skills[1]?.name || "problem-solving";
+const lastCompany = latestExperience?.company || DEFAULTS.lastCompany;
+const primarySkill = skills[0]?.name || DEFAULTS.primarySkill;
+const secondarySkill = skills[1]?.name || DEFAULTS.secondarySkill;
 const latestAccomplishment =
   latestExperience?.roles?.[0] ||
   latestExperience?.desc ||
-  "delivered measurable improvements across product experiences";
+  DEFAULTS.latestAccomplishment;
 
-const recipientName = getParam("to", "Hiring Manager");
-const recipientRole = getParam("role", "Talent Acquisition Team");
+const recipientName = getParam("to", DEFAULTS.recipientName);
+const recipientRole = getParam("role", DEFAULTS.recipientRole);
 const recipientCompany = getParam(
   "company",
-  latestExperience?.company || "Company Name",
+  latestExperience?.company || DEFAULTS.recipientCompany,
 );
-const recipientLocation = getParam("location", "State, Country, 12345");
-const salutation = getParam("greeting", "Dear Sir,");
-const jobTitle = getParam("jobTitle", recipientRole || "Software Engineer");
+const recipientLocation = getParam("location", DEFAULTS.recipientLocation);
+const salutation = getParam("greeting", DEFAULTS.salutation);
+const jobTitle = getParam("jobTitle", recipientRole || DEFAULTS.jobTitle);
+const relevantTech = getParam("relevantTech", primarySkill);
 
 const introSummary = profile?.introduction || "";
 const summaryText = Array.isArray(profile?.summary)
@@ -89,11 +136,25 @@ const clipText = (value: string, maxLength: number) => {
 
 const aboutMeText = clipText(mergedBio, 340);
 
-const paragraphOne = `I am writing to express my strong interest in the ${jobTitle} position at ${recipientCompany}. With a solid background in frontend technology and a proven track record of ${primarySkill} and ${secondarySkill}, I am confident in my ability to make an immediate and positive impact on your team.`;
+// Backward-compatible fallback for legacy typo in stored profile data.
+const profileLocation =
+  profile?.location || profile?.lcaotion || DEFAULTS.profileLocation;
 
-const paragraphTwo = `In my most recent role as a ${currentJobTitle} at ${lastCompany}, I successfully ${latestAccomplishment}. My experience has equipped me with a deep understanding of [Hard Skill/Technology relevant to the job], which aligns perfectly with the requirements of this role.`;
-
-const paragraphThree = `I would welcome the opportunity to discuss how my background, skills, and certifications can contribute to the continued success of ${recipientCompany}. Thank you for considering my application. I have attached my resume for your review and look forward to the possibility of an interview.`;
+const paragraphOne = renderTemplate(PARAGRAPH_TEMPLATES.one, {
+  jobTitle,
+  recipientCompany,
+  primarySkill,
+  secondarySkill,
+});
+const paragraphTwo = renderTemplate(PARAGRAPH_TEMPLATES.two, {
+  currentJobTitle,
+  lastCompany,
+  latestAccomplishment,
+  relevantTech,
+});
+const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
+  recipientCompany,
+});
 ---
 
 <BaseLayout>
@@ -119,7 +180,7 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
     </div>
 
     <article
-      class="mx-auto box-border flex min-h-[calc(297mm-16mm)] w-full max-w-[194mm] flex-col border-0 bg-print-bg p-[5.2mm_4.6mm] text-[93%] text-print-base shadow-none max-[900px]:border-0 print:border-0 print:p-0"
+      class="mx-auto box-border flex h-[297mm] min-h-[297mm] w-full max-w-[210mm] flex-col border-0 bg-print-bg p-0 text-[93%] text-print-base shadow-none max-[900px]:h-auto max-[900px]:min-h-0 max-[900px]:border-0 print:h-[297mm] print:min-h-[297mm] print:border-0 print:p-0"
     >
       <CoverLetterTopSection
         fullName={fullName}
@@ -132,7 +193,7 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
       <CoverLetterContactStrip
         phoneValue={phoneContact?.value || "+000 0000 0000"}
         emailValue={emailContact?.value || "www.example.com"}
-        recipientLocation={recipientLocation}
+        location={profileLocation}
       />
 
       <CoverLetterBodySection
@@ -148,6 +209,7 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
         paragraphOne={paragraphOne}
         paragraphTwo={paragraphTwo}
         paragraphThree={paragraphThree}
+        location={profileLocation}
       />
 
       <div
@@ -155,9 +217,13 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
         hidden
         data-primary-skill={primarySkill}
         data-secondary-skill={secondarySkill}
+        data-relevant-tech={relevantTech}
         data-current-job-title={currentJobTitle}
         data-last-company={lastCompany}
         data-latest-accomplishment={latestAccomplishment}
+        data-paragraph-one-template={PARAGRAPH_TEMPLATES.one}
+        data-paragraph-two-template={PARAGRAPH_TEMPLATES.two}
+        data-paragraph-three-template={PARAGRAPH_TEMPLATES.three}
       >
       </div>
     </article>
@@ -169,13 +235,30 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
 </style>
 
 <script>
+  import { renderTemplate } from "@/utils/template.util";
+
+  const DEFAULTS = {
+    jobTitle: "Software Engineer",
+    recipientCompany: "Company Name",
+    primarySkill: "frontend development",
+    secondarySkill: "problem-solving",
+    latestAccomplishment:
+      "delivered measurable improvements across product experiences",
+    paragraphOneTemplate:
+      "I am writing to express my strong interest in the {{jobTitle}} position at {{recipientCompany}}. With a solid background in frontend technology and a proven track record of {{primarySkill}} and {{secondarySkill}}, I am confident in my ability to make an immediate and positive impact on your team.",
+    paragraphTwoTemplate:
+      "In my most recent role as a {{currentJobTitle}} at {{lastCompany}}, I successfully {{latestAccomplishment}}. My experience has equipped me with a deep understanding of {{relevantTech}}, which aligns perfectly with the requirements of this role.",
+    paragraphThreeTemplate:
+      "I would welcome the opportunity to discuss how my background, skills, and certifications can contribute to the continued success of {{recipientCompany}}. Thank you for considering my application. I have attached my resume for your review and look forward to the possibility of an interview.",
+  };
+
   const applyCoverLetterParams = () => {
     const params = new URLSearchParams(window.location.search);
     const mapping = [
       { param: "to", id: "cl-to" },
       { param: "role", id: "cl-to-role" },
       { param: "company", id: "cl-company" },
-      { param: "location", id: "cl-location" },
+      { param: "location", id: "cl-recipient-location-to" },
       { param: "greeting", id: "cl-salutation" },
     ];
 
@@ -189,9 +272,10 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
 
     const meta = document.getElementById("cl-template-meta");
     const paragraphOne = document.getElementById("cl-paragraph-1");
+    const paragraphTwo = document.getElementById("cl-paragraph-2");
     const paragraphThree = document.getElementById("cl-paragraph-3");
 
-    if (!meta || !paragraphOne || !paragraphThree) {
+    if (!meta || !paragraphOne || !paragraphTwo || !paragraphThree) {
       return;
     }
 
@@ -202,14 +286,46 @@ const paragraphThree = `I would welcome the opportunity to discuss how my backgr
       ?.textContent?.trim();
 
     const jobTitle =
-      params.get("jobTitle")?.trim() || roleText || "Software Engineer";
-    const recipientCompany = companyText || "Company Name";
-    const primarySkill = dataset.primarySkill || "frontend development";
-    const secondarySkill = dataset.secondarySkill || "problem-solving";
+      params.get("jobTitle")?.trim() || roleText || DEFAULTS.jobTitle;
+    const recipientCompany = companyText || DEFAULTS.recipientCompany;
+    const primarySkill = dataset.primarySkill || DEFAULTS.primarySkill;
+    const secondarySkill = dataset.secondarySkill || DEFAULTS.secondarySkill;
+    const relevantTech =
+      params.get("relevantTech")?.trim() ||
+      dataset.relevantTech ||
+      primarySkill ||
+      DEFAULTS.primarySkill;
+    const currentJobTitle =
+      dataset.currentJobTitle || roleText || DEFAULTS.jobTitle;
+    const lastCompany = dataset.lastCompany || recipientCompany;
+    const latestAccomplishment =
+      dataset.latestAccomplishment || DEFAULTS.latestAccomplishment;
+    const paragraphOneTemplate =
+      dataset.paragraphOneTemplate || DEFAULTS.paragraphOneTemplate;
+    const paragraphTwoTemplate =
+      dataset.paragraphTwoTemplate || DEFAULTS.paragraphTwoTemplate;
+    const paragraphThreeTemplate =
+      dataset.paragraphThreeTemplate || DEFAULTS.paragraphThreeTemplate;
 
-    paragraphOne.textContent = `I am writing to express my strong interest in the ${jobTitle} position at ${recipientCompany}. With a solid background in frontend technology and a proven track record of ${primarySkill} and ${secondarySkill}, I am confident in my ability to make an immediate and positive impact on your team.`;
+    const paragraphOneText = renderTemplate(paragraphOneTemplate, {
+      jobTitle,
+      recipientCompany,
+      primarySkill,
+      secondarySkill,
+    });
+    const paragraphTwoText = renderTemplate(paragraphTwoTemplate, {
+      currentJobTitle,
+      lastCompany,
+      latestAccomplishment,
+      relevantTech,
+    });
+    const paragraphThreeText = renderTemplate(paragraphThreeTemplate, {
+      recipientCompany,
+    });
 
-    paragraphThree.textContent = `I would welcome the opportunity to discuss how my background, skills, and certifications can contribute to the continued success of ${recipientCompany}. Thank you for considering my application. I have attached my resume for your review and look forward to the possibility of an interview.`;
+    paragraphOne.textContent = paragraphOneText;
+    paragraphTwo.textContent = paragraphTwoText;
+    paragraphThree.textContent = paragraphThreeText;
   };
 
   applyCoverLetterParams();

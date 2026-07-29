@@ -63,6 +63,8 @@ const companyPlaceholder = experience[0]?.company || "Company Name";
 const locationPlaceholder = websiteContact?.value || "State, Country, 12345";
 const salutationPlaceholder = "Dear Sir,";
 const jobTitlePlaceholder = roleLine;
+const relevantTechPlaceholder =
+  skills[0]?.name || tools[0]?.name || "React, TypeScript";
 
 const experienceItems: ExperienceItem[] = experience.map(
   (item: ResumeExperience) => ({
@@ -111,6 +113,7 @@ const projectItems: ProjectItem[] = projects.slice(0, 6).map((item) => ({
           locationPlaceholder={locationPlaceholder}
           salutationPlaceholder={salutationPlaceholder}
           jobTitlePlaceholder={jobTitlePlaceholder}
+          relevantTechPlaceholder={relevantTechPlaceholder}
         />
       </Modal>
       <button

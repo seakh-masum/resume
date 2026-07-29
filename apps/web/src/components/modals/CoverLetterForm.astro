@@ -6,6 +6,7 @@ interface Props {
   locationPlaceholder?: string;
   salutationPlaceholder?: string;
   jobTitlePlaceholder?: string;
+  relevantTechPlaceholder?: string;
 }
 
 const {
@@ -15,12 +16,13 @@ const {
   locationPlaceholder = "State, Country, 12345",
   salutationPlaceholder = "Dear Sir,",
   jobTitlePlaceholder = "Software Engineer",
+  relevantTechPlaceholder = "React, TypeScript",
 } = Astro.props as Props;
 ---
 
 <form
   class="space-y-3"
-  onsubmit="event.preventDefault(); const form = event.currentTarget; const fd = new FormData(form); const params = new URLSearchParams(); const getValue = (name) => { const input = form.querySelector('[name=' + name + ']'); const typed = String(fd.get(name) || '').trim(); const hinted = String(input?.placeholder || '').trim(); return typed || hinted; }; const ro = getValue('ro'); const role = getValue('role'); const company = getValue('company'); const location = getValue('location'); const salutation = getValue('salutation'); const jobTitle = getValue('jobTitle'); if (ro) params.set('to', ro); if (role) params.set('role', role); if (company) params.set('company', company); if (location) params.set('location', location); if (salutation) params.set('greeting', salutation); if (jobTitle) params.set('jobTitle', jobTitle); window.location.href = '/cover-letter?' + params.toString();"
+  onsubmit="event.preventDefault(); const form = event.currentTarget; const fd = new FormData(form); const params = new URLSearchParams(); const getValue = (name) => { const input = form.querySelector('[name=' + name + ']'); const typed = String(fd.get(name) || '').trim(); const hinted = String(input?.placeholder || '').trim(); return typed || hinted; }; const ro = getValue('ro'); const role = getValue('role'); const company = getValue('company'); const location = getValue('location'); const salutation = getValue('salutation'); const jobTitle = getValue('jobTitle'); const relevantTech = getValue('relevantTech'); if (ro) params.set('to', ro); if (role) params.set('role', role); if (company) params.set('company', company); if (location) params.set('location', location); if (salutation) params.set('greeting', salutation); if (jobTitle) params.set('jobTitle', jobTitle); if (relevantTech) params.set('relevantTech', relevantTech); window.location.href = '/cover-letter?' + params.toString();"
 >
   <h3 class="m-0 text-lg font-semibold text-text">Cover Letter Details</h3>
   <p class="m-0 text-sm text-text-light">
@@ -93,6 +95,20 @@ const {
       name="jobTitle"
       type="text"
       placeholder={jobTitlePlaceholder}
+      class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
+    />
+  </label>
+
+  <label
+    class="flex flex-col gap-1.5 text-sm font-medium text-text"
+    for="cl-relevant-tech"
+  >
+    Relevant Tech
+    <input
+      id="cl-relevant-tech"
+      name="relevantTech"
+      type="text"
+      placeholder={relevantTechPlaceholder}
       class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
     />
   </label>

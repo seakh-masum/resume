@@ -12,12 +12,12 @@ const { fullName, role, heroImage, initials, aboutMeText } =
 ---
 
 <header
-  class="grid grid-cols-[52mm_minmax(0,1fr)] border-x border-b border-print-border/40 max-[900px]:grid-cols-1 print:grid-cols-[52mm_minmax(0,1fr)]"
+  class="grid grid-cols-[52mm_minmax(0,1fr)] border-b border-print-border/40 max-[900px]:grid-cols-1 print:grid-cols-[52mm_minmax(0,1fr)]"
 >
   <div
     class="grid place-items-center border-r border-print-border/40 p-[6mm] max-[900px]:border-r-0 print:border-r print:border-print-border/40"
   >
-    <div class="h-[44mm] w-[44mm] overflow-hidden">
+    <div class="overflow-hidden">
       {
         heroImage ? (
           <img
@@ -36,9 +36,7 @@ const { fullName, role, heroImage, initials, aboutMeText } =
     </div>
   </div>
 
-  <div
-    class="border-l border-print-border/40 p-[6mm] max-[900px]:border-l-0 print:border-l print:border-print-border/40"
-  >
+  <div class="p-[6mm]">
     <h1
       class="m-0 font-mono text-[11.2mm] font-bold uppercase leading-none tracking-[0.02em] text-print-ink"
     >
