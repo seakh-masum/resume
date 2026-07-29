@@ -3,8 +3,9 @@ import "./download-btn.css";
 ---
 
 <div class="fixed bottom-3 right-3 z-50">
-  <a
-    href="/print-template"
+  <button
+    type="button"
+    id="download-resume-btn"
     aria-label="Download Resume"
     class="download-btn
       grid place-content-center
@@ -25,5 +26,66 @@ import "./download-btn.css";
         d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"
       ></path>
     </svg>
-  </a>
+  </button>
 </div>
+
+<script>
+  const PRINT_FRAME_ID = "resume-print-frame";
+
+  const cleanupPrintFrame = () => {
+    const existingFrame = document.getElementById(PRINT_FRAME_ID);
+    if (existingFrame) {
+      existingFrame.remove();
+    }
+  };
+
+  const openPrintablePdfDialog = () => {
+    cleanupPrintFrame();
+
+    const frame = document.createElement("iframe");
+    frame.id = PRINT_FRAME_ID;
+    frame.src = "/resume";
+    frame.style.position = "fixed";
+    frame.style.left = "-9999px";
+    frame.style.top = "0";
+    // Keep a desktop-sized viewport so mobile breakpoints do not affect printable layout.
+    frame.style.width = "1200px";
+    frame.style.height = "1600px";
+    frame.style.border = "0";
+    frame.style.opacity = "0";
+    frame.style.pointerEvents = "none";
+
+    frame.addEventListener("load", () => {
+      const printWindow = frame.contentWindow;
+      if (!printWindow) {
+        cleanupPrintFrame();
+        window.location.href = "/resume";
+        return;
+      }
+
+      // Open browser print dialog for the printable /resume page.
+      printWindow.focus();
+      printWindow.print();
+
+      // Fallback cleanup if afterprint does not fire for the iframe.
+      setTimeout(cleanupPrintFrame, 1500);
+    });
+
+    document.body.appendChild(frame);
+  };
+
+  const bindDownloadButton = () => {
+    const button = document.getElementById("download-resume-btn");
+    if (!button || button.dataset.downloadBound === "true") {
+      return;
+    }
+
+    button.dataset.downloadBound = "true";
+    button.addEventListener("click", () => {
+      openPrintablePdfDialog();
+    });
+  };
+
+  bindDownloadButton();
+  document.addEventListener("astro:page-load", bindDownloadButton);
+</script>
