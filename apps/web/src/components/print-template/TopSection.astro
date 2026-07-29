@@ -1,0 +1,119 @@
+---
+import SectionTitle from "@/components/print-template/SectionTitle.astro";
+import PrintContactList from "@/components/features/PrintContactList.astro";
+import type { HeaderContact } from "@/types/features";
+
+interface Props {
+  firstName: string;
+  lastName: string;
+  headerContacts: HeaderContact[];
+  heroImage: string;
+  fullName: string;
+  roleLine: string;
+  totalExperienceYears: number;
+  totalExperienceMonths: number;
+  profileSummary: string;
+}
+
+const {
+  firstName,
+  lastName,
+  headerContacts,
+  heroImage,
+  fullName,
+  roleLine,
+  totalExperienceYears,
+  totalExperienceMonths,
+  profileSummary,
+} = Astro.props as Props;
+---
+
+<header
+  class="grid grid-cols-[62mm_minmax(0,1fr)] items-start gap-x-[6.7mm] gap-y-[1.05mm] max-[900px]:grid-cols-1 print:grid-cols-[62mm_minmax(0,1fr)] print:gap-x-[6.7mm]"
+>
+  <div
+    class="col-span-2 grid grid-cols-[62mm_minmax(0,1fr)] items-start gap-x-[6.7mm] max-[900px]:grid-cols-1 print:grid-cols-[62mm_minmax(0,1fr)] print:gap-x-[6.7mm]"
+  >
+    <p
+      class="leading-none tracking-[0.245em] uppercase text-[13mm] font-extrabold text-print-ink"
+    >
+      {firstName}
+    </p>
+
+    <div
+      class="relative flex min-h-[13mm] min-w-0 flex-col justify-start border-l-[0.42mm] border-solid border-print-border pl-[4.4mm] pt-[1.1mm] before:content-none after:content-none max-[900px]:border-l-0 max-[900px]:pl-0 print:border-l-[0.42mm] print:pl-[4.4mm]"
+    >
+      <PrintContactList
+        contacts={headerContacts}
+        listClassName="m-0 list-none p-0 text-[4mm] leading-[1.34] tracking-[0.03em] text-print-muted"
+        itemClassName="wrap-break-word"
+        iconClassName="h-[3.6mm] w-[3.6mm] text-print-strong"
+        rowSpacingClassName="mt-[0.35mm]"
+      />
+    </div>
+  </div>
+
+  <div class="col-span-2 max-[900px]:col-auto print:col-span-2">
+    <h1
+      class="m-[5mm_0_5mm] text-[18.5mm] leading-[0.92] tracking-[0.4em] font-thin uppercase font-montserrat text-print-strong"
+    >
+      {lastName}
+    </h1>
+  </div>
+
+  <div
+    class="relative -right-[1mm] h-[85mm] w-[64mm] max-[900px]:h-[64mm] max-[900px]:w-[52mm] print:h-[80mm] print:w-[62mm]"
+  >
+    <div
+      class="h-full w-full overflow-hidden rounded-[3.6mm] [clip-path:polygon(0_0,100%_0,100%_100%,59%_100%,0_70%)]"
+    >
+      {
+        heroImage ? (
+          <img
+            src={heroImage}
+            alt={fullName}
+            width="280"
+            height="340"
+            class="mx-auto mt-[1.6mm] rounded-[3.6mm] h-full w-full object-contain object-bottom grayscale contrast-108"
+          />
+        ) : (
+          <div class="grid h-full w-full place-items-center bg-[#e5e7eb] text-[14mm] font-bold text-print-ink">
+            {firstName[0]}
+            {lastName[0]}
+          </div>
+        )
+      }
+    </div>
+
+    <div
+      class="absolute -bottom-[4.5mm] -left-[1.4mm] h-[27mm] w-[47mm] overflow-hidden rounded-[5.2mm] bg-print-primary px-[3.2mm] py-[2.8mm] [clip-path:polygon(0_0,-2%_0,100%_119%,100%_100%,0_100%)]"
+    >
+      <p
+        class="mt-[12mm] text-[2.2mm] uppercase tracking-[0.06em] text-[#111111]"
+      >
+        Experience
+      </p>
+      <p
+        class="m-[1.1mm_0_0] text-[5.3mm] font-bold leading-none text-[#111111]"
+      >
+        {totalExperienceYears}Y {totalExperienceMonths}M
+      </p>
+    </div>
+  </div>
+
+  <section
+    class="relative min-w-0 self-stretch border-l-[0.42mm] border-solid border-print-border pl-[4.4mm] pt-[4.8mm] before:content-none after:content-none max-[900px]:border-l-0 max-[900px]:pl-0 print:border-l-[0.42mm] print:pl-[4.4mm]"
+  >
+    <p
+      class="m-[0.55mm_0_4.9mm] text-[5.3mm] font-medium tracking-[0.04em] text-print-strong"
+    >
+      {roleLine}
+    </p>
+    <SectionTitle text="Profile" />
+    <p
+      class="m-[2.15mm_0_0] wrap-break-word text-[3.85mm] leading-[1.54] text-print-muted"
+    >
+      {profileSummary || "Add your introduction in the profile section."}
+    </p>
+  </section>
+</header>

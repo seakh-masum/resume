@@ -2,7 +2,7 @@
 import Stepper from "../../ui/Stepper.astro";
 import { calculateTenure, formatDateRange } from "@/utils";
 import "./experience.css";
-import type { StepperItem } from "./experience";
+import type { StepperItem } from "@/types/features";
 
 interface Props {
   data: StepperItem[];
@@ -29,7 +29,7 @@ const mappedData = data.map((item) => ({
         extraHeading={item.company}
         subHeading={item.dateRange}
         desc={item.desc}
-        link={item.link}
+        link={item.link ?? ""}
         list={item.roles}
       />
     ))

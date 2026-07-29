@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "./animation.css";
-@import "./print.css";
 @import "./theme.css";
 
 body.no-scroll {

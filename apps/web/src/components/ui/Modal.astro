@@ -15,7 +15,7 @@ const modalId = `${type}-${id}`;
   <!-- Trigger Button -->
   <button
     class="text-left"
-    onclick={`document.getElementById('${modalId}').showModal()`}
+    onclick={`document.body.classList.add('no-scroll'); document.getElementById('${modalId}')?.showModal();`}
   >
     <slot name="trigger" />
   </button>

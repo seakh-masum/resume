@@ -1,0 +1,31 @@
+---
+import type { EducationItem } from "@/types/features";
+
+interface Props {
+  item: EducationItem;
+}
+
+const { item } = Astro.props as Props;
+---
+
+<article class="mt-0 mb-[8.4mm] break-inside-avoid last:mb-0">
+  <p class="m-0 text-[3.7mm] tracking-[0.06em] text-print-subtle">
+    {item?.startYear || ""}
+    {item?.endYear ? ` - ${item.endYear}` : ""}
+  </p>
+  <h3
+    class="m-[2mm_0_0.6mm] text-[3.9mm] font-bold tracking-[0.02em] text-print-ink"
+  >
+    {item?.degree || "Degree"}
+  </h3>
+  <p class="m-0 wrap-break-word text-[3.55mm] leading-[1.35] text-print-base">
+    {item?.institute || "Institute"}
+  </p>
+  {
+    (item?.percentage || item?.marks) && (
+      <p class="m-[1mm_0_0] text-[3.3mm] leading-[1.35] text-print-muted">
+        Percentage: {item?.percentage || item?.marks}
+      </p>
+    )
+  }
+</article>

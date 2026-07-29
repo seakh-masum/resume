@@ -1,0 +1,48 @@
+---
+import SectionTitle from "@/components/print-template/SectionTitle.astro";
+import type { NameItem } from "@/types/features";
+
+interface Props {
+  title: string;
+  items: NameItem[];
+  fallbackLabel: string;
+  containerClassName?: string;
+  titleClassName?: string;
+  listClassName?: string;
+  itemClassName?: string;
+  limit?: number;
+}
+
+const {
+  title,
+  items,
+  fallbackLabel,
+  containerClassName = "",
+  titleClassName = "",
+  listClassName = "",
+  itemClassName = "",
+  limit,
+} = Astro.props as Props;
+
+const normalizedItems =
+  typeof limit === "number" ? items.slice(0, limit) : items;
+---
+
+{
+  normalizedItems.length > 0 && (
+    <section class={containerClassName}>
+      <SectionTitle text={title} className={titleClassName} />
+      <ul
+        class={`m-0 list-outside list-disc pl-[4.5mm] text-[3.4mm] leading-[1.45] text-print-base marker:text-print-subtle ${listClassName}`.trim()}
+      >
+        {normalizedItems.map((item) => (
+          <li
+            class={`mb-[1.5mm] wrap-break-word pl-[0.6mm] ${itemClassName}`.trim()}
+          >
+            {item?.name || fallbackLabel}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

@@ -1,0 +1,68 @@
+---
+import SectionTitle from "@/components/print-template/SectionTitle.astro";
+import TitledListSection from "@/components/print-template/TitledListSection.astro";
+import ProjectCard from "@/components/print-template/ProjectCard.astro";
+import {
+  DIVIDER_PANEL_CLASS,
+  LEFT_COLUMN_CLASS,
+  TWO_COLUMN_SECTION_CLASS,
+} from "@/components/print-template/classNames";
+import type { NameItem, ProjectItem, SkillItem } from "@/types/features";
+
+interface Props {
+  projects: ProjectItem[];
+  tools: NameItem[];
+  hobbies: NameItem[];
+  skills: SkillItem[];
+}
+
+const { projects, tools, hobbies, skills } = Astro.props as Props;
+---
+
+<section class="mt-[8mm]">
+  <div class={TWO_COLUMN_SECTION_CLASS}>
+    <aside class={LEFT_COLUMN_CLASS}>
+      <TitledListSection
+        title="Skills"
+        items={skills}
+        fallbackLabel="Skill"
+        listClassName="text-[3.45mm]"
+        containerClassName="mb-[4.4mm]"
+      />
+
+      <TitledListSection
+        title="Tools"
+        items={tools}
+        fallbackLabel="Tool"
+        containerClassName="mt-[4.8mm] mb-[4.4mm]"
+        limit={12}
+      />
+
+      <TitledListSection
+        title="Hobbies"
+        items={hobbies}
+        fallbackLabel="Hobby"
+        containerClassName="mt-[4.8mm]"
+        limit={8}
+      />
+    </aside>
+
+    <section class={DIVIDER_PANEL_CLASS}>
+      <SectionTitle text="Projects" />
+
+      {
+        projects.length > 0 ? (
+          <div class="mt-0">
+            {projects.map((item, index) => (
+              <ProjectCard item={item} index={index} />
+            ))}
+          </div>
+        ) : (
+          <p class="m-[2.2mm_0_0] text-[3.4mm] leading-[1.45] text-print-muted">
+            No projects added yet.
+          </p>
+        )
+      }
+    </section>
+  </div>
+</section>

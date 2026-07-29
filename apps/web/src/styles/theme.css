@@ -9,6 +9,14 @@
   --color-text: var(--text-color);
   --color-text-light: var(--text-light-color);
   --color-hover: var(--hover-color);
+  --color-print-bg: var(--print-bg);
+  --color-print-ink: var(--print-ink);
+  --color-print-strong: var(--print-strong);
+  --color-print-base: var(--print-base);
+  --color-print-muted: var(--print-muted);
+  --color-print-subtle: var(--print-subtle);
+  --color-print-border: var(--print-border);
+  --color-print-primary: var(--print-primary);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-montserrat);
   --font-heading: var(--font-dancing);

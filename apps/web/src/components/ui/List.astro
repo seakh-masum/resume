@@ -10,7 +10,7 @@ const { data } = Astro.props;
   {
     data.map((item, idx) => (
       <li
-        class="list-item text-text-light text-sm list-disc"
+        class="list-item list-disc text-sm text-text-light"
         style={`--i: ${idx}`}
       >
         {item}
@@ -65,7 +65,7 @@ const { data } = Astro.props;
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.2 },
   );
 
   lists.forEach((list) => {

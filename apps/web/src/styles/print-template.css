@@ -1,0 +1,29 @@
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    background: #fff !important;
+  }
+
+  main {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    box-sizing: border-box;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

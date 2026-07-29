@@ -1,3 +1,5 @@
+import type { ResumeExperience } from "@/types/models/resume";
+
 function formatYearMonth(value: string) {
   const [year, month] = value.split("-");
   const date = new Date(Number(year), Number(month) - 1);
@@ -41,10 +43,15 @@ type Tenure = {
   releaseDate?: string; // in 'YYYY-MM' format or undefined for ongoing
 };
 
-function calculateTotalTenure(tenures: Tenure[]): {
+function calculateTotalTenure(experiences: ResumeExperience[]): {
   years: number;
   months: number;
 } {
+  const tenures = experiences.map((exp: ResumeExperience) => ({
+    joiningDate: exp.joiningDate ?? "",
+    releaseDate: exp.releaseDate,
+  }));
+
   if (!Array.isArray(tenures) || tenures.length === 0) {
     return { years: 0, months: 0 };
   }
@@ -91,9 +98,16 @@ function calculateTotalTenure(tenures: Tenure[]): {
   };
 }
 
+const currentDate = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+}).format(new Date());
+
 export {
   formatYearMonth,
   calculateTenure,
   formatDateRange,
   calculateTotalTenure,
+  currentDate,
 };
