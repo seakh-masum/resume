@@ -25,3 +25,16 @@ export const applyPdfPrintTitle = (
   doc.title = fileName;
   return fileName;
 };
+
+export const preparePdfPrintTitle = async (
+  doc: Pick<Document, "title">,
+  kind: PrintDocumentKind,
+  delayMs = 120,
+): Promise<string> => {
+  const fileName = applyPdfPrintTitle(doc, kind);
+
+  // Safari (especially on iOS) can ignore title changes if print starts immediately.
+  await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+  return fileName;
+};

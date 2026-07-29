@@ -236,7 +236,7 @@ const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
 
 <script>
   import { renderTemplate } from "@/utils/template.util";
-  import { applyPdfPrintTitle } from "@/utils/print.util";
+  import { applyPdfPrintTitle, preparePdfPrintTitle } from "@/utils/print.util";
 
   const DEFAULTS = {
     jobTitle: "Software Engineer",
@@ -343,8 +343,8 @@ const paragraphThree = renderTemplate(PARAGRAPH_TEMPLATES.three, {
     }
 
     button.dataset.printBound = "true";
-    button.addEventListener("click", () => {
-      applyCoverLetterPrintTitle();
+    button.addEventListener("click", async () => {
+      await preparePdfPrintTitle(document, "cover-letter");
       window.print();
     });
   };
