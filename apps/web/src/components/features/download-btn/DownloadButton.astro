@@ -30,6 +30,8 @@ import "./download-btn.css";
 </div>
 
 <script>
+  import { applyPdfPrintTitle } from "@/utils/print.util";
+
   const PRINT_FRAME_ID = "resume-print-frame";
 
   const cleanupPrintFrame = () => {
@@ -64,6 +66,7 @@ import "./download-btn.css";
       }
 
       // Open browser print dialog for the printable /resume page.
+      applyPdfPrintTitle(printWindow.document, "resume");
       printWindow.focus();
       printWindow.print();
 

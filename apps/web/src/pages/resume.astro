@@ -132,9 +132,9 @@ const certificationItems: CertificationPrintItem[] = certifications
         />
       </Modal>
       <button
+        id="resume-print-btn"
         class="cursor-pointer rounded-full border border-[#111111] bg-print-primary px-3.5 py-1.5 text-[0.85rem] font-semibold text-[#111111] shadow-[0_4px_14px_rgba(17,24,39,0.18)]"
         type="button"
-        onclick="window.print()"
       >
         Print This Page
       </button>
@@ -181,3 +181,28 @@ const certificationItems: CertificationPrintItem[] = certifications
 <style is:global>
   @import "@/styles/print-template.css";
 </style>
+
+<script>
+  import { applyPdfPrintTitle } from "@/utils/print.util";
+
+  const applyResumePrintTitle = () => {
+    applyPdfPrintTitle(document, "resume");
+  };
+
+  const bindResumePrintButton = () => {
+    const button = document.getElementById("resume-print-btn");
+    if (!button || button.dataset.printBound === "true") {
+      return;
+    }
+
+    button.dataset.printBound = "true";
+    button.addEventListener("click", () => {
+      applyResumePrintTitle();
+      window.print();
+    });
+  };
+
+  window.addEventListener("beforeprint", applyResumePrintTitle);
+  bindResumePrintButton();
+  document.addEventListener("astro:page-load", bindResumePrintButton);
+</script>
