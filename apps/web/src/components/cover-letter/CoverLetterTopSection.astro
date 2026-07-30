@@ -17,7 +17,9 @@ const { fullName, role, heroImage, initials, aboutMeText } =
   <div
     class="grid place-items-center border-r border-print-border/40 p-[6mm] max-[900px]:border-r-0 print:border-r print:border-print-border/40"
   >
-    <div class="overflow-hidden">
+    <div
+      class="h-[40mm] w-[40mm] overflow-hidden rounded-[2.4mm] max-[900px]:h-[34mm] max-[900px]:w-[34mm] print:h-[40mm] print:w-[40mm]"
+    >
       {
         heroImage ? (
           <img
