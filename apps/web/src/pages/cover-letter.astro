@@ -100,6 +100,19 @@ const { pageData, meta } = buildCoverLetterPageTemplateData(
 
   const applyCoverLetterParams = () => {
     const params = new URLSearchParams(window.location.search);
+    const hasDynamicParams =
+      COVER_LETTER_FORM_PARAM_MAPPING.some((item) => {
+        return Boolean(params.get(item.param)?.trim());
+      }) ||
+      Boolean(params.get("jobTitle")?.trim()) ||
+      Boolean(params.get("relevantTech")?.trim());
+
+    // Server-rendered content already contains defaults; skip client rewrites
+    // when no URL overrides are present to prevent avoidable layout shifts.
+    if (!hasDynamicParams) {
+      return;
+    }
+
     for (const item of COVER_LETTER_FORM_PARAM_MAPPING) {
       const value = params.get(item.param)?.trim();
       const target = document.getElementById(item.id);
