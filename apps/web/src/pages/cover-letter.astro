@@ -1,16 +1,14 @@
 ---
 import DocumentPrintLayout from "@/layouts/DocumentPrintLayout.astro";
-import { sanity } from "@/lib/sanity";
-import { resumeQuery } from "@/lib/queries";
+import { getResumeData } from "@/lib/resume-data";
 import { COVER_LETTER_TEMPLATE_META_ID } from "@/const";
 import { buildCoverLetterPageTemplateData } from "@/lib/template-data";
 import CoverLetterTopSection from "@/components/cover-letter/CoverLetterTopSection.astro";
 import CoverLetterContactStrip from "@/components/cover-letter/CoverLetterContactStrip.astro";
 import CoverLetterBodySection from "@/components/cover-letter/CoverLetterBodySection.astro";
-import type { ResumeData } from "@/types/models";
 import { currentDate } from "@/utils/date.util";
 
-const resume = (await sanity.fetch(resumeQuery)) as ResumeData;
+const resume = await getResumeData();
 const params = Astro.url.searchParams;
 const { pageData, meta } = buildCoverLetterPageTemplateData(
   resume,

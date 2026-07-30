@@ -1,15 +1,13 @@
 ---
 import DocumentPrintLayout from "@/layouts/DocumentPrintLayout.astro";
-import { sanity } from "@/lib/sanity";
-import { resumeQuery } from "@/lib/queries";
+import { getResumeData } from "@/lib/resume-data";
 import { buildResumePageTemplateData } from "@/lib/template-data";
 import { currentDate } from "@/utils/date.util";
 import TopSection from "@/components/resume/TopSection.astro";
 import MainDetailsSection from "@/components/resume/MainDetailsSection.astro";
 import AdditionalDetailsSection from "@/components/resume/AdditionalDetailsSection.astro";
-import type { ResumeData } from "@/types/models";
 
-const resume = (await sanity.fetch(resumeQuery)) as ResumeData;
+const resume = await getResumeData();
 const pageData = buildResumePageTemplateData(resume, currentDate);
 ---
 

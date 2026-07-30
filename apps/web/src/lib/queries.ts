@@ -1,46 +1,51 @@
+const RESUME_BASE_QUERY = `*[_type == "resume"][0]`;
+
+const SKILL_FIELDS = `{
+  _key,
+  name,
+  description,
+  color,
+  icon,
+  level,
+  link,
+  features,
+  experience,
+  projects
+}`;
+
+const PROJECT_FIELDS = `{
+  _key,
+  title,
+  description,
+  sector,
+  techStacks,
+  role,
+  type,
+  responsibilities,
+  achievements,
+  members
+}`;
+
+export const resumeProfileQuery = `${RESUME_BASE_QUERY}.profile`;
+export const resumeContactsQuery = `${RESUME_BASE_QUERY}.contacts`;
+export const resumeSkillsQuery = `${RESUME_BASE_QUERY}.skills[]${SKILL_FIELDS}`;
+export const resumeToolsQuery = `${RESUME_BASE_QUERY}.tools[]${SKILL_FIELDS}`;
+export const resumeExperienceQuery = `${RESUME_BASE_QUERY}.experience`;
+export const resumeEducationQuery = `${RESUME_BASE_QUERY}.education`;
+export const resumeCertificationsQuery = `${RESUME_BASE_QUERY}.certifications`;
+export const resumeProjectsQuery = `${RESUME_BASE_QUERY}.projects[]${PROJECT_FIELDS}`;
+export const resumeHobbiesQuery = `${RESUME_BASE_QUERY}.hobbies`;
+
 export const resumeQuery = `
-  *[_type == "resume"][0]{
+  ${RESUME_BASE_QUERY}{
     profile,
-    skills[]{
-      _key,
-      name,
-      description,
-      color,
-      icon,
-      level,
-      link,
-      features,
-      experience,
-      projects
-    },
+    skills[]${SKILL_FIELDS},
     experience,
-    projects[]{
-      _key,
-      title,
-      description,
-      sector,
-      techStacks,
-      role,
-      type,
-      responsibilities,
-      achievements,
-      members
-    },
+    projects[]${PROJECT_FIELDS},
     education,
     certifications,
     contacts,
-    tools[]{
-      _key,
-      name,
-      description,
-      icon,
-      link,
-      color,
-      level,
-      features,
-      experience,
-      projects
-    },
+    tools[]${SKILL_FIELDS},
     hobbies
   }
 `;

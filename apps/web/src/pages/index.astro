@@ -1,14 +1,12 @@
 ---
 // import Content from "@/components/react/Content";
-import { sanity } from "@/lib/sanity";
-import { resumeQuery } from "@/lib/queries";
+import { getResumeData } from "@/lib/resume-data";
 import { buildHomePageTemplateData } from "@/lib/template-data";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Content from "@/components/ui/Content.astro";
-import type { ResumeData } from "@/types/models";
 
 // Build-time fetch (static)
-const resume = (await sanity.fetch(resumeQuery)) as ResumeData;
+const resume = await getResumeData();
 const pageData = buildHomePageTemplateData(resume);
 ---
 
