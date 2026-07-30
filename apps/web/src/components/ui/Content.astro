@@ -9,7 +9,13 @@ import TotalExperience from "./TotalExperience.astro";
 import Profile from "../features/Profile.astro";
 import Education from "../features/education/Education.astro";
 import Certification from "../features/certification/Certification.astro";
-import type { ResumeData, ResumeExperience } from "@/types/models";
+import ActionButtonGroup from "./ActionButtonGroup.astro";
+import type { ResumeData } from "@/types/models";
+import {
+  COVER_LETTER_DEFAULTS,
+  COVER_LETTER_RELEVANT_TECH_FALLBACK,
+} from "@/const";
+import { normalizeProfileLocation } from "@/utils/profile.util";
 
 interface Props {
   resume: ResumeData;
@@ -19,39 +25,65 @@ const { resume } = Astro.props as Props;
 
 // Use your existing calculateTotalTenure utility
 import { calculateTotalTenure } from "@/utils";
-import DownloadButton from "../features/download-btn/DownloadButton.astro";
 
 const { years, months } = calculateTotalTenure(resume.experience);
+
+const profile = resume?.profile ?? {};
+const roleLine = profile?.title || COVER_LETTER_DEFAULTS.jobTitle;
+const roPlaceholder = COVER_LETTER_DEFAULTS.recipientName;
+const rolePlaceholder = COVER_LETTER_DEFAULTS.recipientRole;
+const companyPlaceholder =
+  resume?.experience?.[0]?.company || COVER_LETTER_DEFAULTS.recipientCompany;
+const locationPlaceholder = normalizeProfileLocation(
+  profile,
+  COVER_LETTER_DEFAULTS.recipientLocation,
+);
+const salutationPlaceholder = COVER_LETTER_DEFAULTS.salutation;
+const jobTitlePlaceholder = roleLine;
+const relevantTechPlaceholder =
+  resume?.skills?.[0]?.name ||
+  resume?.tools?.[0]?.name ||
+  COVER_LETTER_RELEVANT_TECH_FALLBACK;
 ---
 
 <div class="w-full bg-surface">
-  <div class="relative mx-auto max-w-7xl px-2 py-3 sm:p-3">
+  <div class="relative mx-auto max-w-7xl px-2 py-3 pb-24 sm:p-3 sm:pb-3">
+    <ActionButtonGroup
+      roPlaceholder={roPlaceholder}
+      rolePlaceholder={rolePlaceholder}
+      companyPlaceholder={companyPlaceholder}
+      locationPlaceholder={locationPlaceholder}
+      salutationPlaceholder={salutationPlaceholder}
+      jobTitlePlaceholder={jobTitlePlaceholder}
+      relevantTechPlaceholder={relevantTechPlaceholder}
+    />
+
     <Profile data={resume?.profile} contacts={resume?.contacts || []} />
 
     <div class="flex flex-col gap-4 sm:flex-row">
       <div class="flex flex-col basis-[45%]">
-        <Card header="About Me">
+        <Card header="About Me" ariaLabel="About me section">
           <AboutMe
             introduction={resume?.profile.introduction || ""}
             summary={resume?.profile?.summary || []}
           />
         </Card>
-        <Card header="Hobbies">
+        <Card header="Hobbies" ariaLabel="Hobbies section">
           <HobbyList data={resume.hobbies} />
         </Card>
       </div>
       <div class="flex flex-col basis-[55%]">
-        <Card header="Skills">
+        <Card header="Skills" ariaLabel="Skills section">
           <CircleProgressGrid features="skills" data={resume.skills} />
         </Card>
-        <Card header="Tools">
+        <Card header="Tools" ariaLabel="Tools section">
           <CircleProgressGrid features="tools" data={resume.tools} />
         </Card>
       </div>
     </div>
 
     <div>
-      <Card>
+      <Card ariaLabel="Total experience and experience timeline section">
         <div slot="header">
           <TotalExperience years={years} months={months} />
         </div>
@@ -61,19 +93,43 @@ const { years, months } = calculateTotalTenure(resume.experience);
 
     <div class="flex flex-col gap-4 sm:flex-row">
       <div class="flex flex-col basis-[45%]">
-        <Card header="Education">
+        <Card header="Education" ariaLabel="Education section">
           <Education data={resume.education} />
         </Card>
-        <Card header="Certifications">
+        <Card header="Certifications" ariaLabel="Certifications section">
           <Certification data={resume.certifications || []} />
         </Card>
       </div>
       <div class="flex flex-col basis-[55%]">
-        <Card header="Projects">
+        <Card header="Projects" ariaLabel="Projects section">
           <Project data={resume.projects} />
         </Card>
       </div>
     </div>
   </div>
-  <DownloadButton />
 </div>
+
+<script>
+  import { RESUME_PRINT_FRAME_ID } from "@/const";
+  import { runOnAstroPageLoad } from "@/utils/astro-page.util";
+  import { openPrintableDialog } from "@/utils/print-dialog.util";
+
+  const bindDownloadButton = () => {
+    const button = document.getElementById("main-download-cv-btn");
+    if (!button || button.dataset.downloadBound === "true") {
+      return;
+    }
+
+    button.dataset.downloadBound = "true";
+    button.addEventListener("click", () => {
+      openPrintableDialog({
+        path: "/resume",
+        kind: "resume",
+        frameId: RESUME_PRINT_FRAME_ID,
+        mobileChromeRouteFallback: true,
+      });
+    });
+  };
+
+  runOnAstroPageLoad(bindDownloadButton);
+</script>

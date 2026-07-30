@@ -10,14 +10,13 @@
     "dev:studio": "pnpm --filter studio dev",
     "build": "pnpm -r --filter ./apps/* build",
     "build:web": "pnpm --filter web build",
-    "build:studio": "pnpm --filter studio build"
+    "build:studio": "pnpm --filter studio build",
+    "lh:collect": "lhci collect --config=./lighthouserc.json",
+    "lh:assert": "lhci assert --config=./lighthouserc.json",
+    "lh:ci": "pnpm run build:web && lhci autorun --config=./lighthouserc.json"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "turbo": "^1.10.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "^6.0.0"
-    }
   }
 }

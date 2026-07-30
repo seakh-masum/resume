@@ -1,5 +1,5 @@
 ---
-import SectionTitle from "@/components/print-template/SectionTitle.astro";
+import SectionTitle from "./SectionTitle.astro";
 import PrintContactList from "@/components/features/PrintContactList.astro";
 import type { HeaderContact } from "@/types/features";
 
@@ -29,6 +29,7 @@ const {
 ---
 
 <header
+  aria-label="Resume profile header"
   class="grid grid-cols-[62mm_minmax(0,1fr)] items-start gap-x-[6.7mm] gap-y-[1.05mm] max-[900px]:grid-cols-1 print:grid-cols-[62mm_minmax(0,1fr)] print:gap-x-[6.7mm]"
 >
   <div

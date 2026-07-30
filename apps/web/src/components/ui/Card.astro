@@ -4,12 +4,15 @@ import "@/styles/card.css";
 interface Props {
   header?: string | HTMLElement;
   className?: string;
+  ariaLabel?: string;
 }
 
-const { header, className = "" } = Astro.props;
+const { header, className = "", ariaLabel } = Astro.props;
+const computedAriaLabel =
+  ariaLabel || (typeof header === "string" ? `${header} section` : undefined);
 ---
 
-<div class={`card ${className}`}>
+<div class={`card ${className}`} role="region" aria-label={computedAriaLabel}>
   <header class="card-header">
     <!-- If a header slot is provided, use it -->
     <slot name="header">

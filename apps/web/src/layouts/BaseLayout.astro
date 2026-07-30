@@ -1,6 +1,36 @@
 ---
 import "@/styles/global.css";
 import { homeMetadata as meta } from "@/styles/metadata";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${meta.canonical}#website`,
+      url: meta.canonical,
+      name: meta.openGraph.siteName,
+      description: meta.description,
+      inLanguage: "en-US",
+      publisher: {
+        "@id": `${meta.canonical}#person`,
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${meta.canonical}#person`,
+      name: meta.author,
+      url: meta.canonical,
+      description: meta.description,
+      jobTitle: "Software Engineer",
+      image: meta.openGraph.image,
+      sameAs: [meta.canonical],
+      mainEntityOfPage: {
+        "@id": `${meta.canonical}#website`,
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -10,26 +40,6 @@ import { homeMetadata as meta } from "@/styles/metadata";
 
     <!-- Viewport FIRST - critical for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Preconnect for fonts - do this BEFORE loading fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Load fonts with display=swap to prevent blocking -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital,wght@0,700;1,700;0,100&family=Open+Sans:wdth,wght@75..100,300..800&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-
-    <!-- Fallback for no-JS -->
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital,wght@0,700;1,700;0,100&family=Open+Sans:wdth,wght@75..100,300..800&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <!-- Theme colors -->
     <meta
@@ -46,7 +56,10 @@ import { homeMetadata as meta } from "@/styles/metadata";
     <!-- Metadata -->
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
+    <meta name="author" content={meta.author} />
+    <meta name="robots" content={meta.robots} />
     <meta name="keywords" content={meta.keywords.join(", ")} />
+    <link rel="canonical" href={meta.canonical} />
     <meta name="view-transition" content="same-origin" />
 
     <!-- Icons -->
@@ -78,7 +91,9 @@ import { homeMetadata as meta } from "@/styles/metadata";
     <meta property="og:description" content={meta.openGraph.description} />
     <meta property="og:url" content={meta.openGraph.url} />
     <meta property="og:site_name" content={meta.openGraph.siteName} />
+    <meta property="og:locale" content={meta.openGraph.locale} />
     <meta property="og:image" content={meta.openGraph.image} />
+    <meta property="og:image:alt" content={meta.openGraph.imageAlt} />
     <meta property="og:type" content="website" />
 
     <!-- Twitter -->
@@ -88,6 +103,7 @@ import { homeMetadata as meta } from "@/styles/metadata";
     <meta name="twitter:creator" content={meta.twitter.creator} />
     <meta name="twitter:site" content={meta.twitter.site} />
     <meta name="twitter:image" content={meta.twitter.image} />
+    <meta name="twitter:image:alt" content={meta.twitter.imageAlt} />
 
     <!-- MS -->
     <meta name="msapplication-TileColor" content={meta.ms.tileColor} />
@@ -97,16 +113,42 @@ import { homeMetadata as meta } from "@/styles/metadata";
     <style>
       body {
         font-family:
-          "Open Sans",
+          "Open Sans Variable",
           system-ui,
           -apple-system,
           sans-serif;
       }
+
+      .skip-link {
+        position: absolute;
+        left: 0.75rem;
+        top: 0.75rem;
+        transform: translateY(-200%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
+        background: #111827;
+        color: #ffffff;
+        text-decoration: none;
+        z-index: 1000;
+      }
+
+      .skip-link:focus,
+      .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 2px solid #ffffff;
+        outline-offset: 2px;
+      }
     </style>
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
   </head>
 
   <body class="antialiased bg-surface font-sans m-0">
-    <main>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <main id="main-content" aria-label="Main content">
       <slot />
     </main>
   </body>

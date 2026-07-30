@@ -1,12 +1,12 @@
 ---
-import SectionTitle from "@/components/print-template/SectionTitle.astro";
-import TitledListSection from "@/components/print-template/TitledListSection.astro";
-import ProjectCard from "@/components/print-template/ProjectCard.astro";
+import SectionTitle from "@/components/resume/SectionTitle.astro";
+import TitledListSection from "@/components/resume/TitledListSection.astro";
+import ProjectCard from "@/components/resume/ProjectCard.astro";
 import {
   DIVIDER_PANEL_CLASS,
   LEFT_COLUMN_CLASS,
   TWO_COLUMN_SECTION_CLASS,
-} from "@/components/print-template/classNames";
+} from "@/components/resume/classNames";
 import type {
   CertificationPrintItem,
   NameItem,
@@ -26,9 +26,12 @@ const { projects, tools, hobbies, skills, certifications } =
   Astro.props as Props;
 ---
 
-<section class="mt-[8mm]">
+<section class="mt-[8mm]" aria-label="Additional resume details section">
   <div class={TWO_COLUMN_SECTION_CLASS}>
-    <aside class={LEFT_COLUMN_CLASS}>
+    <aside
+      class={LEFT_COLUMN_CLASS}
+      aria-label="Skills tools hobbies and certifications"
+    >
       <TitledListSection
         title="Skills"
         items={skills}
@@ -77,7 +80,7 @@ const { projects, tools, hobbies, skills, certifications } =
       }
     </aside>
 
-    <section class={DIVIDER_PANEL_CLASS}>
+    <section class={DIVIDER_PANEL_CLASS} aria-label="Project highlights">
       <SectionTitle text="Projects" />
 
       {

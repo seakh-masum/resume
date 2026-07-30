@@ -1,6 +1,6 @@
 :root {
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-sans: "Open Sans", sans-serif;
+  --font-montserrat: "Montserrat Variable", sans-serif;
+  --font-sans: "Open Sans Variable", sans-serif;
   --font-dancing: "Dancing Script", cursive;
   --surface-color: oklch(96.8% 0.007 247.896);
   --accent-color: oklch(98.4% 0.003 247.858);

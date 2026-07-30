@@ -1,12 +1,12 @@
 ---
-import SectionTitle from "@/components/print-template/SectionTitle.astro";
-import ExperienceTimelineItem from "@/components/print-template/ExperienceTimelineItem.astro";
-import EducationCard from "@/components/print-template/EducationCard.astro";
+import SectionTitle from "@/components/resume/SectionTitle.astro";
+import ExperienceTimelineItem from "@/components/resume/ExperienceTimelineItem.astro";
+import EducationCard from "@/components/resume/EducationCard.astro";
 import {
   DIVIDER_PANEL_CLASS,
   LEFT_COLUMN_CLASS,
   TWO_COLUMN_SECTION_CLASS,
-} from "@/components/print-template/classNames";
+} from "@/components/resume/classNames";
 import type { EducationItem, ExperienceItem } from "@/types/features";
 
 interface Props {
@@ -17,8 +17,11 @@ interface Props {
 const { education, experience } = Astro.props as Props;
 ---
 
-<section class={`mt-[10mm] ${TWO_COLUMN_SECTION_CLASS}`}>
-  <aside class={LEFT_COLUMN_CLASS}>
+<section
+  class={`mt-[10mm] ${TWO_COLUMN_SECTION_CLASS}`}
+  aria-label="Resume education and experience section"
+>
+  <aside class={LEFT_COLUMN_CLASS} aria-label="Education details">
     <SectionTitle text="Education" />
 
     <div class="mt-0">
@@ -26,7 +29,7 @@ const { education, experience } = Astro.props as Props;
     </div>
   </aside>
 
-  <section class={DIVIDER_PANEL_CLASS}>
+  <section class={DIVIDER_PANEL_CLASS} aria-label="Experience details">
     <SectionTitle text="Experience" />
 
     <div class="mt-0">

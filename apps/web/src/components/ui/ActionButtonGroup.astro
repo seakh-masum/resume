@@ -1,0 +1,85 @@
+---
+import Modal from "./Modal.astro";
+import CoverLetterForm from "../modals/CoverLetterForm.astro";
+
+interface Props {
+  roPlaceholder: string;
+  rolePlaceholder: string;
+  companyPlaceholder: string;
+  locationPlaceholder: string;
+  salutationPlaceholder: string;
+  jobTitlePlaceholder: string;
+  relevantTechPlaceholder: string;
+}
+
+const {
+  roPlaceholder,
+  rolePlaceholder,
+  companyPlaceholder,
+  locationPlaceholder,
+  salutationPlaceholder,
+  jobTitlePlaceholder,
+  relevantTechPlaceholder,
+} = Astro.props as Props;
+---
+
+<div
+  class="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2 border-t border-[#0f172a]/12 bg-white/30 px-3 py-3 shadow-[0_-8px_30px_rgba(15,23,42,0.12)] backdrop-blur-xl dark:border-white/15 dark:bg-black/30 print:hidden sm:sticky sm:top-2 sm:z-30 sm:mb-4 sm:justify-end sm:gap-2 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:shadow-none sm:backdrop-blur-0 sm:dark:bg-transparent"
+>
+  <Modal
+    id="cover-letter-form-main"
+    type="sheet"
+    triggerAriaLabel="Open cover letter form"
+    dialogAriaLabel="Cover letter details form"
+    triggerClassName="w-full flex-1 sm:w-auto sm:flex-none"
+  >
+    <span
+      slot="trigger"
+      class="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#b7c5ff] bg-linear-to-br from-white to-[#eef4ff] px-4 py-2 text-[0.86rem] font-semibold tracking-[0.01em] text-[#0f172a] shadow-[0_8px_24px_rgba(59,130,246,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:from-[#f8fbff] hover:to-white active:translate-y-0 sm:w-auto sm:rounded-full"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        class="h-4.5 w-4.5 origin-[50%_50%] transition-transform duration-200 group-hover:scale-110"
+        fill="currentColor"
+      >
+        <path
+          d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5"
+        ></path>
+        <path d="M8 12h8v1.8H8zM8 15.8h8v1.8H8zM8 8.2h4.5V10H8z"></path>
+      </svg>
+      Cover Letter
+    </span>
+    <CoverLetterForm
+      slot="content"
+      roPlaceholder={roPlaceholder}
+      rolePlaceholder={rolePlaceholder}
+      companyPlaceholder={companyPlaceholder}
+      locationPlaceholder={locationPlaceholder}
+      salutationPlaceholder={salutationPlaceholder}
+      jobTitlePlaceholder={jobTitlePlaceholder}
+      relevantTechPlaceholder={relevantTechPlaceholder}
+    />
+  </Modal>
+
+  <button
+    id="main-download-cv-btn"
+    type="button"
+    aria-label="Download CV as PDF"
+    class="group inline-flex w-full flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#111111]/70 bg-linear-to-br from-[#c7ed5f] to-[#9fce32] px-4 py-2 text-[0.86rem] font-semibold tracking-[0.01em] text-[#111111] shadow-[0_10px_24px_rgba(132,204,22,0.32)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 sm:w-auto sm:flex-none sm:rounded-full"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      class="h-4.5 w-4.5 origin-[50%_50%] transition-transform duration-200 group-hover:translate-y-0.5"
+      fill="currentColor"
+    >
+      <path
+        d="M19 9h-4V3H9v6H5l7 7 7-7Zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11ZM5 18h14v2H5z"
+      ></path>
+    </svg>
+    Download CV
+  </button>
+</div>
