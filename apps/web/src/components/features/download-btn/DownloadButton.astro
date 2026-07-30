@@ -30,54 +30,9 @@ import "./download-btn.css";
 </div>
 
 <script>
-  import { applyPdfPrintTitle, preparePdfPrintTitle } from "@/utils/print.util";
-
-  const PRINT_FRAME_ID = "resume-print-frame";
-
-  const cleanupPrintFrame = () => {
-    const existingFrame = document.getElementById(PRINT_FRAME_ID);
-    if (existingFrame) {
-      existingFrame.remove();
-    }
-  };
-
-  const openPrintablePdfDialog = () => {
-    cleanupPrintFrame();
-
-    const frame = document.createElement("iframe");
-    frame.id = PRINT_FRAME_ID;
-    frame.src = "/resume";
-    frame.style.position = "fixed";
-    frame.style.left = "-9999px";
-    frame.style.top = "0";
-    // Keep a desktop-sized viewport so mobile breakpoints do not affect printable layout.
-    frame.style.width = "1200px";
-    frame.style.height = "1600px";
-    frame.style.border = "0";
-    frame.style.opacity = "0";
-    frame.style.pointerEvents = "none";
-
-    frame.addEventListener("load", async () => {
-      const printWindow = frame.contentWindow;
-      if (!printWindow) {
-        cleanupPrintFrame();
-        window.location.href = "/resume";
-        return;
-      }
-
-      // Open browser print dialog for the printable /resume page.
-      applyPdfPrintTitle(document, "resume");
-      applyPdfPrintTitle(printWindow.document, "resume");
-      await preparePdfPrintTitle(printWindow.document, "resume");
-      printWindow.focus();
-      printWindow.print();
-
-      // Fallback cleanup if afterprint does not fire for the iframe.
-      setTimeout(cleanupPrintFrame, 1500);
-    });
-
-    document.body.appendChild(frame);
-  };
+  import { RESUME_PRINT_FRAME_ID } from "@/const";
+  import { runOnAstroPageLoad } from "@/utils/astro-page.util";
+  import { openPrintableDialog } from "@/utils/print-dialog.util";
 
   const bindDownloadButton = () => {
     const button = document.getElementById("download-resume-btn");
@@ -87,10 +42,14 @@ import "./download-btn.css";
 
     button.dataset.downloadBound = "true";
     button.addEventListener("click", () => {
-      openPrintablePdfDialog();
+      openPrintableDialog({
+        path: "/resume",
+        kind: "resume",
+        frameId: RESUME_PRINT_FRAME_ID,
+        mobileChromeRouteFallback: true,
+      });
     });
   };
 
-  bindDownloadButton();
-  document.addEventListener("astro:page-load", bindDownloadButton);
+  runOnAstroPageLoad(bindDownloadButton);
 </script>

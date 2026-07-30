@@ -1,9 +1,23 @@
-export const homeMetadata = {
-  title: "Masum Resume",
-  description:
-    "This is a resume of Masum made with Next.js | Firebase, designed with Figma & Neumorphism",
+const socialImage = "https://seakh-masum.github.io/resume/og-image.png";
 
-  keywords: ["Resume", "Masum", "React", "Firebase", "Figma", "Neumorphism"],
+export const homeMetadata = {
+  title: "Sk Masum | Software Engineer Resume",
+  description:
+    "Explore Sk Masum's software engineer resume, including experience, projects, skills, education, and certifications.",
+  canonical: "https://seakh-masum.github.io/resume/",
+  author: "Sk Masum",
+  robots: "index, follow, max-image-preview:large",
+
+  keywords: [
+    "Sk Masum",
+    "Software Engineer",
+    "Resume",
+    "Frontend Developer",
+    "React",
+    "TypeScript",
+    "Portfolio",
+    "Projects",
+  ],
 
   icons: {
     favicon32:
@@ -23,24 +37,25 @@ export const homeMetadata = {
   manifest: "/manifest.json",
 
   openGraph: {
-    title: "Resume of Masum",
+    title: "Sk Masum | Software Engineer Resume",
     description:
-      "This is a resume of Masum made with React | Firebase, designed with Figma & Neumorphism",
+      "Explore Sk Masum's software engineer resume, including experience, projects, skills, education, and certifications.",
     url: "https://seakh-masum.github.io/resume/",
-    siteName: "Resume of Masum",
-    image:
-      "https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1654347858448-7567289345a4image",
+    siteName: "Sk Masum Resume",
+    locale: "en_US",
+    imageAlt: "Sk Masum software engineer resume preview",
+    image: socialImage,
   },
 
   twitter: {
-    card: "summary",
-    title: "Resume of Masum",
+    card: "summary_large_image",
+    title: "Sk Masum | Software Engineer Resume",
     description:
-      "This is a resume of Masum made with React | Firebase, designed with Figma & Neumorphism",
+      "Explore Sk Masum's software engineer resume, including experience, projects, skills, education, and certifications.",
     creator: "@masum_seakh",
     site: "@masum_seakh",
-    image:
-      "https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1654347858448-7567289345a4image",
+    imageAlt: "Sk Masum software engineer resume preview",
+    image: socialImage,
   },
 
   ms: {

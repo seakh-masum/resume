@@ -2,16 +2,18 @@
 // import Content from "@/components/react/Content";
 import { sanity } from "@/lib/sanity";
 import { resumeQuery } from "@/lib/queries";
+import { buildHomePageTemplateData } from "@/lib/template-data";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Content from "@/components/ui/Content.astro";
 import type { ResumeData } from "@/types/models";
 
 // Build-time fetch (static)
 const resume = (await sanity.fetch(resumeQuery)) as ResumeData;
+const pageData = buildHomePageTemplateData(resume);
 ---
 
 <BaseLayout>
-  <Content resume={resume} />
+  <Content resume={pageData.resume} />
 
   <!-- Optional modal -->
   <div slot="modal"></div>

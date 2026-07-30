@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div
+    class="min-h-0 bg-print-bg py-0 font-sans text-print-base [--mono-ink:var(--print-ink)] [--mono-strong:var(--print-strong)] [--mono-base:var(--print-base)] [--mono-muted:var(--print-muted)] [--mono-subtle:var(--print-subtle)] [--print-primary-rgb:185_218_63] max-[900px]:bg-[linear-gradient(180deg,rgba(var(--print-primary-rgb),0.18)_0%,rgba(var(--print-primary-rgb),0.05)_18%,#fff_52%)]"
+  >
+    <slot />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  @import "@/styles/print-template.css";
+
+  /* Keep this block non-empty to avoid Astro CSS index edge cases. */
+  .document-print-layout-ready {
+    display: contents;
+  }
+</style>

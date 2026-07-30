@@ -1,6 +1,15 @@
-export type PrintDocumentKind = "resume" | "cover-letter";
+import type {
+  PrintDocumentKind,
+  RunAutoPrintIfRequestedOptions,
+} from "@/types/features";
+import {
+  AUTO_PRINT_SEARCH_PARAM,
+  AUTO_PRINT_TOKEN_PARAM,
+  PRINT_OWNER,
+} from "@/const";
 
-const PRINT_OWNER = "sk-masum";
+export type { PrintDocumentKind, RunAutoPrintIfRequestedOptions };
+export { AUTO_PRINT_SEARCH_PARAM, AUTO_PRINT_TOKEN_PARAM };
 
 export const getPrintDate = (date: Date = new Date()): string => {
   const yyyy = date.getFullYear();
@@ -37,4 +46,43 @@ export const preparePdfPrintTitle = async (
   await new Promise((resolve) => setTimeout(resolve, delayMs));
 
   return fileName;
+};
+
+export const appendAutoPrintParams = (url: URL) => {
+  url.searchParams.set(AUTO_PRINT_SEARCH_PARAM, "1");
+  // Unique token makes each print request idempotent and repeatable.
+  url.searchParams.set(
+    AUTO_PRINT_TOKEN_PARAM,
+    `${Date.now()}-${Math.random()}`,
+  );
+};
+
+export const runAutoPrintIfRequested = async ({
+  kind,
+  lastTokenStorageKey,
+  fallbackStorageKey,
+  params = new URLSearchParams(window.location.search),
+  doc = document,
+}: RunAutoPrintIfRequestedOptions): Promise<boolean> => {
+  const shouldAutoPrint = params.get(AUTO_PRINT_SEARCH_PARAM) === "1";
+  if (!shouldAutoPrint) {
+    return false;
+  }
+
+  const token = params.get(AUTO_PRINT_TOKEN_PARAM)?.trim();
+  if (token) {
+    if (sessionStorage.getItem(lastTokenStorageKey) === token) {
+      return false;
+    }
+    sessionStorage.setItem(lastTokenStorageKey, token);
+  } else {
+    if (sessionStorage.getItem(fallbackStorageKey) === "1") {
+      return false;
+    }
+    sessionStorage.setItem(fallbackStorageKey, "1");
+  }
+
+  await preparePdfPrintTitle(doc, kind);
+  window.print();
+  return true;
 };

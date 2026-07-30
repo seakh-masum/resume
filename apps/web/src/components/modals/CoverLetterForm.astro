@@ -21,10 +21,13 @@ const {
 ---
 
 <form
+  id="cover-letter-form"
   class="space-y-3"
-  onsubmit="event.preventDefault(); const form = event.currentTarget; const fd = new FormData(form); const params = new URLSearchParams(); const getValue = (name) => { const input = form.querySelector('[name=' + name + ']'); const typed = String(fd.get(name) || '').trim(); const hinted = String(input?.placeholder || '').trim(); return typed || hinted; }; const ro = getValue('ro'); const role = getValue('role'); const company = getValue('company'); const location = getValue('location'); const salutation = getValue('salutation'); const jobTitle = getValue('jobTitle'); const relevantTech = getValue('relevantTech'); if (ro) params.set('to', ro); if (role) params.set('role', role); if (company) params.set('company', company); if (location) params.set('location', location); if (salutation) params.set('greeting', salutation); if (jobTitle) params.set('jobTitle', jobTitle); if (relevantTech) params.set('relevantTech', relevantTech); window.location.href = '/cover-letter?' + params.toString();"
+  aria-labelledby="cover-letter-form-title"
 >
-  <h3 class="m-0 text-lg font-semibold text-text">Cover Letter Details</h3>
+  <h3 id="cover-letter-form-title" class="m-0 text-lg font-semibold text-text">
+    Cover Letter Details
+  </h3>
   <p class="m-0 text-sm text-text-light">
     Fill out details to prefill your cover letter.
   </p>
@@ -38,6 +41,7 @@ const {
       id="cl-ro"
       name="ro"
       type="text"
+      value={roPlaceholder}
       placeholder={roPlaceholder}
       class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
     />
@@ -52,6 +56,7 @@ const {
       id="cl-role"
       name="role"
       type="text"
+      value={rolePlaceholder}
       placeholder={rolePlaceholder}
       class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
     />
@@ -94,6 +99,7 @@ const {
       id="cl-job-title"
       name="jobTitle"
       type="text"
+      value={jobTitlePlaceholder}
       placeholder={jobTitlePlaceholder}
       class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
     />
@@ -108,6 +114,7 @@ const {
       id="cl-relevant-tech"
       name="relevantTech"
       type="text"
+      value={relevantTechPlaceholder}
       placeholder={relevantTechPlaceholder}
       class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
     />
@@ -122,6 +129,7 @@ const {
       id="cl-salutation"
       name="salutation"
       type="text"
+      value={salutationPlaceholder}
       placeholder={salutationPlaceholder}
       class="rounded-lg border border-hover bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
     />
@@ -130,9 +138,66 @@ const {
   <div class="pt-2">
     <button
       type="submit"
+      aria-label="Download cover letter as PDF"
       class="w-full cursor-pointer rounded-lg border border-[#111111] bg-print-primary px-3.5 py-2 text-sm font-semibold text-[#111111]"
     >
-      Open Cover Letter
+      Download Cover Letter
     </button>
   </div>
 </form>
+
+<script>
+  import { COVER_LETTER_PRINT_FRAME_ID } from "@/const";
+  import { runOnAstroPageLoad } from "@/utils/astro-page.util";
+  import { openPrintableDialog } from "@/utils/print-dialog.util";
+
+  const getFieldValue = (form: HTMLFormElement, name: string) => {
+    const input = form.querySelector<HTMLInputElement>(`[name="${name}"]`);
+    const typed = String(new FormData(form).get(name) || "").trim();
+    const hinted = String(input?.placeholder || "").trim();
+    return typed || hinted;
+  };
+
+  const buildCoverLetterPath = (form: HTMLFormElement) => {
+    const params = new URLSearchParams();
+    const ro = getFieldValue(form, "ro");
+    const role = getFieldValue(form, "role");
+    const company = getFieldValue(form, "company");
+    const location = getFieldValue(form, "location");
+    const salutation = getFieldValue(form, "salutation");
+    const jobTitle = getFieldValue(form, "jobTitle");
+    const relevantTech = getFieldValue(form, "relevantTech");
+
+    if (ro) params.set("to", ro);
+    if (role) params.set("role", role);
+    if (company) params.set("company", company);
+    if (location) params.set("location", location);
+    if (salutation) params.set("greeting", salutation);
+    if (jobTitle) params.set("jobTitle", jobTitle);
+    if (relevantTech) params.set("relevantTech", relevantTech);
+
+    return `/cover-letter?${params.toString()}`;
+  };
+
+  const bindCoverLetterFormSubmit = () => {
+    const form = document.getElementById("cover-letter-form");
+    if (!form || form.dataset.submitBound === "true") {
+      return;
+    }
+
+    form.dataset.submitBound = "true";
+    form.addEventListener("submit", (event: SubmitEvent) => {
+      event.preventDefault();
+      const target = event.currentTarget as HTMLFormElement;
+      const path = buildCoverLetterPath(target);
+      openPrintableDialog({
+        path,
+        kind: "cover-letter",
+        frameId: COVER_LETTER_PRINT_FRAME_ID,
+        mobileChromeRouteFallback: false,
+      });
+    });
+  };
+
+  runOnAstroPageLoad(bindCoverLetterFormSubmit);
+</script>

@@ -1,0 +1,49 @@
+{
+    "ci": {
+        "collect": {
+            "url": [
+                "http://127.0.0.1:4321/",
+                "http://127.0.0.1:4321/resume",
+                "http://127.0.0.1:4321/cover-letter"
+            ],
+            "startServerCommand": "pnpm --filter web preview --host 127.0.0.1 --port 4321",
+            "startServerReadyPattern": "Local",
+            "startServerReadyTimeout": 120000,
+            "numberOfRuns": 2,
+            "settings": {
+                "chromeFlags": "--headless=new"
+            }
+        },
+        "assert": {
+            "assertions": {
+                "categories:performance": [
+                    "error",
+                    {
+                        "minScore": 1
+                    }
+                ],
+                "categories:accessibility": [
+                    "error",
+                    {
+                        "minScore": 1
+                    }
+                ],
+                "categories:best-practices": [
+                    "error",
+                    {
+                        "minScore": 1
+                    }
+                ],
+                "categories:seo": [
+                    "error",
+                    {
+                        "minScore": 1
+                    }
+                ]
+            }
+        },
+        "upload": {
+            "target": "temporary-public-storage"
+        }
+    }
+}

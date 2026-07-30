@@ -34,11 +34,12 @@ const {
 } = Astro.props as Props;
 ---
 
-<section class="flex-1">
+<section class="flex-1" aria-label="Cover letter body section">
   <div
     class="grid h-full grid-cols-[52mm_minmax(0,1fr)] max-[900px]:grid-cols-1 print:grid-cols-[52mm_minmax(0,1fr)]"
   >
     <aside
+      aria-label="Recipient and sender details"
       class="h-full border-r border-print-border/40 p-[5mm_4mm] max-[900px]:border-r-0 max-[900px]:border-b print:border-r print:border-b-0"
     >
       <h3
@@ -63,7 +64,6 @@ const {
         value={recipientCompany}
         className="m-[0.7mm_0_0]"
       />
-      <CoverLetterMetaLine value={phoneValue} className="m-[0.7mm_0_0]" />
       <CoverLetterMetaLine
         id="cl-recipient-location-to"
         value={recipientLocation}
@@ -89,7 +89,7 @@ const {
       />
     </aside>
 
-    <div class="p-[5mm_6mm_6mm]">
+    <div class="p-[5mm_6mm_6mm]" aria-label="Cover letter message content">
       <div class="flex items-start justify-between gap-3">
         <h3
           class="m-0 text-[7mm] font-bold uppercase tracking-[0.03em] text-print-ink"
